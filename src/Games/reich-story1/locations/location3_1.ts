@@ -1,7 +1,7 @@
 import { Location } from '../types';
-import description from './Location1.1.html';
+import description from './Location3.1.html?raw';
 
-export function Location1_1() {
+export function Location3_1() {
     return Location({
         name: 'Poverty & Social Order',
         description: description,
