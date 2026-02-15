@@ -1,5 +1,5 @@
 import { Location } from '../types';
-import description from './Location4.1.html?raw';
+import description from './Location4_1.html?raw';
 
 export function Location4_1() {
     return Location({
