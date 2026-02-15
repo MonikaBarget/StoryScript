@@ -1,9 +1,12 @@
-﻿import { IRules, ICharacter, ICreateCharacter, ICombinationAction } from 'storyScript/Interfaces/storyScript';
+﻿import { IRules, ICreateCharacter, ICharacter, ICombinationAction, GameState } from 'storyScript/Interfaces/storyScript';
 import { IGame, IEnemy, Character, ICombatSetup } from './types';
 
 export function Rules(): IRules {
     return {
         setup: {
+            playList: {
+                'Contemplate_the_stars.mp3': [GameState.Play]
+            },
             getCombinationActions: (): ICombinationAction[] => {
                 return [
                     // Add combination action names here if you want to use this feature.
@@ -45,7 +48,7 @@ export function Rules(): IRules {
 
         combat: {     
             fight: (game: IGame, combatSetup: ICombatSetup, retaliate?: boolean) => {
-                retaliate = retaliate ?? retaliate;
+                retaliate = retaliate == undefined ? true : retaliate;
 
                 // Implement character attack here.
 
