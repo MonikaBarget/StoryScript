@@ -1,11 +1,11 @@
 ﻿import { Location } from '../types';
 import description from './Start.html?raw';
-// Import the raw HTML for each destination
-import warAndDefence from './Location1.html?raw';
-import currenciesAndFraud from './Location2.html?raw';
-import povertyAndOrder from './Location3.html?raw';
-import imperialGovernance from './Location4.html?raw';
-import migrationAndEconomies from './Location5.html?raw';
+// Import the location functions (adjust the import paths as needed)
+import { Location1 } from './Location1';
+import { Location2 } from './Location2';
+import { Location3 } from './Location3';
+import { Location4 } from './Location4';
+import { Location5 } from './Location5';
 
 export function Start() {
     return Location({
@@ -14,23 +14,23 @@ export function Start() {
         destinations: [
             {
                 name: 'War and imperial defence',
-                file: warAndDefence,
+                target: Location1,
             },
             {
                 name: 'Currencies and monetary fraud',
-                file: currenciesAndFraud,
+                target: Location2,
             },
             {
                 name: 'Poverty and social order',
-                file: povertyAndOrder,
+                target: Location3,
             },
             {
                 name: 'Imperial governance and law',
-                file: imperialGovernance,
+                target: Location4,
             },
             {
                 name: 'Migration and cross-border economies',
-                file: migrationAndEconomies,
+                target: Location5,
             },
         ],
     });
