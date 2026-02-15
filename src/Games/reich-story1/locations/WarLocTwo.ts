@@ -1,9 +1,9 @@
 import { Location } from '../types';
-import description from './Location1_1.html?raw';
+import description from './WarLocTwo.html?raw';
 
-export function Location1_1() {
+export function WarLocTwo() {
     return Location({
-        name: 'War & Defence',
+        name: 'placeholder',
         description: description,
         destinations: [
         ]

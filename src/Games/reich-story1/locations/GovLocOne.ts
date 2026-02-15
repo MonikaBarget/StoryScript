@@ -1,9 +1,9 @@
 import { Location } from '../types';
-import description from './Location5_1.html?raw';
+import description from './GovLocOne.html?raw';
 
-export function Location5_1() {
+export function GovLocOne() {
     return Location({
-        name: 'Migration & Economies',
+        name: 'Governance & Law',
         description: description,
         destinations: [
         ]

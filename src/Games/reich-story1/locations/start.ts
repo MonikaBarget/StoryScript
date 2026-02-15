@@ -1,11 +1,11 @@
 ﻿import { Location } from '../types';
 import description from './Start.html?raw';
 // Import the location functions (adjust the import paths as needed)
-import { Location1_1 } from './location1_1';
-import { Location2_1 } from './location2_1';
-import { Location3_1 } from './location3_1';
-import { Location4_1 } from './location4_1';
-import { Location5_1 } from './location5_1';
+import { Location1_1 } from './WarLocOne';
+import { Location2_1 } from './CurLocOne';
+import { Location3_1 } from './PovLocOne';
+import { Location4_1 } from './GovLocOne';
+import { Location5_1 } from './MigLocOne';
 
 export function Start() {
     return Location({
