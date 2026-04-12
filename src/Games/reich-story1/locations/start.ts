@@ -1,11 +1,11 @@
 ﻿import { Location } from '../types';
 import description from './Start.html?raw';
 // Import the location functions (adjust the import paths as needed)
-import { Location1_1 } from './WarLocOne';
-import { Location2_1 } from './CurLocOne';
-import { Location3_1 } from './PovLocOne';
-import { Location4_1 } from './GovLocOne';
-import { Location5_1 } from './MigLocOne';
+import { WarLocOne } from './WarLocOne';
+import { CurLocOne } from './CurLocOne';
+import { PovLocOne } from './PovLocOne';
+import { GovLocOne } from './GovLocOne';
+import { MigLocOne } from './MigLocOne';
 
 export function Start() {
     return Location({
@@ -14,23 +14,23 @@ export function Start() {
         destinations: [
             {
                 name: 'War & Defence',
-                target: Location1_1,
+                target: WarLocOne,
             },
             {
                 name: 'Currencies & Fraud',
-                target: Location2_1,
+                target: CurLocOne,
             },
             {
                 name: 'Poverty & Social Order',
-                target: Location3_1,
+                target: PovLocOne,
             },
             {
                 name: 'Governance & Law',
-                target: Location4_1,
+                target: GovLocOne,
             },
             {
                 name: 'Migration & Economies',
-                target: Location5_1,
+                target: MigLocOne,
             },
         ],
     });
