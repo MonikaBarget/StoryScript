@@ -1,18 +1,18 @@
 import { Location } from '../types';
-import description from './WarLocTwo.html?raw';
-import { WarLocThree } from './WarLocThree';
+import description from './WarLocThree.html?raw';
+import { WarLocTwo } from './WarLocTwo';
 import { WarLocFour } from './WarLocFour';
 import { WarLocFive } from './WarLocFive';
 import { WarLocSix } from './WarLocSix';
 
-export function WarLocTwo() {
+export function WarLocThree() {
     return Location({
-        name: 'Wars against the Ottoman Empire',
+        name: 'Military conflicts with Louis XIV, King of France',
         description: description,
         destinations: [
             {
-                name: 'Military conflicts with Louis XIV, King of France',
-                target: WarLocThree,
+                name: 'Wars against the Ottoman Empire',
+                target: WarLocTwo,
             },
             {
                 name: 'War of the Polish Succession',
