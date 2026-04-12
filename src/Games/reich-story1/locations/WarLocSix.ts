@@ -1,32 +1,31 @@
 import { Location } from '../types';
-import description from './WarLocOne.html?raw';
+import description from './WarLocSix.html?raw';
 import { WarLocTwo } from './WarLocTwo';
+import { WarLocThree } from './WarLocThree';
+import { WarLocFour } from './WarLocFour';
+import { WarLocFive } from './WarLocFive';
 
-export function WarLocOne() {
+export function WarLocSix() {
     return Location({
-        name: 'War & Defence',
+        name: 'French Revolutionary and Napoleonic Wars',
         description: description,
         destinations: [
             {
-    name: 'Wars against the Ottoman Empire',
-    target: LocWarTwo,
-},
-{
-    name: 'Military conflicts with Louis XIV, King of France',
-    target: LocWarThree,
-},
-{
-    name: 'War of the Polish Succession',
-    target: LocWarFour,
-},
-{
-    name: '1757 War against Prussia',
-    target: LocWarFive,
-},
-{
-    name: 'French Revolutionary and Napoleonic Wars',
-    target: LocWarSix,
-}
+                name: 'Wars against the Ottoman Empire',
+                target: WarLocTwo,
+            },
+            {
+                name: 'Military conflicts with Louis XIV, King of France',
+                target: WarLocThree,
+            },
+            {
+                name: 'War of the Polish Succession',
+                target: WarLocFour,
+            },
+            {
+                name: '1757 War against Prussia',
+                target: WarLocFive,
+            }
         ]
     });
 }
