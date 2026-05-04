@@ -1,6 +1,5 @@
 import {beforeAll, describe, expect, test} from 'vitest';
 import {DataSerializer} from "storyScript/Services/DataSerializer.ts";
-import {RunGame} from "../../../Games/MyRolePlayingGame/run";
 import {Garden} from "../../../Games/MyRolePlayingGame/locations/Garden.ts";
 import {IGame} from "../../../Games/MyRolePlayingGame/interfaces/game.ts";
 import {HelperService} from "storyScript/Services/HelperService.ts";
@@ -23,7 +22,7 @@ import {IDestination} from "storyScript/Interfaces/destination.ts";
 import {Friend} from "../../../Games/MyRolePlayingGame/persons/Friend.ts";
 import {ConversationService} from "storyScript/Services/ConversationService.ts";
 import {ICharacter} from "storyScript/Interfaces/character.ts";
-import {IGameEvents} from "storyScript/Interfaces/gameEvents.ts";
+import {initServiceFactory} from "../helpers.ts";
 
 const worldData = [{
     "destinations": [{"target": "garden"}],
@@ -73,7 +72,7 @@ const locationWithAddedDestination = {
             "name": "Wooden trap door",
             "actions": [["Inspect", {
                 "text": "Inspect",
-                "execute": "function(game2){\n                      game2.logToLocationLog(\"The trap door looks old but still strong due to steel reinforcements. It is locked.\");\n                    }"
+                "execute": "function(game){\n                      game.logToLocationLog(\"The trap door looks old but still strong due to steel reinforcements. It is locked.\");\n                    }"
             }]]
         }]],
         "ss_added": true
@@ -233,8 +232,7 @@ describe("DataSerializer", () => {
     let serializer: IDataSerializer;
 
     beforeAll(() => {
-        RunGame();
-        serviceFactory = ServiceFactory.GetInstance();
+        serviceFactory = initServiceFactory();
         serializer = serviceFactory.GetDataSerializer();
     });
 
@@ -282,7 +280,10 @@ describe("DataSerializer", () => {
         game.helpers = new HelperService(<IGame>{}, definitions);
         game.party = <IParty>{};
         game.party.characters = [];
-        const locationService = new LocationService(definitions, <IRules>{}, game, <any>{ subscribe: () => {}});
+        const locationService = new LocationService(definitions, <IRules>{}, game, <any>{
+            subscribe: () => {
+            }
+        });
         const garden = <ICompiledLocation>Garden();
         locationService.initDestinations(garden);
         const searchShedAction = garden.actions.find(a => a[0] === 'SearchShed')[1];
@@ -463,7 +464,7 @@ describe("DataSerializer", () => {
             playedAudio: []
         };
         game.activeCharacter = <ICharacter>{};
-        const conversationService = new ConversationService(game);
+        const conversationService = new ConversationService(game, <IRules>{});
         conversationService.talk(person);
         const result = serializer.createSerializableClone(person);
         const serializedConversationProperties = Object.keys(result.conversation);

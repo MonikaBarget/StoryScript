@@ -17,14 +17,20 @@ import {ICombinable} from '../Interfaces/combinations/combinable';
 import {IFeature} from '../Interfaces/feature';
 import {IParty} from '../Interfaces/party';
 import {ICreateCharacter} from '../Interfaces/createCharacter/createCharacter';
-import {IHelpers} from "storyScript/Interfaces/helpers.ts";
-import {Characters, GameStateSave, HighScores, Items, Quests, SaveGamePrefix} from "../../../constants.ts";
+import {
+    Characters,
+    DescriptionProperty,
+    GameStateSave,
+    HighScores,
+    Items,
+    Quests,
+    SaveGamePrefix
+} from "../../../constants.ts";
 import {getParsedDocument, InitEntityCollection} from "storyScript/EntityCreatorFunctions.ts";
 import {IEquipment} from "storyScript/Interfaces/equipment.ts";
 import {ICombineResult} from "storyScript/Interfaces/combinations/combineResult.ts";
 import {ISoundService} from "storyScript/Interfaces/services/ISoundService.ts";
-import {gameEvents} from "storyScript/gameEvents.ts";
-import {GameEventNames} from "storyScript/GameEventNames.ts";
+import {IDemoMode} from "storyScript/Interfaces/rules/demoMode.ts";
 
 export class GameService implements IGameService {
     constructor
@@ -35,16 +41,31 @@ export class GameService implements IGameService {
         private readonly _combinationService: ICombinationService,
         private readonly _soundService: ISoundService,
         private readonly _rules: IRules,
-        private readonly _helperService: IHelpers,
         private readonly _game: IGame,
         private readonly _texts: IInterfaceTexts,
     ) {
     }
+    
+    initDemo = (demoConfig: IDemoMode) => {
+        const party = structuredClone(demoConfig.party);
+        
+        this._game.statistics = {};
+        this._game.worldProperties = {};
+        this._game.locations = null;
+        this._game.maps = null;
+        this._game.party = party;
+
+        this._rules.setup?.initGame?.(this._game);
+        this.initGame([]);
+        this.initTexts();
+        this.resume('Start');
+        
+        this._game.autoplay.startDemoMode(demoConfig, () => this.initDemo(demoConfig));
+    }
 
     init = (restart?: boolean, skipIntro?: boolean): void => {
-        this._game.helpers = this._helperService;
-        this._game.isDevelopment = process.env.NODE_ENV !== 'production';
-
+        this._game.started = true;
+        
         const gameState = this._dataService.load<ISaveGame>(GameStateSave);
         this._game.highScores = this._dataService.load<ScoreEntry[]>(HighScores);
         this._game.party = gameState?.party;
@@ -73,23 +94,29 @@ export class GameService implements IGameService {
             return;
         }
 
-        let locationName = this._game.party?.currentLocationId;
-        const characterSheet = this._rules.character.getCreateCharacterSheet?.();
-        const hasCreateCharacterSteps = characterSheet?.steps?.length > 0;
-        let isNewGame = false;
+        if (this._game.party) {
+            const locationName = this._game.party?.currentLocationId ?? 'Start';
+            this.resume(locationName);
 
-        if (!hasCreateCharacterSteps && !this._game.party) {
-            isNewGame = true;
-            locationName = 'Start';
-            this.startNewGame(<ICreateCharacter>{});
-        }
-
-        if (this._game.party && locationName) {
-            this.resume(locationName, !isNewGame);
-
-            if (!isNewGame && this._rules.setup.continueGame) {
+            if (this._rules.setup.continueGame) {
                 this._rules.setup.continueGame(this._game);
             }
+
+            return;
+        }
+
+        const characterSheet = this._rules.character.getCreateCharacterSheet?.();
+        const hasCreateCharacterSteps = characterSheet?.steps?.length > 0;
+
+        this._game.party = <IParty>{
+            type: 'party',
+            characters: [],
+            quests: [],
+            score: 0
+        };
+
+        if (!hasCreateCharacterSteps) {
+            this.startNewGame(<ICreateCharacter>{});
         } else {
             this._characterService.setupCharacter();
             this._game.state = GameState.CreateCharacter;
@@ -114,7 +141,7 @@ export class GameService implements IGameService {
         }
 
         if (this._game.party?.currentLocationId) {
-            this._game.changeLocation(this._game.party.currentLocationId, false);
+            this._game.commands.go(this._game.party.currentLocationId, false);
         }
     }
 
@@ -130,7 +157,7 @@ export class GameService implements IGameService {
         this._rules.setup.gameStart?.(this._game);
 
         if (!this._game.currentLocation) {
-            this._game.changeLocation('Start');
+            this._game.commands.go('Start', false);
         }
 
         this.setInterceptors();
@@ -175,13 +202,8 @@ export class GameService implements IGameService {
             this._locationService.processDestinations(this._game);
             this._locationService.loadLocationDescriptions(this._game);
             this._rules.setup.continueGame?.(this._game);
-
-            // Use a timeout here to allow the UI to respond to the loading flag set.
-            setTimeout(() => {
-                this._game.loading = false;
-                this._game.state = GameState.Play;
-                gameEvents.publish(GameEventNames.ChangeLocation, { location: this._game.currentLocation });
-            }, 0);
+            this._game.loading = false;
+            this._game.state = GameState.Play;
         }
     }
 
@@ -189,16 +211,13 @@ export class GameService implements IGameService {
         this.watchState<PlayState>('playState', callBack);
     }
 
-    private readonly resume = (locationName: string, setInterceptors: boolean): void => {
-        if (!this._game.party.characters.some(c => c.currentHitpoints > 0)) {
+    private readonly resume = (locationName: string): void => {
+        if (!this._game.party.characters.some(c => c.currentHitpoints === undefined || c.currentHitpoints > 0)) {
             this._game.state = GameState.GameOver;
             return;
         }
-
-        if (setInterceptors) {
-            this.setInterceptors();
-        }
-
+        
+        this.setInterceptors();
         this._characterService.checkEquipment();
         const lastLocation = locationName && this._game.locations.get(locationName) || this._game.locations.start;
         const previousLocationName = this._game.party.previousLocationId;
@@ -207,7 +226,7 @@ export class GameService implements IGameService {
             this._game.previousLocation = this._game.locations.get(previousLocationName);
         }
 
-        this._game.changeLocation(lastLocation.id, false);
+        this._game.commands.go(lastLocation.id, false);
         this._game.state = GameState.Play;
     }
 
@@ -250,13 +269,6 @@ export class GameService implements IGameService {
     }
 
     private readonly createCharacter = (characterData: ICreateCharacter): void => {
-        this._game.party = this._game.party ?? <IParty>{
-            type: 'party',
-            characters: [],
-            quests: [],
-            score: 0
-        };
-
         const character = this._characterService.createCharacter(this._game, characterData);
         (<any>character).type = 'character';
         character.items = character.items || [];
@@ -270,7 +282,9 @@ export class GameService implements IGameService {
             configurable: true,
             get: () => {
                 const characters = this._game.party.characters;
-                let character = characters.filter(c => c.isActiveCharacter)[0] ?? characters.filter(c => c.currentHitpoints > 0)[0];
+                let character = characters.filter(c => c.isActiveCharacter)[0] 
+                    ?? characters.filter(c => c.currentHitpoints > 0)[0]
+                    ?? characters[0];
 
                 if (!character.isActiveCharacter) {
                     character.isActiveCharacter = true;
@@ -295,35 +309,27 @@ export class GameService implements IGameService {
         this.initCombinations();
         this._locationService.init();
 
-        gameEvents.register(GameEventNames.ChangeLocation, false);
-        
         this._game.changeLocation = (location, travel) => {
-            this._locationService.changeLocation(location, travel, this._game);
-            gameEvents.publish(GameEventNames.ChangeLocation, { location, travel });
-
-            if (travel) {
-                this._dataService.saveGame(this._game);
-            }
+            this._game.commands.go(location, travel);
         };
 
         Object.defineProperty(this._game, 'currentMap', {
             configurable: true,
             get: () => {
                 let result = null;
-                
+
                 if (this._game.maps) {
-                    for (const key in this._game.maps)
-                    {
+                    for (const key in this._game.maps) {
                         const map = this._game.maps[key];
                         const location = map.locations.find(l => l.location === this._game.currentLocation.id);
-                        
+
                         if (location) {
                             result = map;
                             break;
                         }
                     }
                 }
-                
+
                 return result;
             }
         });
@@ -457,7 +463,7 @@ export class GameService implements IGameService {
                 currentDescription = value;
 
                 if (currentDescription.item.description) {
-                    currentDescription.item.description = checkAutoplay(this._game, getParsedDocument('description', currentDescription.item.description, true)[0].innerHTML);
+                    currentDescription.item.description = checkAutoplay(this._game, getParsedDocument(DescriptionProperty, currentDescription.item.description, true)[0].innerHTML);
                 }
 
                 this._game.playState = PlayState.Description;

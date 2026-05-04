@@ -3,41 +3,38 @@ import {addArrayExtensions, addFunctionExtensions} from './arrayAndFunctionExten
 import {IInterfaceTexts} from './Interfaces/interfaceTexts';
 import {IRules} from './Interfaces/rules/rules';
 import {buildEntities} from './EntityCreatorFunctions';
-import {assetRegex} from '../../constants';
+import {entityTypeRegex} from '../../constants';
 import {IDefinitions} from "storyScript/Interfaces/definitions.ts";
 
 /**
- * This function bootstraps and runs your game.
+ * This function bootstraps and runs your game. It creates a singleton of the ServiceFactory to
+ * use with the UI framework.
  * @param nameSpace Your game's namespace (e.g. '_GameTemplate')
  * @param texts Your game's custom interface texts
  * @param rules Your game rules
  */
 export function Run(nameSpace: string, rules: IRules, texts: IInterfaceTexts) {
-    let instance = ServiceFactory.GetInstance();
-
-    if (!instance) {
+    if (!ServiceFactory.GetInstance()) {
         addFunctionExtensions();
         addArrayExtensions();
         const definitions = importAssets();
         const registeredEntities = buildEntities(definitions);
-        instance = new ServiceFactory(nameSpace, definitions, registeredEntities, rules, texts);
+        new ServiceFactory(nameSpace, definitions, registeredEntities, rules, texts);
     }
-
-    return instance;
 }
 
-export function importAssets(): IDefinitions {
+export function importAssets(modules?: Record<string, unknown>): IDefinitions {
     if (import.meta.env?.VITE_BUILDER) {
-        return loadAssetsWithImport();
+        return loadAssetsWithImport(modules);
     }
 
     /* v8 ignore next 2 */
     throw new Error('No loader found for importing the game assets!');
 }
 
-function loadAssetsWithImport(): IDefinitions {
+function loadAssetsWithImport(modules?: Record<string, unknown>): IDefinitions {
     const definitions = <IDefinitions>{};
-    const modules = import.meta.glob([
+    modules ??= import.meta.glob([
         'game/actions/**/*.ts',
         'game/features/**/*.ts',
         'game/items/**/*.ts',
@@ -51,15 +48,20 @@ function loadAssetsWithImport(): IDefinitions {
     // Loop over all found files to register the assets with the proper type.
     for (const path in modules) {
         const asset = modules[path];
-        const type = assetRegex.exec(path)[1].replace('./', '').split('/')[0];
+        const entityType = entityTypeRegex.exec(path)?.[0];
+
+        if (!entityType) {
+            throw new Error(`'${path}' is not a valid entity type path!`);
+        }
+
         const property = Object.getOwnPropertyNames(asset)[0];
         const entityFunc = asset[property];
 
         // Add the entity function to the definitions object for creating entities at run-time.
-        definitions[type] = definitions[type] || [];
+        definitions[entityType] = definitions[entityType] || [];
 
-        if (definitions[type].indexOf(entityFunc) === -1) {
-            definitions[type].push(entityFunc);
+        if (definitions[entityType].indexOf(entityFunc) === -1) {
+            definitions[entityType].push(entityFunc);
         }
     }
 

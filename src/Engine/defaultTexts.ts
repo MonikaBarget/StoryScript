@@ -1,4 +1,4 @@
-﻿import { IInterfaceTexts } from './Interfaces/interfaceTexts';
+﻿import {IInterfaceTexts} from './Interfaces/interfaceTexts';
 
 export class DefaultTexts {
     texts: IInterfaceTexts = {
@@ -59,6 +59,7 @@ export class DefaultTexts {
         messages: 'Messages',
         hitpoints: 'Health',
         currency: 'Money',
+        partyCurrency: 'Money:',
         trade: 'Trade with {0}',
         talk: 'Talk to {0}',
         examine: 'Examine {0}',
@@ -111,7 +112,15 @@ export class DefaultTexts {
         cancelSell: 'Cancel',
         currencyWon: 'Currency gained: {0}',
         itemsTaken: 'Items taken',
-        enemiesDefeated: 'Enemies defeated'
+        enemiesDefeated: 'Enemies defeated',
+        backToGame: 'Back to the game',
+        conversationEnded: 'Your conversation has ended.',
+        openFullScreenMap: '>',
+        closeFullScreenMap: '<',
+        pressToShowMarkers: 'Press {0} to show location markers',
+        startGame: 'Start',
+        continueGame: 'Continue',
+        autoplayText: "Auto-playing"
     }
 
     format = format;
@@ -119,7 +128,7 @@ export class DefaultTexts {
     titleCase = (text: string): string => text.substring(0, 1).toUpperCase() + text.substring(1);
 }
 
-export function format (template: string, tokens: string | string[]): string {
+export function format(template: string, tokens: string | string[]): string {
     if (template && tokens) {
         if (!Array.isArray(tokens)) {
             tokens = [tokens];
@@ -140,8 +149,7 @@ export function format (template: string, tokens: string | string[]): string {
 
                 if (tokens[i].trim && tokens[i].trim().length == 0 && matchReplacement.length > 1) {
                     template = template.replace(match[0], ' ');
-                }
-                else {
+                } else {
                     template = template.replace('{' + i + '}', tokens[i]);
                 }
             }

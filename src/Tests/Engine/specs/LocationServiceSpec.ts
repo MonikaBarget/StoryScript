@@ -1,13 +1,11 @@
 import {describe, expect, test} from 'vitest';
 import {LocationService} from 'storyScript/Services/LocationService';
 import {ICompiledLocation, IGame, IRules} from 'storyScript/Interfaces/storyScript';
-import {IDataSerializer} from "storyScript/Interfaces/services/dataSerializer.ts";
-import {IDataSynchronizer} from "storyScript/Interfaces/services/dataSynchronizer.ts";
 import {IGameEvents} from "storyScript/Interfaces/gameEvents.ts";
 
 describe("LocationService", function () {
 
-    test("init should build the world and add the change location function to the game", function () {
+    test("init should build the world", function () {
         const dataService = {
             value: null,
             load: function () {
@@ -21,8 +19,7 @@ describe("LocationService", function () {
         const game = <IGame>{};
         const service = getService(dataService, {}, game);
         service.init();
-
-        expect(game.changeLocation).not.toBeNull();
+        
         expect(game.currentLocation).toBeNull();
         expect(game.previousLocation).toBeNull();
         expect(game.locations).toEqual({});

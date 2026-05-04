@@ -11,7 +11,7 @@ import {getId, getPlural, getSingular, parseHtmlDocumentFromString} from './util
 import {ICombinable} from './Interfaces/combinations/combinable';
 import {ICombine} from './Interfaces/combinations/combine';
 import {ICompiledLocation, IDestination, IGroupableItem} from './Interfaces/storyScript';
-import {Enemies, Features, Items, Locations, Maps, Persons, Quests} from "../../constants.ts";
+import {DescriptionProperty, Enemies, Features, Items, Locations, Maps, Persons, Quests} from "../../constants.ts";
 import {gameEvents} from "storyScript/gameEvents.ts";
 
 const _entityCollections: string[] = [
@@ -138,34 +138,6 @@ export function buildEntities(definitions: IDefinitions): Record<string, Record<
     });
 
     return _registeredEntities;
-}
-
-export function setReadOnlyLocationProperties(location: ILocation) {
-    // If the location already has the active collections, we don't need to do anything else.
-    if ((<any>location).activePersons) {
-        return;
-    }
-
-    Object.defineProperty(location, 'activePersons', {
-        get: () => filterInactive(location.persons)
-    });
-
-    Object.defineProperty(location, 'activeEnemies', {
-        get: () => filterInactive(location.enemies)
-    });
-
-    Object.defineProperty(location, 'activeItems', {
-        get: () => filterInactive(location.items)
-    });
-
-    Object.defineProperty(location, 'activeActions', {
-        get: function () {
-            return location.actions
-                .filter(([_, v]) => {
-                    return !v.inactive;
-                });
-        }
-    });
 }
 
 export function InitEntityCollection(entity: any, property: string) {
@@ -328,9 +300,6 @@ function createLocation(entity: ILocation) {
     initCollection(location, 'persons');
     initCollection(location, 'enterEvents');
     initCollection(location, 'leaveEvents');
-
-    setReadOnlyLocationProperties(location);
-
     return location;
 }
 
@@ -422,7 +391,7 @@ function loadPictureFromDescription(entity: any, description: string): void {
 
 function loadDescriptions(location: ICompiledLocation): void {
     location.descriptions = {};
-    const nodes = getParsedDocument('description', location.description);
+    const nodes = getParsedDocument(DescriptionProperty, location.description);
 
     for (const element of nodes) {
         const nameAttribute = element.attributes['name']?.nodeValue;
@@ -548,7 +517,7 @@ function getEntityKey(entity: object): string {
         const type = typeof value;
         let text: string;
 
-        if (p === 'description' || Array.isArray(value)) {
+        if (p === DescriptionProperty || Array.isArray(value)) {
             text = undefined;
         } else if (type === 'object') {
             text = p.toString();

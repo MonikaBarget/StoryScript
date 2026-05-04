@@ -10,14 +10,15 @@ import {IHelpers} from './helpers';
 import {ICreateCharacter} from './createCharacter/createCharacter';
 import {GameState} from './enumerations/gameState';
 import {PlayState} from './enumerations/playState';
-import {IActiveCombination} from './combinations/activeCombination';
-import {ICombinable} from './combinations/combinable';
 import {IParty} from './party';
 import {ICombatSetup} from './combatSetup';
 import {ICombatTurn} from './combatTurn';
-import {ICombineResult} from "./combinations/combineResult.ts";
 import {ISoundPlayer} from "./soundPlayer.ts";
 import { IMap } from './maps/map.ts';
+import {IGameCombinations} from "./combinations/gameCombinations.ts";
+import {IDemoMode} from "storyScript/Interfaces/rules/demoMode.ts";
+import {IAutoplayService} from "storyScript/Interfaces/services/autoplayService.ts";
+import {ICommandService} from "storyScript/Interfaces/services/commandService.ts";
 
 /**
  * The StoryScript main game object.
@@ -93,6 +94,11 @@ export interface IGame {
     playState: PlayState;
 
     /**
+     * True if the game has started, meaning the user has passed the title screen. False otherwise.
+     */
+    started: boolean;
+    
+    /**
      * The person the player is currently interacting with.
      */
     person: IPerson;
@@ -127,52 +133,7 @@ export interface IGame {
      */
     loading: boolean;
 
-    combinations: {
-        /**
-         * Holds the currently selected combination action during rum-time. This will be undefined or null when the player
-         * is not trying a combination.
-         */
-        activeCombination: IActiveCombination,
-
-        /**
-         * The result from the last attempted combination.
-         */
-        combinationResult:
-            {
-                /**
-                 * Indicates whether the combination is done.
-                 */
-                done: boolean;
-
-                /**
-                 * The combination result text.
-                 */
-                text: string;
-
-                /**
-                 * The features to remove.
-                 */
-                featuresToRemove: string[];
-
-                /**
-                 * Resets the combination result.
-                 */
-                reset(): void;
-            }
-
-        /**
-         * Get the class name to use for the current combine state.
-         * @param tool The tool of the combination. Pass this in to get the class name for the tool element. Pass nothing to
-         * get the class name for the tool button bar.
-         */
-        getCombineClass(tool: ICombinable): string;
-
-        /**
-         * Try the combination the player has created.
-         * @param target The target of the combination
-         */
-        tryCombine(target: ICombinable): ICombineResult;
-    }
+    combinations: IGameCombinations,
 
     /**
      * The custom properties for the game world.
@@ -200,9 +161,25 @@ export interface IGame {
     sounds: ISoundPlayer,
 
     /**
+     * The autoplay service to autoplay (parts of) your game and run your game in demo mode.
+     */
+    autoplay: IAutoplayService;
+
+    /**
+     * True if autoplay is in progress, false otherwise.
+     */
+    autoplaying: boolean;
+    
+    /**
+     * The command service for programmatic access to your game's interactions.
+     */
+    commands: ICommandService;
+    
+    /**
      * The function executed to change from one location to the next.
      * @param location The location to go to
-     * @param travel True if the player is travelling, false if he gets to the next location because of some other event.
+     * @param travel True if the player is traveling, false if he gets to the next location because of some other event.
+     * @deprecated this function is obsolete and will be removed in the future. Please use the commands' 'go' instead.
      */
     changeLocation(location?: string | (() => ILocation), travel?: boolean): void;
 
@@ -229,10 +206,4 @@ export interface IGame {
      * which character attacks which enemy using what item or weapon.
      */
     combat: ICombatSetup<ICombatTurn>;
-
-    /**
-     * True if the game is running in development mode, false otherwise. This is used for showing development
-     * tools like the location selector and the health editor.
-     */
-    isDevelopment: boolean;
 }

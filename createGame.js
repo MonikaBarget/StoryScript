@@ -1,4 +1,5 @@
 ﻿import pkg from 'fs-extra';
+import fs from "fs";
 const { copy, readFile, writeFile } = pkg;
 
 const gameName = process.argv[2];
@@ -9,7 +10,7 @@ if (!gameName) {
 }
 
 // Set the game name to the new game.
-await correctFile('gameName.js', /gameName\s{0,}=\s{0,}[\w\'-]{0,};/g, `gameName = \'${gameName}\';`);
+await correctFile('currentGameName.js', /gameName\s{0,}=\s{0,}[\w\'-]{0,};/g, `gameName = \'${gameName}\';`);
 
 const gameRoot = './src/Games/_GameTemplate/';
 const gameDestination = './src/Games/' + gameName;
@@ -28,6 +29,18 @@ const testDestination = './src/Tests/Games/' + gameName;
 
 // Copy the test template.
 await copy(testRoot, testDestination);
+
+// Add the components and the resources folders to make sure they are present.
+const componentsPath = `${gameDestination}/ui/components`;
+const resourcesPath = `${gameDestination}/resources`;
+
+if (!fs.existsSync(componentsPath)) {
+    fs.mkdirSync(componentsPath);
+}
+
+if (!fs.existsSync(resourcesPath)) {
+    fs.mkdirSync(resourcesPath);
+}
 
 async function correctFile(fileName, toReplace, replacement) {
     let fileData = await readFile(fileName, 'utf8');

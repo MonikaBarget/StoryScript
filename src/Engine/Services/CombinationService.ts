@@ -46,7 +46,7 @@ export class CombinationService implements ICombinationService {
             return;
         }
 
-        combination.requiresTool = (typeof combination.requiresTool === 'undefined') || combination.requiresTool === true;
+        combination.requiresTool = (combination.requiresTool === undefined) || combination.requiresTool === true;
 
         this._game.combinations.activeCombination = {
             selectedCombinationAction: combination,
@@ -93,6 +93,8 @@ export class CombinationService implements ICombinationService {
         result = this.performCombination(target, combo);
 
         if (result.success) {
+            this._rules.combinations?.success?.(this._game, combo);
+            
             if (result.removeTarget) {
                 this.removeFeature(target);
             }

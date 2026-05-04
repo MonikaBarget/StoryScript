@@ -1,7 +1,7 @@
 import {IDataSynchronizer} from "storyScript/Interfaces/services/dataSynchronizer";
 import {StateProperties} from "storyScript/stateProperties.ts";
 import {getPlural, isDataRecord, propertyMatch} from "storyScript/utilityFunctions";
-import {InitEntityCollection, setReadOnlyLocationProperties} from "storyScript/EntityCreatorFunctions.ts";
+import {InitEntityCollection} from "storyScript/EntityCreatorFunctions.ts";
 
 export class DataSynchronizer implements IDataSynchronizer {
     constructor(private _pristineEntities: Record<string, Record<string, any>>) {
@@ -23,22 +23,21 @@ export class DataSynchronizer implements IDataSynchronizer {
         }
 
         if (this.isEntity(entity)) {
-            if (typeof pristineEntity === 'undefined') {
+            if (pristineEntity === undefined) {
                 pristineEntity = this._pristineEntities[getPlural(entity.type)][entity.id];
-            }
-
-            if (entity.type === 'location') {
-                setReadOnlyLocationProperties(entity);
             }
         }
 
         // We don't have pristine entities for the 'world' and 'maps' properties of saved games.
-        // Use the pristine collections for these.
+        // Use the pristine collections for these. When location and map files are deleted from
+        // the game, we need to remove them from the stored data as well.
         if (parentProperty === 'world') {
             pristineEntity = this._pristineEntities['locations'];
+            this.deleteRemovedEntities(entity, pristineEntity);
         }
         else if (parentProperty === 'maps') {
             pristineEntity = this._pristineEntities['maps'];
+            this.deleteRemovedEntities(entity, pristineEntity);
         }
 
         // Use the properties of both the entity and the pristine entity, but only
@@ -51,7 +50,7 @@ export class DataSynchronizer implements IDataSynchronizer {
             let currentProperty = entity[p];
 
             // If there is no pristine entity, recurse down the object to find entities to synchronize.
-            if (typeof pristineEntity === 'undefined') {
+            if (pristineEntity === undefined) {
                 if (Array.isArray(currentProperty) || typeof currentProperty === 'object') {
                     this.synchronizeEntityData(currentProperty, undefined, entity, pristineEntity, p);
                 }
@@ -60,7 +59,7 @@ export class DataSynchronizer implements IDataSynchronizer {
 
             let pristineProperty = pristineEntity[p];
 
-            if (typeof currentProperty === 'undefined') {
+            if (currentProperty === undefined) {
                 if (Array.isArray(pristineProperty)) {
                     entity[p] = [];
                 } else if (typeof pristineProperty === 'object' && pristineProperty !== null) {
@@ -75,7 +74,7 @@ export class DataSynchronizer implements IDataSynchronizer {
 
             currentProperty = entity[p];
 
-            if (typeof pristineProperty === 'undefined') {
+            if (pristineProperty === undefined) {
                 if (Array.isArray(currentProperty)) {
                     pristineProperty = [];
                 } else if (typeof currentProperty === 'object') {
@@ -193,11 +192,26 @@ export class DataSynchronizer implements IDataSynchronizer {
     }
 
     private isEntity = (entity: any): boolean => {
-        return typeof entity?.type !== 'undefined' && typeof entity?.id !== 'undefined';
+        return entity?.type !== undefined && entity?.id !== undefined;
     }
 
     private markEntriesAsDeleted = (item: any[]) => {
         const itemsToDelete = item.filter(i => i[StateProperties.Deleted]);
         itemsToDelete.forEach(i => item.delete(i));
+    }
+
+    private deleteRemovedEntities = (entity: any, pristineEntity: any): void => {
+        if (!pristineEntity) {
+            return;
+        }
+        
+        const entityKeys = Object.keys(entity);
+        const pristineKeys = Object.keys(pristineEntity);
+
+        entityKeys.forEach(k => {
+            if (pristineKeys.indexOf(k) < 0) {
+                delete entity[k];
+            }
+        });
     }
 }

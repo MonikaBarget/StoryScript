@@ -1,5 +1,7 @@
 ﻿import { IRules, ICreateCharacter, ICharacter, GameState } from 'storyScript/Interfaces/storyScript';
-import { IGame, Character, ICombatSetup, IEnemy } from './types';
+import {IGame, Character, ICombatSetup, IEnemy, IParty} from './types';
+import {getDemoMode} from "testGame/demoMode.ts";
+import {ServiceFactory} from "storyScript/ServiceFactory.ts";
 
 export function Rules(): IRules {
     return {
@@ -10,6 +12,11 @@ export function Rules(): IRules {
             },
 
             intro: false,
+            titleScreen: {
+                showTitleScreen: true,
+                transitionDelay: '2',
+                getDemoMode: getDemoMode
+            },
             gameStart(game) {
                 game.party.currency ??= 0;
             },
@@ -108,7 +115,7 @@ export function Rules(): IRules {
             fight: (game: IGame, combatRound: ICombatSetup): void => {
                 const character = combatRound.characters[0] as Character;
                 const enemy = combatRound.enemies[0];
-                const damage = game.helpers.rollDice(combatRound[0].item.attack) + character.strength + game.helpers.calculateBonus(character, 'damage');
+                const damage = game.helpers.rollDice(combatRound[0].item?.attack ?? 0) + character.strength + game.helpers.calculateBonus(character, 'damage');
                 game.logToCombatLog('You do ' + damage + ' damage to the ' + enemy.name + '!');
                 enemy.currentHitpoints -= damage;
 

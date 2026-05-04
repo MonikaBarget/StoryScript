@@ -12,11 +12,18 @@ import {IItemService} from "storyScript/Interfaces/services/itemService.ts";
 import {ICharacter} from "storyScript/Interfaces/character.ts";
 import {IRules} from "storyScript/Interfaces/rules/rules.ts";
 import {IGroupableItem} from "storyScript/Interfaces/groupableItem.ts";
+import {gameEvents} from "storyScript/gameEvents.ts";
+import {IAction} from "storyScript/Interfaces/action.ts";
 
 export class TradeService implements ITradeService {
     private _activeTrader: IPerson;
 
     constructor(private readonly _itemService: IItemService, private readonly _game: IGame, private readonly _rules: IRules, private readonly _texts: IInterfaceTexts, private readonly _definitions: IDefinitions) {
+        gameEvents.register('trade', false);
+        gameEvents.subscribe('trade', (game,  data: [string, IAction]) => {
+            const trader = game.currentLocation.trade.find(t => t.id === data[0]);
+            this.trade(trader);
+        });
     }
 
     trade = (trade: IPerson | ITrade): void => {
@@ -50,7 +57,7 @@ export class TradeService implements ITradeService {
         const trader = buyer as ITrade;
         const currency = trader.buy ? trader.currency : this._game.party.currency;
         const price = this.actualPrice(item, buyer, seller);
-        return (price != undefined && currency != undefined && currency >= price) || price == 0;
+        return (price !== undefined && currency !== undefined && currency >= price) || price === 0;
     };
 
     actualPrice = (item: IItem, buyer: ITrade | ICharacter, seller: ITrade | ICharacter): number => {
@@ -59,7 +66,7 @@ export class TradeService implements ITradeService {
         const sellerTrade = seller as ITrade;
         const modifier = buyerTrade.sell?.priceModifier ?? sellerTrade.buy?.priceModifier;
 
-        if (modifier == undefined) {
+        if (modifier === undefined) {
             resolvedModifier = 1;
         } else if (typeof modifier === 'function') {
             resolvedModifier = (<((game: IGame) => number)>modifier)(this._game)

@@ -10,13 +10,12 @@ import {ActionType} from '../Interfaces/enumerations/actionType';
 import {checkAutoplay, parseGamePropertiesInTemplate} from './sharedFunctions';
 import {
     getBasicFeatureData,
-    setDestination,
-    setReadOnlyLocationProperties
+    setDestination
 } from "storyScript/EntityCreatorFunctions.ts";
 import {IDefinitions} from "storyScript/Interfaces/definitions.ts";
 import {IGameEvents} from "storyScript/Interfaces/gameEvents.ts";
+import {IAction} from "storyScript/Interfaces/action.ts";
 import {gameEvents} from "storyScript/gameEvents.ts";
-import {GameEventNames} from "storyScript/GameEventNames.ts";
 
 export class LocationService implements ILocationService {
     constructor(
@@ -33,12 +32,11 @@ export class LocationService implements ILocationService {
 
         if (!this._game.locations) {
             // When we don't have any locations yet, we're starting a new game. Use the definitions to build
-            // all the locations and set their readonly properties. Also build the maps, if present.
+            // all the locations. Also build the maps, if present.
             this._game.locations = {};
             this._definitions.locations.forEach(l => this._game.locations[getId(l)] = <ICompiledLocation>l());
-            Object.values(this._game.locations).forEach(l => setReadOnlyLocationProperties(<ICompiledLocation>l));
         }
-        
+
         if (!this._game.maps && this._definitions.maps) {
             this._game.maps = {};
             // When we have no maps, it could be that maps were added later and that they are not in the saved
@@ -47,7 +45,7 @@ export class LocationService implements ILocationService {
         }
 
         this.setupLocations();
-        
+
         this._gameEvents.subscribe(['add-character-items', 'delete-character-items', 'add-location-items'], (game: IGame, _) => {
             game.currentLocation?.destinations.forEach(d => {
                 this.addKeyAction(game, d);
@@ -76,6 +74,33 @@ export class LocationService implements ILocationService {
         this.markCurrentLocationAsVisited(game);
     }
 
+    executeAction = (action: [string, IAction]): void => {
+        const execute = action[1]?.execute;
+
+        if (execute) {
+            let result = true;
+
+            if (typeof execute === 'function') {
+                const actionResult = execute(this._game);
+                result = actionResult === true;
+            } else {
+                gameEvents.publish(execute, action);
+            }
+
+            const typeAndIndex = this.getActionIndex(this._game, action);
+
+            if (!result && typeAndIndex.index !== -1) {
+                if (typeAndIndex.type === ActionType.Regular && this._game.currentLocation.actions) {
+                    const currentAction = this._game.currentLocation.actions[typeAndIndex.index];
+                    this._game.currentLocation.actions.delete(currentAction);
+                } else if (typeAndIndex.type === ActionType.Combat && this._game.currentLocation.combatActions) {
+                    const currentCombatAction = this._game.currentLocation.combatActions[typeAndIndex.index];
+                    this._game.currentLocation.combatActions.delete(currentCombatAction);
+                }
+            }
+        }
+    }
+
     loadLocationDescriptions = (game: IGame): void => {
         if (this.selectLocationDescription(game, true)) {
             parseGamePropertiesInTemplate(game.currentLocation.description, this._game);
@@ -98,25 +123,35 @@ export class LocationService implements ILocationService {
     }
 
     processDestinations = (game: IGame) => {
-        if (game.currentLocation.destinations) {
-
-            // remove the return message from the current location destinations.
-            game.currentLocation.destinations.forEach(destination => {
-                if ((<any>destination).isPreviousLocation) {
-                    (<any>destination).isPreviousLocation = false;
-                }
+        if (game.previousLocation?.destinations.length) {
+            // Remove the isPreviousLocation and visited markers from the previous location's destinations.
+            game.previousLocation.destinations.forEach((d: any) => {
+                delete d.isPreviousLocation;
+                delete d.visited;
             });
+        }
 
-            // Mark the previous location in the current location's destinations to allow
-            // the player to more easily backtrack his last step. Also, check if the user
-            // has the key for one or more barriers at this location, and add the key actions
+        if (game.currentLocation.destinations.length) {
+            // 1. Mark the previous location in the current location's destinations to allow
+            // the player to more easily backtrack his last step.
+            // 2. Mark the destination as visited when the player has already visited the location it leads to.
+            // 3. Check if the user has the key for one or more barriers at this location, and add the key actions
             // if that is the case.
-            game.currentLocation.destinations.forEach(destination => {
-                if (game.previousLocation && destination.target && (<any>destination.target) == game.previousLocation.id) {
-                    (<any>destination).isPreviousLocation = true;
+            game.currentLocation.destinations.forEach((d: any) => {
+                if (d.target == game.previousLocation?.id) {
+                    d.isPreviousLocation = true;
                 }
 
-                this.addKeyAction(game, destination);
+                const targetLocation = game.locations[d.target];
+                const visitedRule = this._rules.exploration?.hasVisitedLocation;
+
+                if (targetLocation && visitedRule) {
+                    d.visited = visitedRule(game, targetLocation);
+                } else {
+                    d.visited = targetLocation?.hasVisited;
+                }
+
+                this.addKeyAction(game, d);
             });
         }
     }
@@ -320,5 +355,28 @@ export class LocationService implements ILocationService {
                 }
             }
         });
+    }
+
+    private getActionIndex = (game: IGame, action: [string, IAction]): { type: ActionType, index: number } => {
+        let index = -1;
+        let type = ActionType.Regular;
+
+        game.currentLocation.actions.forEach(([k, v], i) => {
+            if (k === action[0]) {
+                index = i;
+                type = ActionType.Regular;
+            }
+        });
+
+        if (index == -1) {
+            game.currentLocation.combatActions.forEach(([k, v], i) => {
+                if (k === action[0]) {
+                    index = i;
+                    type = ActionType.Combat;
+                }
+            });
+        }
+
+        return {type, index};
     }
 }

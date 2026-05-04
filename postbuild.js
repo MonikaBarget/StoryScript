@@ -2,7 +2,7 @@ import fs from 'fs';
 import archiver from 'archiver';
 import path, { resolve } from "path";
 import jsonfile from 'jsonfile';
-import gameName from "./gameName.js";
+import gameName from "./currentGameName.js";
 import { fileURLToPath } from "url";
 import sharp from 'sharp';
 
@@ -19,7 +19,14 @@ fs.copyFile(gameInfoPath, 'dist/gameinfo.json', () => {});
 
 // 2. Include the game sources if specified to do so.
 if (gameInfo.sourcesIncluded) {
-    await zipDirectory(gamePath, 'dist/sources.zip');
+    fs.cpSync(gamePath, 'dist/sources',{ recursive: true });
+
+    if (fs.existsSync('dist/sources/resources')) {
+        fs.rmSync('dist/sources/resources', {recursive: true});
+    }
+
+    await zipDirectory('dist/sources', 'dist/sources.zip');
+    fs.rmSync('dist/sources', { recursive: true });
 }
 
 // 3. Optimize jpg and png images using sharp.
@@ -65,11 +72,11 @@ async function optimizeImages(imageFiles) {
 
 function getImageFiles(dirPath, arrayOfFiles) {
     arrayOfFiles = arrayOfFiles || [];
-    
+
     if (!fs.existsSync(dirPath)) {
         return;
     }
-    
+
     const files = fs.readdirSync(dirPath);
 
     files.forEach(function(file) {

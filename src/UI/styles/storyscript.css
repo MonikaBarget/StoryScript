@@ -4,7 +4,7 @@
     --white: #fff;
     --red: red;
     --light-gray: lightgray;
-  }
+}
 
 body {
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
@@ -20,6 +20,23 @@ button {
     margin-right: 10px;
 }
 
+
+#error-alert {
+    position: absolute;
+    z-index: 1500;
+    display: flex;
+    justify-content: center;
+}
+
+#error-alert, #error-alert > h2 {
+    font-family: 'Lucida Sans';
+}
+
+.error-alert-body {
+    margin-top: 50px;
+    max-width: 50%;
+}
+
 .float-left {
     float: left;
 }
@@ -30,6 +47,15 @@ button {
 
 .float-none {
     float: none;
+}
+
+.modal-dialog {
+    max-width: 50%;
+}
+
+.modal-dialog .modal-content {
+    max-height: 95%;
+    overflow-y: auto;
 }
 
 .modal-header {
@@ -70,7 +96,7 @@ button {
     font-family: Andalus;
     color: var(--white);;
     background-color: var(--purple);;
-    padding: 0px 10px;
+    padding: 0 10px;
     margin: -10px -10px 10px -10px;
 }
 
@@ -88,16 +114,6 @@ button {
 
 .inline {
     display: inline-block;
-}
-
-#conversation-history-title {
-    font-weight: bold;
-    margin-bottom: 0;
-}
-
-#conversation-history ul {
-    max-height: 400px;
-    overflow-y: scroll;
 }
 
 #create-character .input-group-prepend {
@@ -124,12 +140,28 @@ button {
     margin-right: 10px;
 }
 
-#conversation-options span {
-    margin-left: 10px;
+#conversation-options li {
+     cursor: pointer;
+    padding-left: 10px;
+ }
+
+#conversation-options li:hover {
+    color: var(--bs-blue);
+    padding-left: 5px;
 }
 
 #conversation-options .unavailable {
     color: rgba(0, 0, 0, 0.5);
+}
+
+#conversation-history-title {
+    font-weight: bold;
+    margin-bottom: 0;
+}
+
+#conversation-history ul {
+    max-height: 400px;
+    overflow-y: scroll;
 }
 
 .conversation-lines p {
@@ -217,7 +249,6 @@ button {
 
 .action-select {
     display: block;
-    width: 100%;
     margin-top: 5px;
 }
 
@@ -227,7 +258,7 @@ button {
     justify-content: center;
 }
 
-.combatlog legend {
+.combatlog-title {
     text-align: center;
 }
 
@@ -258,12 +289,8 @@ button {
     line-height: 25px;
 }
 
-.character-equipment .item-box.no-border {
-    border: none;
-}
-
-.character-equipment .item-box.side-borders {
-    border-top: none;
+.body-slot {
+    align-content: center;
 }
 
 .question-row, .attribute-row {
@@ -328,16 +355,18 @@ feature {
 }
 
 #level-up #create-character {
-    padding-left: 0px;
+    padding-left: 0;
 }
 
-.modal-dialog {
-    max-width: 50%;
+.dialog {
+    z-index: 10;
+    width: 50%;
+    top: 100px;
 }
 
 .custom-select {
     position: relative;
-    flex: 1 1 0%;
+    flex: 1 1 0;
     min-width: 0;
     margin-bottom: 0;
     display: inline-block;
@@ -356,12 +385,22 @@ feature {
 }
 
 #location-selector {
+    position: relative;
     float: right;
     max-width: 40%;
 }
 
-.is-active {
-    border: solid 5px;
+#location-selector-locations {
+    position: absolute;
+    inset: 0 auto auto 0;
+    margin-top: 40px;
+    cursor: pointer;
+}
+
+.refine-search {
+    font-style: italic;
+    opacity: .5;
+    margin-bottom: -20px;
 }
 
 .not-applicable {
@@ -385,7 +424,7 @@ feature {
     justify-content: center;
 }
 
-.unavailable {
+.unavailable, .empty-slot {
     opacity: .5;
 }
 
@@ -441,6 +480,11 @@ feature {
     cursor: default;
 }
 
+.show-marker-instructions {
+    display: block;
+    font-size: small;
+}
+
 .map-location-label {
     background-color: white;
     border: solid 1px black;
@@ -470,4 +514,66 @@ feature {
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+/* Common component styles */
+.collapsible {
+    overflow: hidden;
+    transition: max-height .2s ease-out;
+}
+
+.dropdown-menu-active {
+    position: absolute;
+    inset: 0 auto auto 5px;
+    margin: 0;
+    transform: translate(0px, 40px);
+}
+
+dialog {
+    border: none;
+    outline: none;
+}
+
+#autoplay-overlay, #title-screen, #title-screen-start {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#autoplay-overlay {
+    z-index: 1200;
+    text-align: center;
+}
+
+#title-screen {
+    z-index: 1300;
+    background: white;
+    align-content: center;
+    text-align: center;
+}
+
+#title-screen-start {
+    z-index: 1310;
+    align-content: center;
+    text-align: center;
+}
+
+#title-screen h1 {
+    font-size: 6em;
+    margin-bottom: 40px;
+}
+
+#start-game {
+    font-size: 2.5em;
+    padding: 5px 40px;
+    margin-top: 200px;
+}
+
+#autoplay-text {
+    margin-top: 20px;
+    visibility: hidden;
+    font-size: 1.5em;
+    transition: visibility .1s ease-out;
 }

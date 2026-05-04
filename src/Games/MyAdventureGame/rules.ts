@@ -1,10 +1,27 @@
-import { IRules, ICombinationAction, ICreateCharacter, ICharacter, ICombinable } from 'storyScript/Interfaces/storyScript';
+import {
+    IRules,
+    ICombinationAction,
+    ICreateCharacter,
+    ICharacter,
+    ICombinable,
+    GameState
+} from 'storyScript/Interfaces/storyScript';
 import { Combinations } from './combinations';
 import { IGame, Character, IEnemy, ICombatSetup } from './types';
+import {getDemoMode} from "./demoMode.ts";
+import {IActiveCombination} from "storyScript/Interfaces/combinations/activeCombination.ts";
 
 export function Rules(): IRules {
     return {
         setup: {
+            titleScreen: {
+                showTitleScreen: true,
+                transitionDelay: '2',
+                getDemoMode: getDemoMode
+            },
+            playList: {
+                'Contemplate_the_stars.mp3': [GameState.Play]
+            },
             initGame(game: IGame) {
                 game.worldProperties.type = 'Visual'; // Set to 'Text' or 'Visual' to switch between modes.
             },
@@ -32,6 +49,14 @@ export function Rules(): IRules {
                         }
                     }
                 ];
+            }
+        },
+
+        combinations: {
+            success: (game: IGame, combination: IActiveCombination) => {
+                if (combination.selectedCombinationAction.text != Combinations.WALK) {
+                    game.sounds.playSound('kings_quest_6_ding.mp3');
+                }
             }
         },
 
@@ -65,12 +90,12 @@ export function Rules(): IRules {
 
         combat: {
             fight: (game: IGame, combatSetup: ICombatSetup, retaliate?: boolean) => {
-                retaliate = retaliate == undefined ? true : retaliate;
+                retaliate = retaliate === undefined ? true : retaliate;
 
                 // Implement character attack here.
 
                 if (retaliate) {
-                    game.currentLocation.activeEnemies.filter((enemy: IEnemy) => { return enemy.currentHitpoints > 0; }).forEach(function (enemy) {
+                    game.currentLocation.enemies.filter((enemy: IEnemy) => { return enemy.currentHitpoints > 0; }).forEach(function (enemy) {
                         // Implement monster attack here
                     });
                 }

@@ -1,8 +1,9 @@
-import gameName from './gameName.js';
+import gameName from './currentGameName.js';
 import { existsSync, mkdirSync, writeFileSync } from 'fs';
 import pkg from 'jsonfile';
+import {entityNameRegex} from "./constants.ts";
 
-const gameDir = `src\\Games\\${gameName}`;
+const gameDir = `src/Games/${gameName}`;
 const { readFileSync } = pkg;
 
 const assetType = process.argv[2];
@@ -19,11 +20,16 @@ if (!assetName) {
     process.exit();
 }
 
+if (!entityNameRegex.exec(assetName)) {
+    console.log(`${assetName} is not a valid asset name! The name must start with a letter and contain only letters, numbers and '_'.`);
+    process.exit();
+}
+
 let baseSnippetKey =  assetType.substring(0, 1).toUpperCase() + assetType.substring(1) + 's';
 let snippetKey = baseSnippetKey.endsWith('ys') ? baseSnippetKey.substring(0, baseSnippetKey.length - 2) + 'ies' : baseSnippetKey; 
 const assetNameCapital = assetName.substring(0, 1).toUpperCase() + assetName.substring(1);
 
-const snippets = readFileSync('CodeSnippets\\StoryScriptSnippets.code-snippets');
+const snippets = readFileSync('CodeSnippets/StoryScriptSnippets.code-snippets');
 
 if (!snippets[snippetKey]) {
     if (!snippets[baseSnippetKey]) {
@@ -57,8 +63,8 @@ const snippet = snippets[snippetKey];
 
 // Keys go into the items folder.
 const dirName = snippetKey === 'Keys' ? 'Items' : snippetKey;
-const assetDir = `${gameDir}\\${dirName.toLowerCase()}`;
-const assetBaseFileName = `${assetDir}\\${assetName}`;
+const assetDir = `${gameDir}/${dirName.toLowerCase()}`;
+const assetBaseFileName = `${assetDir}/${assetName}`;
 
 if (!existsSync(assetDir)){
     mkdirSync(assetDir);
