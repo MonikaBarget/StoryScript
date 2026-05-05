@@ -5,6 +5,9 @@ import {Combinations} from './combinations';
 export function Rules(): IRules {
     return {
         setup: {
+			initGame(game: IGame) {
+            game.worldProperties.type = 'Text'; // Set to 'Text' or 'Visual' to switch between modes.
+             },
             playList: {
                 'Contemplate_the_stars.mp3': [GameState.Play]
             },
@@ -12,14 +15,17 @@ export function Rules(): IRules {
 	return [
 		{
 			text: Combinations.USE,
-			preposition: ''
+			preposition: '',
+			requiresTool: false,
+			failText: (ame: IGame, target: ICombinable, tool: ICombinable): string => { 
+			    return 'Sorry, but you cannot read ' + target.name + '. Look for a book instead!';
 		},
 		{
 			text: Combinations.LOOKAT,
 			preposition: '',
 			requiresTool: false,
 			failText: (ame: IGame, target: ICombinable, tool: ICombinable): string => { 
-			    return 'You are now viewing ' + target.name + '.';
+			    return 'Sorry, but you cannot meet ' + target.name + '. It is not a person!';
 			}
 		}
 	];
