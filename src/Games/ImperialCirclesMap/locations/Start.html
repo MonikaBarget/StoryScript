@@ -24,22 +24,19 @@
         <blockquote>"It is not particularly easy to write about the constitution of the German Imperial Circles, as there is often a lack of sufficient
             information. Moreover, it is sometimes not well received when anything about it is published."</blockquote>
 
-      <div onclick="openViewer()" style="width:360px; height:520px; cursor:pointer;">
-  <iframe src="https://surfdrive.surf.nl/s/y78kQKdbYaxYooW.pdf" width="100%" height="100%"></iframe>
-</div>
+     
+<div id="viewer" style="height: 600px;"></div>
 
-<div id="overlay" style="display:none; position:fixed; inset:0; background:#000;">
-  <iframe src="https://surfdrive.surf.nl/s/y78kQKdbYaxYooW.pdf" style="width:100%; height:100%;"></iframe>
-  <button onclick="closeViewer()" style="position:absolute; top:10px; right:10px;">Close</button>
-</div>
+<link rel="stylesheet" href="https://unpkg.com/mirador@latest/dist/css/mirador.min.css">
+<script src="https://unpkg.com/mirador@latest/dist/mirador.min.js"></script>
 
 <script>
-function openViewer() {
-  document.getElementById('overlay').style.display = 'block';
-}
-function closeViewer() {
-  document.getElementById('overlay').style.display = 'none';
-}
+Mirador.viewer({
+  id: "viewer",
+  windows: [{
+    manifestId: "https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb11224455/manifest"
+  }]
+});
 </script>
     <p>   
        In the meantime, German historiography has been able to uncover many fascinating stories about the circles, and you can browse Moll's map to learn more! For navigation on the map, we are using the imperial coat of arms. 
