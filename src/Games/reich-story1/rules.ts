@@ -8,10 +8,30 @@ export function Rules(): IRules {
                 'Contemplate_the_stars.mp3': [GameState.Play]
             },
             getCombinationActions: (): ICombinationAction[] => {
-                return [
-                    // Add combination action names here if you want to use this feature.
-                ];
-            }
+	return [
+		{
+			text: Combinations.WALK,
+			preposition: '',
+			requiresTool: false
+		},
+		{
+			text: Combinations.USE,
+			preposition: ''
+		},
+		{
+			text: Combinations.TOUCH,
+			requiresTool: false
+		},
+		{
+			text: Combinations.LOOKAT,
+			preposition: '',
+			requiresTool: false,
+			failText: (ame: IGame, target: ICombinable, tool: ICombinable): string => { 
+			    return 'You are now viewing ' + target.name + '.';
+			}
+		}
+	];
+}
         },
 
         general: {  
