@@ -11,17 +11,8 @@ export function Rules(): IRules {
             getCombinationActions: (): ICombinationAction[] => {
 	return [
 		{
-			text: Combinations.WALK,
-			preposition: '',
-			requiresTool: false
-		},
-		{
 			text: Combinations.USE,
 			preposition: ''
-		},
-		{
-			text: Combinations.TOUCH,
-			requiresTool: false
 		},
 		{
 			text: Combinations.LOOKAT,

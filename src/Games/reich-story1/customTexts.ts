@@ -6,11 +6,13 @@ export function CustomTexts(): IInterfaceTexts {
         amulet: 'quill',
         youAreHere: 'Topic: {0}',
         gameName:  'Conflict and collaboration - exploring the Imperial Circles',
-        backpack: 'Items',
+        backpack: 'Library',
         leftHand: 'seal',
         leftRing: 'law book',
         rightHand: 'dictionary',
         rightRing: 'ink',
-        messages: 'Messages'
+        messages: 'Messages',
+        characterSheet: 'Score',
+        hitpoints: ' '
     };
 }
