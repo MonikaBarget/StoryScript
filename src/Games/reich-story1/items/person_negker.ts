@@ -2,7 +2,7 @@ import { Item } from '../types';
 import { EquipmentType } from 'storyScript/Interfaces/storyScript';
 import description from './person_negker.html?raw';
 
-export function book_moser() {
+export function person_negker() {
     return Item({
         name: 'Jost de Negker',
         description: description,

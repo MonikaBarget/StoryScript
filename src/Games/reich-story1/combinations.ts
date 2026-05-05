@@ -1,4 +1,4 @@
 export const enum Combinations {
-    USE = 'Read',
-    LOOKAT = 'View'
+    USE = 'USE',
+    LOOKAT = 'LOOKAT'
 }
