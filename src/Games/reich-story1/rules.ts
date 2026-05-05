@@ -1,4 +1,4 @@
-﻿import { IRules, ICreateCharacter, ICharacter, ICombinationAction, GameState } from 'storyScript/Interfaces/storyScript';
+﻿import { IRules, ICreateCharacter, ICharacter, ICombinationAction, GameState, ICombinable } from 'storyScript/Interfaces/storyScript';
 import { IGame, IEnemy, Character, ICombatSetup } from './types';
 import {Combinations} from './combinations';
 

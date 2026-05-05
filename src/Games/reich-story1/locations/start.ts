@@ -6,6 +6,7 @@ import { CurLocOne } from './CurLocOne';
 import { PovLocOne } from './PovLocOne';
 import { GovLocOne } from './GovLocOne';
 import { MigLocOne } from './MigLocOne';
+import { Combinations } from '../combinations';
 
 export function Start() {
     return Location({
