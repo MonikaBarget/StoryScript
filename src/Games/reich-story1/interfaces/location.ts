@@ -8,6 +8,7 @@ export function Location(entity: ILocation): ILocation  {
 export interface ILocation extends StoryScriptILocation {
     destinations?: IDestination[];
     enemies?: IEnemy[];
+    activeEnemies?: IEnemy[];
     items?: IItem[];
     persons?: IPerson[];
     // Add game-specific location properties here
