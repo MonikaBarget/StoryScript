@@ -3,7 +3,7 @@ import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/s
 import description from './person_negker.html?raw';
 import { Combinations } from '../combinations';
 
-export function person_negker() {
+export function PersonNegker() {
     return Item({
         name: 'Jost de Negker',
         description: description,
@@ -13,11 +13,11 @@ export function person_negker() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        if (game.activeCharacter.items.get(person_negker)) {
+                        if (game.activeCharacter.items.get(PersonNegker)) {
                             return description;
                         }
                         
-                        game.activeCharacter.items.add(person_negker);
+                        game.activeCharacter.items.add(PersonNegker);
                         return { 
                             text: 'Jost de Negker has been added to your notebook!', 
                             removeTarget: false

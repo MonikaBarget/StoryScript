@@ -6,7 +6,7 @@ export function CustomTexts(): IInterfaceTexts {
         amulet: 'quill',
         youAreHere: 'Topic: {0}',
         gameName:  'Conflict and collaboration - exploring the Imperial Circles',
-        backpack: 'Library',
+        backpack: 'Notebook',
         leftHand: 'seal',
         leftRing: 'law book',
         rightHand: 'dictionary',
