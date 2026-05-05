@@ -2,7 +2,7 @@
 import { IItem, IEquipment } from './types';
 
 export class Character implements ICharacter {
-    name: string = '';
+    name: string = 'Score';
     hitpoints: number = 10;
     currentHitpoints: number;
 
