@@ -15,35 +15,8 @@ export function Start() {
         name: 'Start',
         description: description,
         features: [
-            {
-                name: 'book_moser',
-                combinations: {
-                    combine: [
-                        {
-                            combinationType: Combinations.USE,
-                            match: (game, target: IItem, tool): string => {
-                                if (target.id === 'book_moser') {
-                                   return target.description
-                                }
-                            return "There is nothing to look at!"; // not the right combination
-                            }
-                        }
-                    ]
-                }
-            },
-            {
-                name: 'person_negker',
-                combinations: {
-                    combine: [
-                        {
-                            combinationType: Combinations.LOOKAT,
-                            match: (game, target: IItem, tool): string => {
-                                return target.description;
-                            }
-                        }
-                    ]
-                }
-            }
+            book_moser(),
+            person_negker()
         ],
         destinations: [
             {
