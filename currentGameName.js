@@ -1,3 +1,3 @@
-const gameName = 'reich-story1';
+const gameName = 'ImperialCirclesMap';
 
 export default gameName;
