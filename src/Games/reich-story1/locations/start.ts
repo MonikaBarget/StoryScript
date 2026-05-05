@@ -11,6 +11,21 @@ export function Start() {
     return Location({
         name: 'Start',
         description: description,
+        features: [
+            {
+                name: 'book_moser',
+                combinations: {
+                    combine: [
+                        {
+                            combinationType: Combinations.USE,
+                            match: (game, target, tool): string => {
+                                return 'You are now reading the book...';
+                            }
+                        }
+                    ]
+                }
+            }
+        ]
         destinations: [
             {
                 name: 'War & Defence',
