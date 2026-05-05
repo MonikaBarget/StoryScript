@@ -1,5 +1,6 @@
 ﻿import { IRules, ICreateCharacter, ICharacter, ICombinationAction, GameState } from 'storyScript/Interfaces/storyScript';
 import { IGame, IEnemy, Character, ICombatSetup } from './types';
+import {Combinations} from './combinations';
 
 export function Rules(): IRules {
     return {
