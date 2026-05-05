@@ -8,9 +8,15 @@
       </div>
       <div id="location-container"
            :class="{ 'col-8': game.state === 'Play' && showCharacterPane, 'col-12': game.state !== 'Play' || !showCharacterPane }">
-        <div v-if="game.state === 'Play'">
-          <location-text></location-text>
+        <div v-if="!game.state">
+          {{ texts.loading }}
         </div>
+
+        <div v-if="game.state === 'Play'">
+          <location-visual v-if="game.worldProperties.type === 'Visual'"></location-visual>
+          <location-text v-else></location-text>
+        </div>
+        <victory></victory>
       </div>
     </div>
     <div v-if="game.state === 'Play'" class="row">
@@ -20,3 +26,16 @@
     </div>
   </div>
 </template>
+
+<script lang="ts" setup>
+import {useStateStore} from "ui/StateStore.ts";
+import {storeToRefs} from "pinia";
+import {computed} from "vue";
+
+const store = useStateStore();
+const {game, useEquipment, useBackpack, useQuests, useCharacterSheet} = storeToRefs(store);
+const {texts} = store.services;
+
+const showCharacterPane = computed(() => useCharacterSheet.value || useEquipment.value || useBackpack.value || useQuests.value)
+
+</script>
