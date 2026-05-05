@@ -1,10 +1,10 @@
 import { Item } from '../types';
 import { EquipmentType } from 'storyScript/Interfaces/storyScript';
-import description from './book_moser.html?raw';
+import description from './person_negker.html?raw';
 
 export function book_moser() {
     return Item({
-        name: 'On the Constitution of the German Imperial Circles',
+        name: 'Jost de Negker',
         description: description,
         equipmentType: EquipmentType.Miscellaneous
     });

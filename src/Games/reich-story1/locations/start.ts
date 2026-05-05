@@ -1,4 +1,4 @@
-﻿import { Location } from '../types';
+﻿import { Location, IItem } from '../types';
 import description from './Start.html?raw';
 // Import the location functions (adjust the import paths as needed)
 import { WarLocOne } from './WarLocOne';
@@ -19,8 +19,21 @@ export function Start() {
                     combine: [
                         {
                             combinationType: Combinations.USE,
-                            match: (game, target, tool): string => {
-                                return 'You are now reading the book...';
+                            match: (game, target: IItem, tool): string => {
+                                return target.description;
+                            }
+                        }
+                    ]
+                }
+            },
+                        {
+                name: 'person_negker',
+                combinations: {
+                    combine: [
+                        {
+                            combinationType: Combinations.LOOKAT,
+                            match: (game, target: IItem, tool): string => {
+                                return target.description;
                             }
                         }
                     ]
