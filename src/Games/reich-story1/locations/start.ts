@@ -25,7 +25,7 @@ export function Start() {
                     ]
                 }
             }
-        ]
+        ],
         destinations: [
             {
                 name: 'War & Defence',
