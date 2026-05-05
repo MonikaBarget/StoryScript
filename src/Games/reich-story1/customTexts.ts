@@ -5,12 +5,12 @@ export function CustomTexts(): IInterfaceTexts {
         // Add your custom texts here.
         amulet: 'quill',
         youAreHere: 'Topic: {0}',
-        gameName:  'Reichskreise Story 1',
+        gameName:  'Conflict and collaboration - exploring the Imperial Circles',
         backpack: 'Sources',
         leftHand: 'seal',
         leftRing: 'law book',
         rightHand: 'dictionary',
         rightRing: 'ink',
-        messages: 'feedback'
+        messages: 'Messages'
     };
 }
