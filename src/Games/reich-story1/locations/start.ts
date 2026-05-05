@@ -1,4 +1,4 @@
-﻿import { Location, IItem } from '../types';
+﻿import { Location } from '../types';
 import description from './Start.html?raw';
 import { WarLocOne } from './WarLocOne';
 import { CurLocOne } from './CurLocOne';

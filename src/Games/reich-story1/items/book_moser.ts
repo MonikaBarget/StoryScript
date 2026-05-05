@@ -7,6 +7,7 @@ export function BookMoser() {
     return Item({
         name: 'On the Constitution of the Imperial Circles',
         description: description,
+        picture: 'resources7book_letter_quill.png',
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
             combine: [
