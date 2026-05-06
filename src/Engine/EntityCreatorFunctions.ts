@@ -361,11 +361,6 @@ function CreateObject<T>(entity: T, type: string, id?: string) {
         id = _registeredIds.get(entityKey);
     }
 
-    // If no ID has been found yet, try to derive it from the entity's name property
-    if (!id && (entity as any).name) {
-        id = getIdFromName(entity as any);
-    }
-
     if (id) {
         compiledEntity.id = id;
         parseDescriptionData(compiledEntity);
@@ -455,10 +450,14 @@ function initCollection(entity: any, property: string) {
     const collection = entity[property] || [];
 
     if ((property === 'features' || property === 'trade') && collection.length) {
-        const inlineCollection = collection.map((e: { type: string, name: string }) => {
+        const inlineCollection = collection.map((e: { type?: string, name: string, id?: string }) => {
             // Initialize features that have been declared inline. Check for the existence of a 
             // type property to determine whether the object is already initialized.
             if (e.type) {
+                // For pre-created feature objects, use the feature name directly as ID if not already set
+                if (!e.id && e.name) {
+                    e.id = e.name;
+                }
                 return e;
             }
 
