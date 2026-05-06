@@ -72,9 +72,16 @@ export function useTextFeatures(descriptionRef: Ref<HTMLDivElement>) {
         }
 
         const feature = getFeature(ev);
-        
+        console.log('[TextFeatures] click target:', ev.target, 'featureElement:', getFeatureElement(ev), 'featureName:', feature?.id || feature?.name || null, 'featureObject:', feature);
+
+        if (!feature) {
+            const nameAttr = getFeatureElement(ev)?.getAttribute('name');
+            console.warn('[TextFeatures] feature not found for name:', nameAttr, 'currentLocation features:', game.value.currentLocation.features.map(f => f.id || f.name));
+        }
+
         if (feature) {
             const result = game.value.combinations.tryCombine(feature);
+            console.log('[TextFeatures] tryCombine result:', result, 'activeCombination:', game.value.combinations.activeCombination);
             const className = combinationService.getCombineClass(feature);
 
             if (className) {

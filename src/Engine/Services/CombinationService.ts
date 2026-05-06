@@ -63,6 +63,8 @@ export class CombinationService implements ICombinationService {
             text: ''
         };
 
+        console.log('[CombinationService] tryCombination target:', target?.id || target?.name, target, 'activeCombination:', combo);
+
         if (!target) {
             return result;
         }
