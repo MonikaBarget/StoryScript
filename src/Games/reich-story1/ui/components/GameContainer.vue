@@ -1,34 +1,39 @@
 <template>
   <div class="container-fluid body-content">
-    <div class="row">
-      <div class="col-6">
-      <party></party>
+
+    <!-- Toggle button (floating or top-right) -->
+    <div class="d-flex justify-content-end mb-2" v-if="game.state === 'Play'">
+      <button class="btn btn-sm btn-outline-secondary" @click="showRightPane = !showRightPane">
+        {{ showRightPane ? 'Hide panel' : 'Show panel' }}
+      </button>
+    </div>
+
+    <div class="row" v-if="game.state === 'Play'">
+
+      <!-- LEFT: Location text -->
+      <div :class="showRightPane ? 'col-9' : 'col-12'" id="location-container">
+        <location-text></location-text>
       </div>
-    </div>
-    <div id="location-container"
-           :class="{ 'col-8': game.state === 'Play' && showCharacterPane, 'col-12': game.state !== 'Play' || !showCharacterPane }">
-        <div v-if="game.state === 'Play'">
-          <location-text></location-text>
-          <encounter></encounter>
-          <exploration></exploration>
-        </div>
-    </div>
-    <div v-if="game.state === 'Play'" class="row">
-      <div class="col-12">
+
+      <!-- RIGHT: Collapsible panel -->
+      <div v-if="showRightPane" class="col-3">
+        <party></party>
+        <encounter></encounter>
+        <exploration></exploration>
         <combinations :combinations="game.combinations"></combinations>
       </div>
+
     </div>
+
   </div>
 </template>
 
 <script lang="ts" setup>
-import {useStateStore} from "ui/StateStore.ts";
-import {storeToRefs} from "pinia";
-import {computed} from "vue";
+import { useStateStore } from "ui/StateStore.ts";
+import { storeToRefs } from "pinia";
+import { ref } from "vue";
 
 const store = useStateStore();
-const {game, useEquipment, useBackpack, useQuests, useCharacterSheet} = storeToRefs(store);
-const {texts} = store.services;
-
-const showCharacterPane = computed(() => useCharacterSheet.value || useEquipment.value || useBackpack.value || useQuests.value)
+const { game } = storeToRefs(store);
+const showRightPane = ref(true);
 </script>
