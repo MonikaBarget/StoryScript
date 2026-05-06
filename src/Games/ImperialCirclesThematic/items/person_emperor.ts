@@ -20,7 +20,7 @@ export function PersonEmperor() {
                             };
                         }
                         
-                        game.activeCharacter.items.add(item);
+                        game.activeCharacter.items.add(PersonEmperor);
                         return { 
                             text: 'The Holy Roman Emperor has been added to your notebook!', 
                             removeTarget: false

@@ -5,7 +5,7 @@ import { Combinations } from '../combinations';
 
 export function BookMoser() {
     return Item({
-        name: 'On the Constitution of the Imperial Circles',
+        name: 'On the Constitution etc.',
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {

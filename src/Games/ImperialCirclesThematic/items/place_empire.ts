@@ -23,7 +23,7 @@ export function PlaceEmpire() {
                 {
                     combinationType: Combinations.USE,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        const exists = game.activeCharacter.items.get('Holy Roman Empire'); // Check for display name
+                        const exists = game.activeCharacter.items.get(PlaceEmpire); // Check for display name
                         if (!exists) {
                             return {
                                 text: 'Not possible! Try to find a book instead!',
