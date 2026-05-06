@@ -1,11 +1,11 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
-import description from './person_negker.html?raw';
 import { Combinations } from '../combinations';
-
-export function PersonNegker() {
+import description from './person_louisxiv.html?raw'
+ 
+export function PersonLouisXIV() {
     return Item({
-        name: 'person_negker',
+        name: 'Louis XIV of France',
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
@@ -13,15 +13,16 @@ export function PersonNegker() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        if (game.activeCharacter.items.get(PersonNegker)) {
+                        if (game.activeCharacter.items.get(PersonLouisXIV)) {
                             return { 
-                            text: 'Add this person to your notebook to learn more!', 
+                            text: 'Good choice!', 
                             removeTarget: false
-                            };
+                        };
                         }
-                        game.activeCharacter.items.add(PersonNegker);
+                        
+                        game.activeCharacter.items.add(PersonLouisXIV);
                         return { 
-                            text: 'Jost de Negker has been added to your notebook!', 
+                            text: 'Louis XIV of France has been added to your notebook!', 
                             removeTarget: false
                         };
                     }

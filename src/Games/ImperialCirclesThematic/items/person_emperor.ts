@@ -1,11 +1,11 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
-import description from './person_negker.html?raw';
 import { Combinations } from '../combinations';
-
-export function PersonNegker() {
-    return Item({
-        name: 'person_negker',
+import description from './person_emperor.html?raw';
+ 
+export function PersonEmperor() {
+    const item = Item({
+        name: 'Holy Roman Emperor',
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
@@ -13,15 +13,16 @@ export function PersonNegker() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        if (game.activeCharacter.items.get(PersonNegker)) {
-                            return { 
-                            text: 'Add this person to your notebook to learn more!', 
-                            removeTarget: false
+                        if (game.activeCharacter.items.get('Holy Roman Emperor')) {
+                            return {    
+                                text: 'Good choice!', 
+                                removeTarget: false
                             };
                         }
-                        game.activeCharacter.items.add(PersonNegker);
+                        
+                        game.activeCharacter.items.add(item);
                         return { 
-                            text: 'Jost de Negker has been added to your notebook!', 
+                            text: 'The Holy Roman Emperor has been added to your notebook!', 
                             removeTarget: false
                         };
                     }
@@ -29,4 +30,6 @@ export function PersonNegker() {
             ]
         }
     });
+
+    return item;
 }

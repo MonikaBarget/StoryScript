@@ -1,11 +1,11 @@
-import description from './place_empire.html?raw';
+import description from './place_ottomanempire.html?raw';
 import { createNotebookItem } from './createNotebookItem';
 
-export function PlaceEmpire() {
+export function PlaceOttomanEmpire() {
     return createNotebookItem({
-        name: 'Holy Roman Empire',
+        name: 'Ottoman Empire',
         description: description,
-        addedText: 'The Holy Roman Empire has been added to your notebook!',
+        addedText: 'The Ottoman Empire has been added to your notebook!',
         missingText: 'Add this place to your notebook to learn more!'
     });
 }

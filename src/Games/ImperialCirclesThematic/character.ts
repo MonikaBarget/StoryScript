@@ -15,11 +15,8 @@ export class Character implements ICharacter {
     constructor() {
         this.equipment = {
             // Remove the slots you don't want to use. Remove them from your IEquipment interface too!
-            amulet: null,
             leftHand: null,
-            leftRing: null,
             rightHand: null,
-            rightRing: null
             // Add your custom slots here. Make sure they are also present in your IEquipment interface.
         }
     }

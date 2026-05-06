@@ -6,7 +6,7 @@ export interface IEquipment extends StoryScriptIEquipment {
 
 export interface IEquipment extends Omit<
     StoryScriptIEquipment,
-    'head' | 'hands' | 'body' | 'feet'
+    'head' | 'hands' | 'body' | 'feet' | 'rightRing' | 'leftRing' | 'amulet'
 > {
     // Add game-specific equipment slots here
 }

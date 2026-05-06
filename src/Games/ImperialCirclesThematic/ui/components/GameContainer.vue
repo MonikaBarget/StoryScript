@@ -11,14 +11,16 @@
       <!-- LEFT: Location text + HTML description -->
       <div :class="showRightPane ? 'col-9' : 'col-12'" id="location-container">
         <location-text></location-text>
+        <exploration></exploration>
       <!-- LEFT: We do not have the required container yet!! -->
       </div>
       <!-- RIGHT: Collapsible panel -->
       <div v-if="showRightPane" class="col-3">
         <party></party>
-        <encounter></encounter>
-        <exploration></exploration>
         <combinations :combinations="game.combinations"></combinations>
+        <encounter></encounter>
+        
+        
       </div>
     </div>
   </div>

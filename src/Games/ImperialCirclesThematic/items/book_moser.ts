@@ -3,21 +3,10 @@ import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/s
 import description from './book_moser.html?raw';
 import { Combinations } from '../combinations';
 
-// Function to extract inner HTML of <description>
-function extractDescriptionHtml(htmlString: string): string {
-  const parser = new DOMParser();
-  const doc = parser.parseFromString(htmlString, 'text/html');
-  const descriptionElement = doc.querySelector('description');
-  return descriptionElement?.innerHTML?.trim() || '';
-}
-
-const descriptionHtml = extractDescriptionHtml(description);
-
 export function BookMoser() {
     return Item({
         name: 'book_moser',
-        description: descriptionHtml,
-        picture: 'resources7book_letter_quill.png',
+        description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
             combine: [
@@ -25,23 +14,22 @@ export function BookMoser() {
                 {
                     combinationType: Combinations.USE,
                     match: (game, target, tool): ICombinationMatchResult => {
-                        // Add the book to the notebook
-                        game.activeCharacter.items.add(BookMoser);
-
-                        // Set the HTML description for rendering
+                        // General display texts for books!
                         return {
-                            text: `read ${BookMoser.name}`,
+                            text: `Read ${BookMoser.name}!`,
                             removeTarget: false,
-                            htmlContent: descriptionHtml, // Pass HTML content for rendering
                         };
                     }
                 },
-                // LOOKAT is not valid for this item
+                // LOOKAT = put into collection
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): ICombinationMatchResult => {
+                        // Add the book to the notebook
+                        game.activeCharacter.items.add(BookMoser);
+                    
                         return {
-                            text: `You cannot look at ${BookMoser.name}. Try reading it instead.`,
+                            text: `${BookMoser.name} has been added to your notebook!`,
                             removeTarget: false,
                         };
                     }
