@@ -454,9 +454,9 @@ function initCollection(entity: any, property: string) {
             // Initialize features that have been declared inline. Check for the existence of a 
             // type property to determine whether the object is already initialized.
             if (e.type) {
-                // For pre-created feature objects, use the feature name directly as ID if not already set
+                // For pre-created feature objects, derive ID from name if not already set
                 if (!e.id && e.name) {
-                    e.id = e.name;
+                    e.id = getIdFromName(e);
                 }
                 return e;
             }
