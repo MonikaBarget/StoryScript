@@ -4,7 +4,7 @@ import { Combinations } from '../combinations';
 
 export function PlaceEmpire() {
     return Item({
-        name: 'place_empire',
+        name: 'PlaceEmpire',
         description: 'The Empire is a powerful and influential organization.',
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {

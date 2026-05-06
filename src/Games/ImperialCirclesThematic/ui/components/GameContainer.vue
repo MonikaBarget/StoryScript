@@ -11,14 +11,8 @@
       <!-- LEFT: Location text + HTML description -->
       <div :class="showRightPane ? 'col-9' : 'col-12'" id="location-container">
         <location-text></location-text>
-
-       <!-- HTML Description Box -->
-        <div v-if="game.currentDescriptionHtml" class="box-container">
-          <div class="box-title">Description</div>
-          <div v-html="game.currentDescriptionHtml" class="description-content"></div>
-        </div>
+      <!-- LEFT: We do not have the required container yet!! -->
       </div>
-
       <!-- RIGHT: Collapsible panel -->
       <div v-if="showRightPane" class="col-3">
         <party></party>
