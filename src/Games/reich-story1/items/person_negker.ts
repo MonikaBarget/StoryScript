@@ -5,7 +5,7 @@ import { Combinations } from '../combinations';
 
 export function PersonNegker() {
     return Item({
-        name: 'Jost de Negker',
+        name: 'person_negker',
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {

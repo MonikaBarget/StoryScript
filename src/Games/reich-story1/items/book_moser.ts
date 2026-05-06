@@ -5,7 +5,7 @@ import { Combinations } from '../combinations';
 
 export function BookMoser() {
     return Item({
-        name: 'On the Constitution of the Imperial Circles',
+        name: 'book_moser',
         description: description,
         picture: 'resources7book_letter_quill.png',
         equipmentType: EquipmentType.Miscellaneous,
