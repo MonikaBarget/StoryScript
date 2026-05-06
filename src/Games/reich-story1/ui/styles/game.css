@@ -119,12 +119,12 @@ span.secondary-location:hover {
   color: #8B4513;
 }
 
-div.collapsible-header.box-title.equipment {
-    background-color: #2e5d34; /* forest green */
+div.collapsible-header.box-title.Equipment {
+    background-color: #bae4c0; /* green */
     color: #ffffff;
 }
 
-div.collapsible-header.box-title.notebook {
+div.collapsible-header.box-title.Notebook {
     background-color: #f5ecd9; /* light beige paper tone */
     font-family: "Brush Script MT", "Lucida Handwriting", cursive;
     color: #333333;
