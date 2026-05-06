@@ -13,6 +13,7 @@
       <!-- LEFT: Location text -->
       <div :class="showRightPane ? 'col-9' : 'col-12'" id="location-container">
         <location-text></location-text>
+        <feature></feature>
       </div>
 
       <!-- RIGHT: Collapsible panel -->
