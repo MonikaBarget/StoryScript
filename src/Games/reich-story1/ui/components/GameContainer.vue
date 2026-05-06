@@ -1,8 +1,8 @@
 <template>
   <div class="container-fluid body-content">
     <div class="row">
-      <part></party>
-      </div>
+      <party></party>
+        </div>
       <div id="location-container"
            :class="{ 'col-8': game.state === 'Play' && showCharacterPane, 'col-12': game.state !== 'Play' || !showCharacterPane }">
         <div v-if="game.state === 'Play'">
