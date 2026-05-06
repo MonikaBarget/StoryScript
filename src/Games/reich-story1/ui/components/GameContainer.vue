@@ -1,20 +1,13 @@
 <template>
   <div class="container-fluid body-content">
     <div class="row">
-      <div v-if="game.state === 'Play'" id="party-container" :class="{ 'col-4': showCharacterPane }">
-        <party></party>
+      <part></party>
       </div>
       <div id="location-container"
            :class="{ 'col-8': game.state === 'Play' && showCharacterPane, 'col-12': game.state !== 'Play' || !showCharacterPane }">
-        <div v-if="!game.state">
-          {{ texts.loading }}
-        </div>
-
         <div v-if="game.state === 'Play'">
-          <location-visual v-if="game.worldProperties.type === 'Visual'"></location-visual>
-          <location-text v-else></location-text>
+          <location-text></location-text>
         </div>
-        <victory></victory>
       </div>
     </div>
     <div v-if="game.state === 'Play'" class="row">
