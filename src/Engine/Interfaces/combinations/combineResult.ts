@@ -10,6 +10,11 @@ export interface ICombineResult {
     success: boolean;
 
     /**
+     * Optional HTML content to render for the combination result.
+     */
+    htmlContent?: string;
+
+    /**
      * If true, remove the tool feature after the match is made.
      */
     removeTool?: boolean

@@ -5,6 +5,11 @@ export interface ICombinationMatchResult {
     text: string,
 
     /**
+     * Optional HTML content to render as part of the combination result.
+     */
+    htmlContent?: string,
+
+    /**
      * If true, remove the tool feature after the match is made.
      */
     removeTool?: boolean

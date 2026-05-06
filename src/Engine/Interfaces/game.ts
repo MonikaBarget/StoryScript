@@ -129,6 +129,11 @@ export interface IGame {
     };
 
     /**
+     * Optional HTML content rendered by the UI for custom description displays.
+     */
+    currentDescriptionHtml?: string;
+
+    /**
      * True if a game is being loaded, false otherwise.
      */
     loading: boolean;

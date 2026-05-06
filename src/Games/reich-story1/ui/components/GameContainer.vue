@@ -1,7 +1,6 @@
 <template>
   <div class="container-fluid body-content">
-
-    <!-- Toggle button (floating or top-right) -->
+    <!-- Toggle button -->
     <div class="d-flex justify-content-end mb-2" v-if="game.state === 'Play'">
       <button class="btn btn-sm btn-outline-secondary" @click="showRightPane = !showRightPane">
         {{ showRightPane ? 'Hide panel' : 'Show panel' }}
@@ -9,11 +8,16 @@
     </div>
 
     <div class="row" v-if="game.state === 'Play'">
-
-      <!-- LEFT: Location text -->
+      <!-- LEFT: Location text + HTML description -->
       <div :class="showRightPane ? 'col-9' : 'col-12'" id="location-container">
         <location-text></location-text>
-        <feature></feature>
+
+        <!-- To add: HTML Description Box -->
+        <div
+          v-if="game.currentDescription"
+          class="description-box mt-3 p-3 border rounded"
+          v-html="game.currentDescription"
+        ></div>
       </div>
 
       <!-- RIGHT: Collapsible panel -->
@@ -23,9 +27,7 @@
         <exploration></exploration>
         <combinations :combinations="game.combinations"></combinations>
       </div>
-
     </div>
-
   </div>
 </template>
 

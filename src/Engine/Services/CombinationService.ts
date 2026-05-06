@@ -150,6 +150,7 @@ export class CombinationService implements ICombinationService {
 
             result.success = true;
             result.text = typeof matchResult === 'string' ? matchResult : matchResult.text;
+            result.htmlContent = typeof matchResult !== 'string' ? matchResult.htmlContent : undefined;
             result.removeTarget = typeof matchResult !== 'string' && matchResult.removeTarget;
             result.removeTool = typeof matchResult !== 'string' && matchResult.removeTool;
         } else if (target.combinations?.failText) {
