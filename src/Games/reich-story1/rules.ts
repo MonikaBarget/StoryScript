@@ -17,14 +17,15 @@ export function Rules(): IRules {
 			text: Combinations.USE,
 			preposition: '',
 			requiresTool: false,
-			failText: (ame: IGame, target: ICombinable, tool: ICombinable): string => { 
+			failText: (game: IGame, target: ICombinable, tool: ICombinable): string => { 
 			    return 'Sorry, but you cannot read ' + target.name + '. Look for a book instead!';
+            }
 		},
 		{
 			text: Combinations.LOOKAT,
 			preposition: '',
 			requiresTool: false,
-			failText: (ame: IGame, target: ICombinable, tool: ICombinable): string => { 
+			failText: (game: IGame, target: ICombinable, tool: ICombinable): string => { 
 			    return 'Sorry, but you cannot meet ' + target.name + '. It is not a person!';
 			}
 		}
