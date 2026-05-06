@@ -96,10 +96,24 @@ p {
 
 feature {
   color: chocolate;
+  position: relative;
+  z-index: 3; /* ensure text is above its own background */
 }
 
 feature:hover {
   color: #8B4513;
+}
+
+/* Container */
+features {
+  position: relative;      /* avoid uncontrolled absolute stacking */
+  z-index: 2;              /* keep it below higher-priority UI if needed */
+  background: transparent; /* prevent blocking underlying text */
+}
+
+/* If features was previously absolute/fixed, constrain it properly */
+#location-container {
+  position: relative;
 }
 
 div.character-equipment.box-container {
