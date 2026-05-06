@@ -109,18 +109,18 @@ p {
   border-radius: 50%; /* Make sure it is a circle! */
 }
 
-/* Define behaviour for secondary locations */
+/* Define behaviour for clickable features */
 
-span.secondary-location {
+feature {
   color: chocolate;
 }
 
-span.secondary-location:hover {
+feature:hover {
   color: #8B4513;
 }
 
 div.character-equipment.box-container {
-    background-color: #bae4c0; /* green */
+    background-color: #2f6137; /* forest green */
     color: #ffffff;
 }
 
