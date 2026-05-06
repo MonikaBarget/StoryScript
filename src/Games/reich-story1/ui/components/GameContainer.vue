@@ -12,12 +12,11 @@
       <div :class="showRightPane ? 'col-9' : 'col-12'" id="location-container">
         <location-text></location-text>
 
-        <!-- To add: HTML Description Box -->
-        <div
-          v-if="game.currentDescription"
-          class="description-box mt-3 p-3 border rounded"
-          v-html="game.currentDescription"
-        ></div>
+       <!-- HTML Description Box -->
+        <div v-if="game.currentDescriptionHtml" class="box-container">
+          <div class="box-title">Description</div>
+          <div v-html="game.currentDescriptionHtml" class="description-content"></div>
+        </div>
       </div>
 
       <!-- RIGHT: Collapsible panel -->
