@@ -361,6 +361,11 @@ function CreateObject<T>(entity: T, type: string, id?: string) {
         id = _registeredIds.get(entityKey);
     }
 
+    // If no ID has been found yet, try to derive it from the entity's name property
+    if (!id && compiledEntity.name) {
+        id = getIdFromName(compiledEntity);
+    }
+
     if (id) {
         compiledEntity.id = id;
         parseDescriptionData(compiledEntity);
