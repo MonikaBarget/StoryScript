@@ -8,6 +8,7 @@ import { MigLocOne } from './MigLocOne';
 import { BookMoser } from '../items/book_moser';
 import { PersonNegker } from '../items/person_negker';
 import { PlaceEmpire } from '../items/place_empire';
+import { PersonEmperor } from '../items/person_emperor';
 
 export function Start() {
     return Location({
@@ -16,7 +17,8 @@ export function Start() {
         features: [
             BookMoser(),
             PersonNegker(),
-            PlaceEmpire()
+            PlaceEmpire(),
+            PersonEmperor()
         ],
         destinations: [
             {
