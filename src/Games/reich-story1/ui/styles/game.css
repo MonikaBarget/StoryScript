@@ -6,11 +6,6 @@
     max-height: 800px;
 }
 
-#location {
-    max-height: 600px;
-    overflow-y: scroll;
-}
-
 blockquote {
     margin: 0 0 1em 0;
     padding: 0 0 0 20px;
@@ -71,6 +66,15 @@ p {
     border-radius: 3px;
 }
 
+button {
+    margin-right: 10px;
+    background-color: #8b4513a6; /* Cappucino brown */
+    color: white; /* Ensure text is readable */
+    border: 1px solid #5D2906; /* Darker brown border */
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
 .box-container {
     border: 1px solid #8B4513; /* Chocolate brown */
     padding: 10px;
@@ -86,27 +90,6 @@ p {
     background-color: #8B4513; /* Chocolate brown */
     padding: 0 10px;
     margin: -10px -10px 10px -10px;
-}
-
-.map-location-image img {
-  border: 2px solid #8B4513; /* Chocolate brown border */
-  background: #8B4513;       /* Chocolate brown background */
-  max-width: 70px;
-  max-height: 70px;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-}
-
-/* Special case for red dot markers */
-.map-location-image img[src*="reddot.png"] {
-  border: none;
-  background: none;
-  width: 25px;
-  height: 25px;
-  max-width: 35px;
-  max-height: 35px;
-  border-radius: 50%; /* Make sure it is a circle! */
 }
 
 /* Define behaviour for clickable features */
