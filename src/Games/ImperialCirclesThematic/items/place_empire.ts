@@ -3,7 +3,7 @@ import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/s
 import { Combinations } from '../combinations';
 import description from './place_empire.html?raw';
 
-export function place_empire() {
+export function PlaceEmpire() {
     return Item({
         name: 'Holy Roman Empire', // This is the name used in the game object
         description: description,
@@ -13,7 +13,7 @@ export function place_empire() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add('Holy Roman Empire'); // Use display name here
+                        game.activeCharacter.items.add(PlaceEmpire); // Use display name here
                         return {
                             text: 'You have added the Holy Roman Empire to your notebook!',
                             removeTarget: false

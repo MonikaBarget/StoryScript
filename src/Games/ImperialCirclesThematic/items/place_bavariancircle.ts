@@ -3,7 +3,7 @@ import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/s
 import { Combinations } from '../combinations';
 import description from './place_bavariancircle.html?raw';
 
-export function place_bavariancircle() {
+export function PlaceBavarianCircle() {
     return Item({
         name: 'Bavarian Imperial Circle', // This is the name used in the game object
         description: description,
@@ -13,7 +13,7 @@ export function place_bavariancircle() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add('Bavarian Imperial Circle'); // Use display name here
+                        game.activeCharacter.items.add(PlaceBavarianCircle); // Use display name here
                         return {
                             text: 'You have added the Bavarian Imperial Circle to your notebook!',
                             removeTarget: false
@@ -23,7 +23,7 @@ export function place_bavariancircle() {
                 {
                     combinationType: Combinations.USE,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        const exists = game.activeCharacter.items.get('Bavarian Imperial Circle'); // Check for display name
+                        const exists = game.activeCharacter.items.get('PlaceBavarianCircle'); // Check for display name
                         if (!exists) {
                             return {
                                 text: 'Not possible! Try to find a book instead!',

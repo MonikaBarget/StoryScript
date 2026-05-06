@@ -13,7 +13,7 @@ export function PersonEmperor() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        if (game.activeCharacter.items.get('Holy Roman Emperor')) {
+                        if (game.activeCharacter.items.get(PersonEmperor)) {
                             return {    
                                 text: 'Good choice!', 
                                 removeTarget: false

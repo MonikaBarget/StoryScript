@@ -3,7 +3,7 @@ import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/s
 import { Combinations } from '../combinations';
 import description from './place_austriancircle.html?raw';
 
-export function place_austriancircle() {
+export function PlaceAustrianCircle() {
     return Item({
         name: 'Austrian Imperial Circle', // This is the name used in the game object
         description: description,
@@ -13,7 +13,7 @@ export function place_austriancircle() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add('Austrian Imperial Circle'); // Use display name here
+                        game.activeCharacter.items.add(PlaceAustrianCircle); // Use display name here
                         return {
                             text: 'You have added the Austrian Imperial Circle to your notebook!',
                             removeTarget: false

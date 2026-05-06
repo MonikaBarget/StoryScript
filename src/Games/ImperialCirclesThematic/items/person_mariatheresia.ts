@@ -3,9 +3,9 @@ import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/s
 import { Combinations } from '../combinations';
 import description from './person_mariatheresia.html?raw';
 
-export function person_mariatheresia() {
+export function PersonMariaTheresia() {
     return Item({
-        name: 'person_mariatheresia', // This is the name used in the game object
+        name: 'Maria Theresia of Austria', // This is the name used in the game object
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
@@ -13,9 +13,9 @@ export function person_mariatheresia() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add('person_mariatheresia'); // Use display name here
+                        game.activeCharacter.items.add(PersonMariaTheresia); // Use display name here
                         return {
-                            text: 'You have added the person_mariatheresia to your notebook!',
+                            text: 'You have added Maria Theresia to your notebook!',
                             removeTarget: false
                         };
                     }
