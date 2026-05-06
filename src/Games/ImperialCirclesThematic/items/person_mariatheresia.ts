@@ -1,11 +1,11 @@
 import {Item} from '../types';
 import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './place_ottomanempire.html?raw';
+import description from './person_mariatheresia.html?raw';
 
-export function place_ottomanempire() {
+export function person_mariatheresia() {
     return Item({
-        name: 'place_ottomanempire', // This is the name used in the game object
+        name: 'person_mariatheresia', // This is the name used in the game object
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
@@ -13,9 +13,9 @@ export function place_ottomanempire() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add('place_ottomanempire'); // Use display name here
+                        game.activeCharacter.items.add('person_mariatheresia'); // Use display name here
                         return {
-                            text: 'You have added the place_ottomanempire to your notebook!',
+                            text: 'You have added the person_mariatheresia to your notebook!',
                             removeTarget: false
                         };
                     }
@@ -23,7 +23,7 @@ export function place_ottomanempire() {
                 {
                     combinationType: Combinations.USE,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        const exists = game.activeCharacter.items.get('place_ottomanempire'); // Check for display name
+                        const exists = game.activeCharacter.items.get('person_mariatheresia'); // Check for display name
                         if (!exists) {
                             return {
                                 text: 'Not possible! Try to find a book instead!',
@@ -31,7 +31,7 @@ export function place_ottomanempire() {
                             };
                         }
                         return {
-                            text: 'place_ottomanempire used successfully.',
+                            text: 'person_mariatheresia used successfully.',
                             removeTarget: false
                         };
                     }

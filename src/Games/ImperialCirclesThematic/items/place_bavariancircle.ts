@@ -1,11 +1,11 @@
 import {Item} from '../types';
 import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './place_ottomanempire.html?raw';
+import description from './place_bavariancircle.html?raw';
 
-export function place_ottomanempire() {
+export function place_bavariancircle() {
     return Item({
-        name: 'place_ottomanempire', // This is the name used in the game object
+        name: 'Bavarian Imperial Circle', // This is the name used in the game object
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
@@ -13,9 +13,9 @@ export function place_ottomanempire() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add('place_ottomanempire'); // Use display name here
+                        game.activeCharacter.items.add('Bavarian Imperial Circle'); // Use display name here
                         return {
-                            text: 'You have added the place_ottomanempire to your notebook!',
+                            text: 'You have added the Bavarian Imperial Circle to your notebook!',
                             removeTarget: false
                         };
                     }
@@ -23,7 +23,7 @@ export function place_ottomanempire() {
                 {
                     combinationType: Combinations.USE,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        const exists = game.activeCharacter.items.get('place_ottomanempire'); // Check for display name
+                        const exists = game.activeCharacter.items.get('Bavarian Imperial Circle'); // Check for display name
                         if (!exists) {
                             return {
                                 text: 'Not possible! Try to find a book instead!',
@@ -31,7 +31,7 @@ export function place_ottomanempire() {
                             };
                         }
                         return {
-                            text: 'place_ottomanempire used successfully.',
+                            text: 'Bavarian Imperial Circle used successfully.',
                             removeTarget: false
                         };
                     }
