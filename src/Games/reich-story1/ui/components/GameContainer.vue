@@ -1,19 +1,17 @@
 <template>
   <div class="container-fluid body-content">
     <div class="row">
-    <div class="col-6">
+      <div class="col-6">
       <party></party>
       </div>
     </div>
-  </div>
-      <div id="location-container"
+    <div id="location-container"
            :class="{ 'col-8': game.state === 'Play' && showCharacterPane, 'col-12': game.state !== 'Play' || !showCharacterPane }">
         <div v-if="game.state === 'Play'">
           <location-text></location-text>
           <encounter></encounter>
           <exploration></exploration>
         </div>
-      </div>
     </div>
     <div v-if="game.state === 'Play'" class="row">
       <div class="col-12">
