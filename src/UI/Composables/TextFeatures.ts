@@ -83,6 +83,10 @@ export function useTextFeatures(descriptionRef: Ref<HTMLDivElement>) {
             }
 
             if (result.success) {
+                // Set HTML content from combination result if available
+                if (result.htmlContent) {
+                    game.value.currentDescriptionHtml = result.htmlContent;
+                }
                 refreshFeatures();
             }
         }

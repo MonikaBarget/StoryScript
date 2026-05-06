@@ -20,7 +20,7 @@ import {IDataService} from "storyScript/Interfaces/services/dataService.ts";
 import {IAction} from "storyScript/Interfaces/action.ts";
 import {ActionType} from "storyScript/Interfaces/enumerations/actionType.ts";
 import {Error} from "ui/error.ts";
-import { isDevelopment } from "../../../../constants.ts"; // Updated import path
+import { isDevelopment } from "../../../../constants.ts";
 import {IAutoplayService} from "storyScript/Interfaces/services/autoplayService.ts";
 import {ICommandService} from "storyScript/Interfaces/services/commandService.ts";
 
