@@ -5,7 +5,7 @@ import description from './place_ottomanempire.html?raw';
 
 export function place_ottomanempire() {
     return Item({
-        name: 'place_ottomanempire', // This is the name used in the game object
+        name: 'Ottoman Empire', // This is the name used in the game object
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {

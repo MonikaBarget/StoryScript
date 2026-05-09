@@ -5,7 +5,7 @@ import description from './person_emperor.html?raw';
  
 export function PersonEmperor() {
     const item = Item({
-        name: 'PersonEmperor',
+        name: 'Person Emperor',
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {

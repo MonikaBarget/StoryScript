@@ -5,7 +5,7 @@ import { Combinations } from '../combinations';
 
 export function BookMoser() {
     return Item({
-        name: 'BookMoser',
+        name: 'Book Moser',
         description: description,
         equipmentType: EquipmentType.Miscellaneous,
         combinations: {
