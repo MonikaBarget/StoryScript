@@ -117,8 +117,7 @@ span.secondary-location:hover {
 
 /* Conversation portraits */
 
-div.conversation img,
-#conversation img {
+img.person-picture {
   border: none;
   background: none;
   max-width: 70px;
