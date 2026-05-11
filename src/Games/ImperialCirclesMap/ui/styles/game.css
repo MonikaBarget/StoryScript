@@ -114,3 +114,12 @@ span.secondary-location {
 span.secondary-location:hover {
   color: #8B4513;
 }
+
+/* Conversation portraits */
+
+div.conversation img {
+  border: none;
+  background: none;
+  max-width: 70px;
+  max-height: 70px;
+}
