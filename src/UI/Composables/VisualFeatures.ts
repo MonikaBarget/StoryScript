@@ -205,16 +205,9 @@ export function useVisualFeatures(imageRef: Ref<HTMLDivElement>) {
         });
     }
 
-    const tryCombine = (eventOrElement: PointerEvent | HTMLElement, feature: IFeature) => {
-        game.value.combinations.tryCombine(feature);
-        const element = (eventOrElement as PointerEvent).target as HTMLElement ?? eventOrElement as HTMLElement;
-        element.style.cursor = customCursor.value ? customCursor.value.style : '';
-    }
-
     return {
         locationFeatures,
         initFeatures,
-        prepareFeatures,
-        tryCombine
+        prepareFeatures
     }
 }

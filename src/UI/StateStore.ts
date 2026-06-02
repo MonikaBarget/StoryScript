@@ -196,7 +196,7 @@ export const useStateStore = defineStore('appState', () => {
             cursorRef.value = {
                 image: cursorImage,
                 dimensions: {width: image.naturalWidth, height: image.naturalHeight},
-                style: `url(resources/${placeholder ?? cursorImage}) ${image.naturalWidth / 2} ${image.naturalHeight / 2}, pointer`
+                style: `url(resources/${placeholder ?? cursorImage}) ${image.naturalWidth / 2} ${image.naturalHeight / 2}, auto`
             }
         }
     }

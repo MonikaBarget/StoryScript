@@ -139,6 +139,7 @@ button {
 
 .box-container li span {
     margin-right: 10px;
+    padding: 0 5px;
 }
 
 #conversation-options ul {
