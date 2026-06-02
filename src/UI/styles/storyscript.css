@@ -506,7 +506,6 @@ feature {
 
 .map-location-label, .map-location-image, .map-name {
     z-index: 1;
-    cursor: default;
 }
 
 .show-marker-instructions {

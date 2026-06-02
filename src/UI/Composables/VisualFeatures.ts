@@ -1,13 +1,12 @@
 import {computed, onUpdated, Ref, ref, watch} from "vue";
-import {IFeature} from "storyScript/Interfaces/feature.ts";
 import {useStateStore} from "ui/StateStore.ts";
 import {storeToRefs} from "pinia";
 import {isTouchDevice} from "../../../constants.ts";
 
-const prepareLoadedImages = (locationImages: HTMLImageElement[]) => {
+const prepareLoadedImages = (locationImagesRef: HTMLImageElement[]) => {
     const loadedImages: { element: HTMLImageElement, loadPromise: Promise<void> }[] = [];
 
-    locationImages.forEach(l => {
+    locationImagesRef.forEach(l => {
         let promiseResolve: () => {};
 
         const loadPromise = new Promise<void>((r: any): void => {
@@ -34,8 +33,7 @@ export function useVisualFeatures(imageRef: Ref<HTMLDivElement>) {
     const {
         game,
         defaultCombination,
-        combinationCursor,
-        customCursor
+        combinationCursor
     } = storeToRefs(store);
 
     const locationFeatures = imageRef;

@@ -67,7 +67,7 @@ export function useTextFeatures(descriptionRef: Ref<HTMLDivElement>) {
         if (triggerElement && isTouchDevice) {
             const activate = !triggerElement.classList.contains(activeTriggerClass);
 
-            Array.from(descriptionRef.value.querySelectorAll('[data-trigger]')).forEach((el) => {
+            Array.from(description.value.querySelectorAll('[data-trigger]')).forEach((el) => {
                 toggleTrigger(el as any, false);
             });
 

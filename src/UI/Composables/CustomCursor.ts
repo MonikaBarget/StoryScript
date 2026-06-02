@@ -7,6 +7,7 @@ import {IActiveCombination} from "storyScript/Interfaces/combinations/activeComb
 
 export function useCustomCursor(uiRoot: Ref<HTMLElement>) {
     const cursorRegex = /resources\/[\w-]*\.[a-zA-Z]{3,4}/;
+    const rootElement = uiRoot;
 
     const store = useStateStore();
     const {game, customCursor, combinationCursor} = storeToRefs(store);
@@ -16,17 +17,17 @@ export function useCustomCursor(uiRoot: Ref<HTMLElement>) {
             game.value.UIRootElement.style.cursor = customCursor.value.style;
         }
     });
-    
+
     watch(() => game.value.combinations.activeCombination, (newVal?: IActiveCombination) => {
         if (!newVal) {
             Array.from<HTMLElement>(game.value.UIRootElement.querySelectorAll('.feature-cursor')).forEach(e => {
-                e.style.cursor = customCursor.value?.style;
+                e.style.cursor = customCursor.value?.style || null;
             });
         }
     });
 
     onMounted(() => {
-        game.value.UIRootElement = uiRoot.value.closest('body');
+        game.value.UIRootElement = rootElement.value.closest('body');
 
         game.value.UIRootElement.addEventListener('mouseover', e => {
             setCursorStyle(e.target as HTMLElement);
@@ -47,7 +48,7 @@ export function useCustomCursor(uiRoot: Ref<HTMLElement>) {
             if (combinationPicture) {
                 cursorStyle = combinationCursor.value.style.replace(cursorRegex, `resources/${combinationPicture}`);
             } else {
-                cursorStyle = customCursor.value?.style;
+                cursorStyle = customCursor.value?.style || null;
             }
         } else if (isDefaultPointer && customCursor.value) {
             cursorStyle = customCursor.value.style;
