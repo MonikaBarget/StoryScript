@@ -4,7 +4,7 @@ import { Swabia } from "./Swabia";
 import { Franconia } from "./Franconia";
 import { Westphalia } from "./Westphalia";
 import { MariaTheresia } from "../persons/MariaTheresia";
-import { MariaTheresia2 } from 'testGame/persons/MariaTheresia2';
+import { MariaTheresia2 } from '../persons/MariaTheresia2';
 
 export function Austria() {
     return Location({
