@@ -1,76 +1,78 @@
 <img class="picture portrait" src="resources/johanntheodor.png" />
 <description>
     <p>
-        You meet <strong>Johann Theodor</strong>, Prince Bishop of Liège.
+        You meet <strong>Johann Theodor of Bavaria</strong>, Cardinal and Prince-Bishop of Regensburg, Freising, and Liège.
+        A member of the House of Wittelsbach, he was one of the most prominent ecclesiastical princes of the 18th century.
     </p>
 </description>
+
 <conversation>
     <default-reply>
-        I have no more to say on this matter. Farewell.
+        I can say no more on this matter.
     </default-reply>
-    <node name="start">
-        <p>
-            Greetings. I am Johann Theodor. How may I assist you?
-        </p>
-        <replies>
-            <reply node="support_in_crisis">
-                How did the Swabian Circle support members in crises?
-            </reply>
-            <reply node="unable_to_pay">
-                What happened if members were unable to pay their contributions?
-            </reply>
-            <reply node="military_defense">
-                Can you tell me about the military defense of the Swabian Circle?
-            </reply>
-        </replies>
-    </node>
-    <node name="support_in_crisis">
-        <p>
-            In 1544, the Swabian Circle provided financial aid to the city of Zell after a devastating fire. Here you should note that Zell was the smallest imperial city in the Empire at the time and had limited resources. The Circle granted 300 gulden as a fire tax to help rebuild.<a href="#footnote-1" class="footnote-ref"><sup>1</sup></a>
-        </p>
-        <replies>
-            <reply node="start">
-                Thank you. I have another question.
-            </reply>
-        </replies>
-    </node>
-    <node name="unable_to_pay">
-        <p>
-            In 1689, the city of Heilbronn faced hardship during the French invasion. While some tax relief was granted, Heilbronn was required to continue paying its imperial circle taxes and repair its ruined fortifications.<a href="#footnote-2" class="footnote-ref"><sup>2</sup></a>
-        </p>
-        <replies>
-            <reply node="start">
-                Fascinating. I have another question.
-            </reply>
-        </replies>
-    </node>
-    <node name="military_defense">
-        <p>
-            The Swabian Circle played a crucial role in defending against French expansion in the late 17th century. After 1694, the imperial circles even maintained a joint army based at the Kehl fortress.
-        </p>
-        <replies>
-            <reply node="start">
-                Thank you for the information.
-            </reply>
-        </replies>
-    </node>
-</conversation>
 
-<!-- Footnotes -->
-<div class="footnotes">
-    <hr>
-    <ol>
-        <li id="footnote-1">
-            <p>
-                Original German: <em>"Von dem Schwäbischen Crays kan ich dises melden: Als An. 1544 die Stadt Zell schier gar abbrannte, wurde ihre von gemeinen Schwäbischen Crayses wegen 300. fl zur Brand=Steuer gegeben."</em>
-                <a href="#footnote-ref-1" class="footnote-backref">↩</a>
-            </p>
-        </li>
-        <li id="footnote-2">
-            <p>
-                Original German: <em>"Anno 1689. ist der Stadt Heilbronn, in Consideration der bey jetziger Französischen Irruption erlittenen Trangsalen einiger Nachlaß gegönnet, jedoch, daß sie dagegen mit denen lauffenden Crays=Praestandis fleißig beyhalten und die verfallene oder von denen Franzosen ruinirte Fortifications=Wercke nach äusserster Vermöglichkeit repariren sollte, erinnert und die verlangte Vorschrifft an Ihre Kayserliche Majestät erlassen wurden."</em>
-                <a href="#footnote-ref-2" class="footnote-backref">↩</a>
-            </p>
-        </li>
-    </ol>
-</div>
+<node name="start">
+    <p>
+        I am Johann Theodor of Bavaria, Prince-Bishop of Liège. What would you like to know?
+    </p>
+    <replies>
+        <reply node="imperial_circles">
+            What role did the Imperial Circles play?
+        </reply>
+        <reply node="neutrality">
+            Why did you insist on neutrality during the War of the Austrian Succession?
+        </reply>
+        <reply node="empire">
+            How did you understand the Holy Roman Empire?
+        </reply>
+        <reply node="court">
+            Is it true that you were a patron of music and theatre?
+        </reply>
+    </replies>
+</node>
+
+<node name="imperial_circles">
+    <p>
+        The Imperial Circles served to maintain order and stability within the Empire. At the same time, they enabled the Imperial Estates to manage common affairs without every decision having to originate directly from the Emperor. In this respect they exemplified the distinctive constitutional character of the Empire.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you. I have another question.
+        </reply>
+    </replies>
+</node>
+
+<node name="neutrality">
+    <p>
+        Empress Maria Theresa believed that I ought to have supported her cause more decisively. I, however, maintained that my prince-bishopric possessed the right to remain neutral in a conflict between competing powers. The Empire rests not solely upon unity but also upon the rights of its many territories.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you. I have another question.
+        </reply>
+    </replies>
+</node>
+
+<node name="empire">
+    <p>
+        Many foreigners regarded the Empire as weak because it consisted of so many different territories. I view this diversity as a strength. The Empire was a community of princes, bishops, cities, and other Imperial Estates that governed their affairs through negotiation, law, and mutual obligations. Such a polity required patience, but it also provided remarkable protection for the rights of its members.
+    </p>
+    <replies>
+        <reply node="start">
+            That is interesting. Another question.
+        </reply>
+    </replies>
+</node>
+
+<node name="court">
+    <p>
+        Indeed. Alongside my ecclesiastical and political duties, I enjoyed hunting, patronized musicians and actors, and played the violoncello myself. A princely court should not merely govern; it should also foster the arts and learning. For this reason, my court at Liège became widely known for its cultural life.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you very much.
+        </reply>
+    </replies>
+</node>
+
+</conversation>
