@@ -3,7 +3,6 @@ import description from './Austria.html?raw';
 import { Swabia } from "./Swabia";
 import { Franconia } from "./Franconia";
 import { Westphalia } from "./Westphalia";
-import { MariaTheresia } from "../persons/MariaTheresia";
 import { MariaTheresia2 } from '../persons/MariaTheresia2';
 
 export function Austria() {
