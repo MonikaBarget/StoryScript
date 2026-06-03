@@ -6,10 +6,10 @@ import {Luxembourg} from "../locations/Luxembourg.ts";
 import {Start} from "../locations/start.ts";
 import {Westphalia} from "../locations/Westphalia.ts";
 import {Swabia} from "../locations/Swabia.ts";
-import { Bohemia } from "testGame/locations/Bohemia.ts";
-import { Moravia } from "testGame/locations/Moravia.ts";
-import { Nuremberg } from "testGame/locations/Nuremberg.ts";
-import { Silesia } from "testGame/locations/Silesia.ts";
+import { Bohemia } from "../locations/Bohemia.ts";
+import { Moravia } from "../locations/Moravia.ts";
+import { Nuremberg } from "../locations/Nuremberg.ts";
+import { Silesia } from "../locations/Silesia.ts";
 
 export function HolyRomanEmpire() {
     return LocationMap({
