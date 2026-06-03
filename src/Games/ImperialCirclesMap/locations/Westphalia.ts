@@ -1,26 +1,30 @@
-import {Location} from '../types';
+import { Location } from '../types';
 import description from './Westphalia.html?raw';
-import {Austria} from "./Austria.ts";
-import {Franconia} from "./Franconia.ts";
-import {Swabia} from "./Swabia.ts"; 
+import { Swabia } from "./Swabia";
+import { Franconia } from "./Franconia";
+import { Austria } from "./Austria";
+import { JohannTheodor } from "../persons/JohannTheodor";
 
 export function Westphalia() {
     return Location({
         name: 'Westphalia',
         description: description,
         destinations: [
-			{
-				name: 'Austria',
-				target: Austria
-			},
             {
                 name: 'Swabia',
                 target: Swabia
             },
-			{
+            {
+                name: 'Austria',
+                target: Austria
+            },
+            {
                 name: 'Franconia',
                 target: Franconia
             }
+        ],
+        persons: [
+            JohannTheodor()
         ]
     });
 }
