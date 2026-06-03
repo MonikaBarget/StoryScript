@@ -4,6 +4,7 @@ import { Swabia } from "./Swabia";
 import { Westphalia } from "./Westphalia";
 import { Austria } from "./Austria";
 import { JohannPhilipp } from "../persons/JohannPhilipp";
+import { JewishRepresentative } from '../persons/JewishRepresentative';
 
 export function Franconia() {
     return Location({
@@ -24,7 +25,8 @@ export function Franconia() {
             }
         ],
         persons: [
-            JohannPhilipp()
+            JohannPhilipp(),
+            JewishRepresentative()
         ]
     });
 }

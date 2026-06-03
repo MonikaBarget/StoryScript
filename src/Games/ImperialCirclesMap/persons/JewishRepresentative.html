@@ -1,0 +1,66 @@
+<img class="picture portrait" src="resources/jewish_community.png" />
+<description>
+    <p>
+        I speak as a member of a Jewish community within the Holy Roman Empire.
+        Jewish communities were not a unified political body, but locally organised groups under territorial or imperial protection, regulated through charters of protection and legal privileges.
+    </p>
+    <p>
+        In the early modern period, I also used imperial institutions—including Imperial Circles and imperial courts—to file complaints against abuses by local authorities, especially Imperial Knights, and to seek protection.
+    </p>
+</description>
+
+<conversation>
+    <default-reply>
+        I have nothing further to add on this matter.
+    </default-reply>
+
+<node name="start">
+    <p>
+        I speak on behalf of my community. Our situation within the Empire was always shaped by both protection and insecurity. What would you like to know?
+    </p>
+    <replies>
+        <reply node="imperial_institutions">
+            Did I have access to imperial institutions?
+        </reply>
+        <reply node="conflicts">
+            Did I experience conflicts with local authorities?
+        </reply>
+        <reply node="circles">
+            What role did the Imperial Circles play for us?
+        </reply>
+    </replies>
+</node>
+
+<node name="imperial_institutions">
+    <p>
+        Yes. Despite many restrictions, I could appeal to imperial courts and request renewal or enforcement of protection charters. These legal channels were often slow and complex, but they offered an important means of resisting arbitrary actions.
+    </p>
+    <replies>
+        <reply node="start">
+            I understand.
+        </reply>
+    </replies>
+</node>
+
+<node name="conflicts">
+    <p>
+        Conflicts frequently arose with local lords, including Imperial Knights, who might raise taxes, restrict residence rights, or disregard existing protection charters. In such cases, I tried to appeal to higher imperial authorities to assert my rights.
+    </p>
+    <replies>
+        <reply node="start">
+            And then?
+        </reply>
+    </replies>
+</node>
+
+<node name="circles">
+    <p>
+        The Imperial Circles could also play a role, particularly where they were responsible for maintaining the peace of the Empire. In some cases, complaints were channelled through Circle structures or became visible at that level. However, the actual protection always depended strongly on local power relations.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you.
+        </reply>
+    </replies>
+</node>
+</conversation>
