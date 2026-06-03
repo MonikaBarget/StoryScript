@@ -1,8 +1,9 @@
-import { IGame, Location } from '../types';
+import { Location } from '../types';
 import description from './Franconia.html?raw';
-import { Westphalia } from "./Westphalia.ts";
-import { Swabia } from "./Swabia.ts";
-import { Austria } from "./Austria.ts";
+import { Swabia } from "./Swabia";
+import { Westphalia } from "./Westphalia";
+import { Austria } from "./Austria";
+import { BishopWuerzburg } from "../persons/BishopWuerzburg";
 
 export function Franconia() {
     return Location({
@@ -10,17 +11,20 @@ export function Franconia() {
         description: description,
         destinations: [
             {
-                name: 'Austria',
-                target: Austria
-            },
-            {
                 name: 'Swabia',
                 target: Swabia
+            },
+            {
+                name: 'Austria',
+                target: Austria
             },
             {
                 name: 'Westphalia',
                 target: Westphalia
             }
+        ],
+        persons: [
+            BishopWuerzburg()
         ]
     });
 }
