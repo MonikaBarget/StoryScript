@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-6">
         <location-map></location-map>
-        <encounter></encounter>
+        <exploration></exploration>
       </div>
       <div id="location-container" class="col-6">
         <div v-if="!game.state">
@@ -13,7 +13,8 @@
         <div v-if="game.state === 'Play'">
           
           <location-text></location-text>
-          <exploration></exploration>
+          <encounter></encounter>
+          
         </div>
       </div>
     </div>
