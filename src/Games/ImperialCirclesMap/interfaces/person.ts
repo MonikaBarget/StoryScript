@@ -6,6 +6,7 @@ export function Person(entity: IPerson): IPerson {
 }
 
 export interface IPerson extends IEnemy, StoryScriptIPerson {
+    uniqueId?: string;
     items?: IItem[];
     quests?: IQuest[];
 }
