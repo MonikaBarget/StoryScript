@@ -1,9 +1,9 @@
 import { IGame, IPerson, Person } from '../types';
-import description from './BishopWuerzburg.html?raw';
+import description from './JohannPhilipp.html?raw';
 
-export function BishopWuerzburg() {
+export function JohannPhilipp() {
     return Person({
-        name: 'Bishop von Würzburg',
+        name: 'Johann Philipp von Greiffenclau Vollraths',
         description: description,
         hitpoints: 10,
         canAttack: false,

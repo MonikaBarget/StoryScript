@@ -1,0 +1,77 @@
+<img class="picture portrait" src="resources/bishopwuerzburg.png" />
+<description>
+    <p>
+        You meet Johann Philipp von Greiffenclau Vollraths, the Prince-Bishop of Würzburg, a leading estate of the Franconian Imperial Circle.
+        In the early eighteenth century, the Circle played a major role in enforcing regulatory and police ordinances.
+    </p>
+</description>
+
+<conversation>
+    <default-reply>
+        There is nothing further to add on this matter.
+    </default-reply>
+
+<node name="start">
+    <p>
+        I am Johann Philipp von Greiffenclau Vollraths, the Prince-Bishop of Würzburg. Order and security within the Franconian Circle are of the highest importance. What would you like to know?
+    </p>
+    <replies>
+        <reply node="imperial_circles">
+            What role did the Franconian Circle play in such ordinances?
+        </reply>
+        <reply node="vagrancy">
+            Why were these ordinances directed at itinerant groups?
+        </reply>
+        <reply node="würzburg_decree">
+            What measures did the Würzburg court itself issue?
+        </reply>
+        <reply node="jews">
+            What role did Jews play in these regulations?
+        </reply>
+    </replies>
+</node>
+
+<node name="imperial_circles">
+    <p>
+        The Imperial Circles functioned as key instruments of imperial order. Within the Franconian Circle, collective decisions were made to maintain public peace and to enforce uniform regulations concerning mobility and public security.
+    </p>
+    <replies>
+        <reply node="start">
+            I see. Continue.
+        </reply>
+    </replies>
+</node>
+
+<node name="vagrancy">
+    <p>
+        The ordinances targeted individuals considered outside the estates-based social order, including itinerant soldiers and beggars. They were regarded as potentially disruptive to security and public order and therefore subject to strict regulation.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you. And specifically in Würzburg?
+        </reply>
+    </replies>
+</node>
+
+<node name="würzburg_decree">
+    <p>
+        The Würzburg court implemented Circle-wide decisions through its own decrees. In 1714, cooperation among the leading Imperial Circles was emphasised in order to restrict unauthorised mobility and safeguard public peace.
+    </p>
+    <replies>
+        <reply node="start">
+            Understood.
+        </reply>
+    </replies>
+</node>
+
+<node name="jews">
+    <p>
+        The position of Jewish communities within the Empire was legally ambivalent. On the one hand, protective charters and imperial or territorial privileges granted a degree of security and allowed for economic activity. On the other hand, they were subject to numerous restrictions, special taxes, and local threats of expulsion. Within broader police ordinances, they were at times regulated alongside other mobile or non-integrated groups, although their legal status was formally based on protection and tolerated residence.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you for the explanation.
+        </reply>
+    </replies>
+</node>
+</conversation>
