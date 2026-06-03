@@ -24,6 +24,7 @@ export function Westphalia() {
             }
         ],
         persons: [
+            MariaTheresia(),
             JohannTheodor()
         ]
     });
