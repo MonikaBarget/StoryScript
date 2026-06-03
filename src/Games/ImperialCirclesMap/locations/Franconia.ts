@@ -3,7 +3,7 @@ import description from './Franconia.html?raw';
 import { Swabia } from "./Swabia";
 import { Westphalia } from "./Westphalia";
 import { Austria } from "./Austria";
-import { BishopWuerzburg } from "../persons/JohannPhilipp";
+import { JohannPhilipp } from "../persons/JohannPhilipp";
 
 export function Franconia() {
     return Location({
@@ -24,7 +24,7 @@ export function Franconia() {
             }
         ],
         persons: [
-            BishopWuerzburg()
+            JohannPhilipp()
         ]
     });
 }
