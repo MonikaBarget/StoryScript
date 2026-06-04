@@ -5,6 +5,7 @@ import { Franconia } from "./Franconia";
 import { Austria } from "./Austria";
 import { JohannTheodor } from "../persons/JohannTheodor";
 import { MariaTheresia } from "../persons/MariaTheresia";
+import { CaesarConstantinFranz } from "../persons/CaesarConstantinFranz";
 
 export function Westphalia() {
     return Location({
@@ -26,7 +27,7 @@ export function Westphalia() {
         ],
         persons: [
             MariaTheresia(),
-            JohannTheodor()
-        ]
+            JohannTheodor(),
+            CaesarConstantinFranz()        ]
     });
 }

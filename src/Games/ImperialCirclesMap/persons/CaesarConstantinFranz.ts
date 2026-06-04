@@ -1,9 +1,9 @@
 import { IGame, IPerson, Person } from '../types';
 import description from './CaesarConstantinFranz.html?raw';
 
-export function CaesarFranzConstantin() {
+export function CaesarConstantinFranz() {
     return Person({
-        name: 'Caesar Franz Constantin',
+        name: 'Caesar Constantin Franz',
         description: description,
         hitpoints: 10,
         canAttack: false,
