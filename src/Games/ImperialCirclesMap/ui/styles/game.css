@@ -124,3 +124,8 @@ img.person-picture {
   max-width: 100px;
   max-height: 100px;
 }
+
+#conversation img {
+  max-width: 200px;
+  max-height: 200px;
+}
