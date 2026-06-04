@@ -125,3 +125,13 @@ img.person-picture {
   max-height: 100px;
   text-wrap: left;
 }
+
+#conversation img {
+  border: none;
+  background: none;
+  padding: 15px;
+  max-width: 200px;
+  max-height: 200px;
+  text-wrap: left;
+}
+    
