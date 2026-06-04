@@ -1,0 +1,74 @@
+<img class="picture portrait" src="resources/mariatheresia.png" />
+<description>
+    <p>
+        Du begegnest Maria Theresia, Erzherzogin von Österreich und Königin von Ungarn und Böhmen.
+        In den 1740er Jahren war ihre Herrschaft durch den Österreichischen Erbfolgekrieg geprägt.
+    </p>
+</description>
+
+<conversation>
+    <default-reply>
+        Zu dieser Angelegenheit habe ich nichts Weiteres zu sagen.
+    </default-reply>
+
+    <node name="start">
+        <p>
+            Ich bin Maria Theresia. In Zeiten des Krieges hängt viel davon ab, dass die Ordnung zwischen den Territorien gewahrt bleibt. Was möchtet Ihr wissen?
+        </p>
+
+        <replies>
+            <reply node="imperial_circles">
+                Welche Rolle spielten die Reichskreise im Krieg?
+            </reply>
+
+            <reply node="cartel">
+                Ihr erwähnt ein Abkommen mit dem Fränkischen Reichskreis über Deserteure. Was war das genau?
+            </reply>
+
+            <reply node="purpose">
+                Warum war es überhaupt notwendig, solche Regelungen zu treffen?
+            </reply>
+        </replies>
+    </node>
+
+    <node name="imperial_circles">
+        <p>
+            Die Reichskreise waren in dieser Zeit wichtige Vermittlungs- und Organisationsstrukturen.
+            Sie halfen nicht nur bei der Versorgung und Rekrutierung, sondern konnten auch als Partner in militärischen Abkommen auftreten,
+            wenn es um gemeinsame Sicherheitsinteressen ging.
+        </p>
+        <replies>
+            <reply node="start">
+                Verstanden.
+            </reply>
+        </replies>
+    </node>
+
+    <node name="cartel">
+        <p>
+            Im Jahr 1745 schloss ich mit dem Fränkischen Reichskreis ein Abkommen, das man ein „Kartell“ nennen kann.
+            Darin wurde geregelt, dass Deserteure und andere militärische Vergehen, die sich über die Grenzen hinweg bewegten,
+            gegenseitig zurückgegeben werden sollten.
+            Der Fränkische Reichskreis verpflichtete sich, Personen, die aus meinen Truppen geflohen waren oder militärische Regeln verletzt hatten,
+            an meine Behörden zu überstellen – und umgekehrt galt dasselbe.
+        </p>
+        <replies>
+            <reply node="start">
+                Danke, ich habe noch eine Frage.
+            </reply>
+        </replies>
+    </node>
+
+    <node name="purpose">
+        <p>
+            In einem Krieg wie dem um die österreichische Erbfolge war es leicht, dass Soldaten die Fronten wechseln oder einfach desertieren.
+            Da die Reichskreise und Territorien eng beieinander lagen, konnte sich niemand allein auf seine Grenzen verlassen.
+            Solche Abkommen dienten dazu, die militärische Disziplin zu sichern und zu verhindern, dass einzelne Territorien durch Fluchtbewegungen geschwächt wurden.
+        </p>
+        <replies>
+            <reply node="start">
+                Ich verstehe.
+            </reply>
+        </replies>
+    </node>
+</conversation>
