@@ -124,12 +124,3 @@ img.person-picture {
   max-width: 100px;
   max-height: 100px;
 }
-
-#conversation img {
-  border: 0;
-  padding: 15px;
-  max-width: 200px;
-  max-height: 200px;
-  display: block; /* image behaves as a block element */
-  margin: 0 auto; /* centers the image horizontally */
-}
