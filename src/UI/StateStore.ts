@@ -136,6 +136,10 @@ export const useStateStore = defineStore('appState', () => {
         game.value.currentDescription = {title: title, type: type, item: item};
     }
 
+    const showSource = (type: string, item: any, title: string): void => {
+        game.value.currentDescription = {title: title, type: type, item: {...item, description: item.source}};
+    }
+
     const startCombat = (location: ICompiledLocation, person?: IPerson): void => {
         if (person) {
             // The person becomes an enemy when attacked!
@@ -206,6 +210,7 @@ export const useStateStore = defineStore('appState', () => {
         setActiveCharacter,
         showEquipment,
         showDescription,
+        showSource,
         getButtonClass,
         trade,
         startCombat

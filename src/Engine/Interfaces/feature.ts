@@ -12,6 +12,11 @@ export interface IFeature extends ICombinable {
     description?: string;
 
     /**
+     * A source or external reference for the feature.
+     */
+    source?: string;
+
+    /**
      * The coordinates of this feature when using image maps for visual features.
      */
     coords?: string;

@@ -124,12 +124,11 @@ img.person-picture {
   max-width: 100px;
   max-height: 100px;
   float: left;
-  margin-right: 15px;
+  margin-right: 25px;
 }
 
 #conversation img {
   max-width: 200px;
   max-height: 200px;
-  float: left;
   margin-right: 15px;
 }

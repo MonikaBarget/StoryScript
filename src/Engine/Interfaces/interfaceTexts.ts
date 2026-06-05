@@ -66,6 +66,8 @@ export interface IInterfaceTexts {
     trade?: string;
     talk?: string;
     examine?: string;
+    source?: string;
+    description?: string;
     encounters?: string;
     closeModal?: string;
     combatTitle?: string;

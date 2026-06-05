@@ -63,6 +63,8 @@ export class DefaultTexts {
         trade: 'Trade with {0}',
         talk: 'Talk to {0}',
         examine: 'Examine {0}',
+        source: 'Source: {0}',
+        description: 'Description: {0}',
         encounters: 'Encounters',
         closeModal: 'Close',
         combatTitle: 'Combat',
