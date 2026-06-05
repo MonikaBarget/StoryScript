@@ -13,6 +13,8 @@ export interface IFeature extends ICombinable {
 
     /**
      * A source or external reference for the feature.
+     *
+     * This may contain HTML markup such as hyperlinks or embedded media.
      */
     source?: string;
 

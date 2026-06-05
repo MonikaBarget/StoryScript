@@ -75,6 +75,40 @@ p {
     background-color: rgba(255, 255, 255, 0.1); /* Slightly opaque for readability */
 }
 
+#encounters ul {
+    margin: 0;
+    padding: 0;
+}
+
+#encounters li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+#encounters li:last-child {
+    border-bottom: none;
+}
+
+#encounters img.person-picture {
+    float: none;
+    margin-right: 0;
+    flex: 0 0 120px;
+    width: 120px;
+    height: auto;
+}
+
+#encounters .inline {
+    display: flex;
+    flex: 1 1 0;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: flex-start;
+}
+
 .box-title {
     font-size: 1.3rem;
     font-family: Georgia, serif; /* Match body font */
@@ -127,8 +161,26 @@ img.person-picture {
   margin-right: 25px;
 }
 
+#conversation {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  align-items: flex-start;
+}
+
 #conversation img {
-  max-width: 200px;
+  flex: 0 0 220px;
+  width: 220px;
+  max-width: 220px;
   max-height: 200px;
-  margin-right: 15px;
+  height: auto;
+}
+
+#conversation-options {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+#conversation-history {
+  flex: 0 0 100%;
 }
