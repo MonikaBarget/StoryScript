@@ -67,6 +67,15 @@ p {
     border-radius: 3px;
 }
 
+#encounters button {
+    margin-right: 10px;
+    background-color: #8b4513a6; /* Cappucino brown */
+    color: white; /* Ensure text is readable */
+    border: 1px solid #5D2906; /* Darker brown border */
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
 .box-container {
     border: 1px solid #8B4513; /* Chocolate brown */
     padding: 10px;
