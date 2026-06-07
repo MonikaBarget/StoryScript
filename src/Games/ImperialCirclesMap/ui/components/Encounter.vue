@@ -18,7 +18,7 @@
           </button>
           <button v-if="hasSource(person)" class="btn btn-info source" type="button"
                   @click="showPersonSource(person)">
-            {{ texts.format(texts.source, [person.name]) }}
+            {{ texts.format('Source', [person.name]) }}
           </button>
           <button v-if="person.canAttack === undefined || person.canAttack === true" class="btn btn-danger"
                   type="button" @click="store.startCombat(game.currentLocation, person)">{{ texts.format(texts.attack, [person.name]) }}
@@ -58,7 +58,7 @@ const showPersonSource = (person: any): void => {
         ? person.source.description || ''
         : person.source;
 
-    store.showSource('person', {...person, source: sourceDescription}, title);
+    game.value.currentDescription = { title: title, type: 'person', item: {...person, description: sourceDescription} };
 };
 
 </script>

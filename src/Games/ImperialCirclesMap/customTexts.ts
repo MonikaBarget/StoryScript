@@ -15,9 +15,6 @@ export function CustomTexts(): IInterfaceTexts {
         
         // Add custom button texts here
         talk: 'Speak with {0}',
-        examine: 'About',
-        source: 'Source',
-        
-
+        examine: 'About'
     };
 }

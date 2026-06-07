@@ -4,11 +4,12 @@ import {IGame, IEnemy, Character, ICombatSetup, ICompiledLocation} from './types
 export function Rules(): IRules {
     return {
         setup: {
-            getCombinationActions: (): ICombinationAction[] => {
-                return [
-                    // Add combination action names here if you want to use this feature.
-                ];
-            }
+        },
+
+        combinations: {
+            combinationActions: [
+                // Add combination action names here if you want to use this feature.
+            ]
         },
 
         general: {  

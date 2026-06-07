@@ -4,13 +4,14 @@ import { IGame, IEnemy, Character, ICombatSetup } from './types';
 export function Rules(): IRules {
     return {
         setup: {
-            getCombinationActions: (): ICombinationAction[] => {
-                return [
-                    // Add combination action names here if you want to use this feature.
-                ];
-            }
         },
 
+        combinations: {
+            combinationActions: [
+                // Add combination action names here if you want to use this feature.
+            ]
+        },
+        
         general: {  
             scoreChange: (game: IGame, change: number): boolean => {
                 // Implement logic to occur when the score changes. Return true when the character gains a level.
