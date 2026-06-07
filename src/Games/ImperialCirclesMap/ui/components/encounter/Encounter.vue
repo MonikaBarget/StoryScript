@@ -17,7 +17,7 @@
             {{ texts.format(texts.examine, [person.name]) }}
           </button>
           <button v-if="hasSource(person)" class="btn btn-info source" type="button"
-                  @click="store.showSource('person', person, person.name)">
+                  @click="showPersonSource(person)">
             {{ texts.format(texts.source, [person.name]) }}
           </button>
           <button v-if="person.canAttack === undefined || person.canAttack === true" class="btn btn-danger"
@@ -31,10 +31,34 @@
 <script lang="ts" setup>
 import {useStateStore} from "ui/StateStore.ts";
 import {storeToRefs} from "pinia";
-import {hasDescription, hasSource} from "storyScript/Services/sharedFunctions.ts";
+import {hasDescription} from "storyScript/Services/sharedFunctions.ts";
 
 const store = useStateStore();
 const {game, enemiesPresent, activePersons} = storeToRefs(store);
 const {texts, conversationService} = store.services;
+
+const hasSource = (person: any): boolean => {
+    if (!person.source) {
+        return false;
+    }
+
+    if (typeof person.source === 'string') {
+        return person.source.trim().length > 0;
+    }
+
+    return !!((person.source.description && person.source.description.trim().length > 0) || (person.source.name && person.source.name.trim().length > 0));
+};
+
+const showPersonSource = (person: any): void => {
+    const title = person.source && typeof person.source !== 'string'
+        ? person.source.name || person.name
+        : person.name;
+
+    const sourceDescription = person.source && typeof person.source !== 'string'
+        ? person.source.description || ''
+        : person.source;
+
+    store.showSource('person', {...person, source: sourceDescription}, title);
+};
 
 </script>

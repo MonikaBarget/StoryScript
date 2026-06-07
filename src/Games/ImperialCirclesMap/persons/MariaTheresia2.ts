@@ -6,6 +6,10 @@ export function MariaTheresia2() {
         uniqueId: 'MariaTheresia2',
         name: 'Maria Theresia',
         description: description,
+        source: {
+            name: ' ',
+            description: '<p>no source added yet</p>'
+        },
         hitpoints: 10,
         canAttack: false,
         items: [],

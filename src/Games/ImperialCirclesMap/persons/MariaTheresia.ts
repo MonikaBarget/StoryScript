@@ -5,7 +5,10 @@ export function MariaTheresia() {
     return Person({
         name: 'Maria Theresia',
         description: description,
-        source: '<p>More information: <a href="https://en.wikipedia.org/wiki/Maria_Theresia" target="_blank">Wikipedia — Maria Theresia</a></p>',
+        source: {
+            name: ' ',
+            description: '<p>More information: <a href="https://en.wikipedia.org/wiki/Maria_Theresia" target="_blank">Wikipedia — Maria Theresia</a></p>'
+        },
         hitpoints: 10,
         canAttack: false,
         items: [
