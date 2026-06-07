@@ -1,0 +1,78 @@
+<img class="picture portrait" src="resources/johanntheodor.png" />
+<description>
+    <p>
+        You meet <strong>Johann Theodor of Bavaria</strong>, Cardinal and Prince-Bishop of Regensburg, Freising, and Liège.
+        A member of the House of Wittelsbach, he was one of the most prominent ecclesiastical princes of the 18th century.
+    </p>
+</description>
+
+<conversation>
+    <default-reply>
+        I can say no more on this matter.
+    </default-reply>
+
+<node name="start">
+    <p>
+        I am Johann Theodor of Bavaria, Prince-Bishop of Liège. What would you like to know?
+    </p>
+    <replies>
+        <reply node="imperial_circles">
+            What role did the Imperial Circles play?
+        </reply>
+        <reply node="neutrality">
+            Why did you insist on neutrality during the War of the Austrian Succession?
+        </reply>
+        <reply node="empire">
+            How did you understand the Holy Roman Empire?
+        </reply>
+        <reply node="court">
+            Is it true that you were a patron of music and theatre?
+        </reply>
+    </replies>
+</node>
+
+<node name="imperial_circles">
+    <p>
+        The Imperial Circles served to maintain order and stability within the Empire. At the same time, they enabled the Imperial Estates to manage common affairs without every decision having to originate directly from the Emperor. In this respect they exemplified the distinctive constitutional character of the Empire.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you. I have another question.
+        </reply>
+    </replies>
+</node>
+
+<node name="neutrality">
+    <p>
+        Empress Maria Theresa believed that I ought to have supported her cause more decisively. I, however, maintained that my prince-bishopric possessed the right to remain neutral in a conflict between competing powers. The Empire rests not solely upon unity but also upon the rights of its many territories.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you. I have another question.
+        </reply>
+    </replies>
+</node>
+
+<node name="empire">
+    <p>
+        Many foreigners regarded the Empire as weak because it consisted of so many different territories. I view this diversity as a strength. The Empire was a community of princes, bishops, cities, and other Imperial Estates that governed their affairs through negotiation, law, and mutual obligations. Such a polity required patience, but it also provided remarkable protection for the rights of its members.
+    </p>
+    <replies>
+        <reply node="start">
+            That is interesting. Another question.
+        </reply>
+    </replies>
+</node>
+
+<node name="court">
+    <p>
+        Indeed. Alongside my ecclesiastical and political duties, I enjoyed hunting, patronized musicians and actors, and played the violoncello myself. A princely court should not merely govern; it should also foster the arts and learning. For this reason, my court at Liège became widely known for its cultural life.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you very much.
+        </reply>
+    </replies>
+</node>
+
+</conversation>
