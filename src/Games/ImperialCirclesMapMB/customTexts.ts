@@ -2,7 +2,7 @@
 
 export function CustomTexts(): IInterfaceTexts {
         return {
-        gameName: 'Exploring the early modern Imperial Circles',
+        gameName: 'Collaboration & Conflict: Voices of the Imperial Circles',
         load: 'Load',
         loadGame: 'Load map',
         loading: 'Loading...',

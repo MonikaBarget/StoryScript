@@ -1,3 +1,3 @@
-const gameName = 'ImperialCirclesMap';
+const gameName = 'ImperialCirclesMapMB';
 
 export default gameName;
