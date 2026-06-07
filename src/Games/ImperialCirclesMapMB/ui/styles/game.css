@@ -166,64 +166,32 @@ span.secondary-location:hover {
   color: #8B4513;
 }
 
-/* Conversation portraits */
-
-img.person-picture {
-  border: none;
-  background: none;
-  padding: 15px;
-  max-width: 220px;
-  max-height: 220px;
-  float: left;
-  margin-right: 15px;
-}
-
-#conversation {
-  display: block;
-  position: relative;
-}
-
 #conversation > img {
-  float: left;
-  width: 220px;
-  max-width: 220px;
-  height: auto;
-  aspect-ratio: 1 / 1;
-  object-fit: contain;
-  margin-right: 16px;
-  margin-bottom: 16px;
+    float: left;
+    max-width: 220px;
+    margin: 10px 10px 10px 10px;
 }
 
-/* Description and options flow around the image, then wrap below as content grows */
-#conversation > #conversation-options {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-/* Options span available width (adapts as content wraps around image) */
+/* Options list spans full width */
 #conversation > #conversation-options > ul {
-  margin: 0;
-  flex-basis: 100%;
+  list-style-type:  "» "; /* Custom bullet point */;
+  margin: 10px;
+  color: #8B4513; /* Chocolate brown for options */
+  width: 100%;
 }
 
-/* History clears float and spans full width below */
-#conversation > #conversation-history {
-  clear: both;
-  margin-top: 16px;
-}
-
-/* Colouring: character lines vs user replies */
-#conversation .conversation-lines {
-  color: #3a2c1a; /* character voice: dark brown */
+/* Conversation lines span full width */
+#conversation > #conversation-lines {
+  color: #101010; /* black */
+  margin: 10px;
+  width: 100%;
 }
 
 #conversation .conversation-option {
-  color: #184cb4; /* user voice: night blue */
+  color:  #8B4513; /* chocolate brown */
 }
 
-/* Display rules for movable avatar */
-
+/* Avatar styling*/
 img.avatar-image {
   background: none;
   max-width: 70px;
