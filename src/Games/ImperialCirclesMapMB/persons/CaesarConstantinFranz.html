@@ -1,0 +1,62 @@
+<img class="picture portrait" src="resources/caesarconstantinfranz.png" />
+<description>
+    <p>
+        You meet <strong>Caesar Constantin Franz of Hoensbroech</strong>, the last Prince-Bishop of Liège (in offce 1784–1792).
+        His reign fell during a period of profound political and social tension.
+    </p>     
+</description>
+<conversation>
+    <default-reply>
+        I have nothing further to say on this matter.
+    </default-reply>
+<node name="start">
+    <p>
+        I am Caesar Constantin Franz of Hoensbroech. The events in my principality were marked by great unrest. What would you like to know?
+    </p>
+    <replies>
+        <reply node="revolution">
+            What was the Liège Revolution?
+        </reply>
+        <reply node="reichsexekution">
+            How did the Empire intervene in the conflict?
+        </reply>
+        <reply node="france">
+            What happened after French intervention?
+        </reply>
+    </replies>
+</node>
+
+<node name="revolution">
+    <p>
+        The unrest began in 1789 as a protest against the existing order of my prince-bishopric. The movement challenged the estates-based system and my rule, influenced by the ideas of the French Revolution.
+    </p>
+    <replies>
+        <reply node="start">
+            I see. Continue.
+        </reply>
+    </replies>
+</node>
+
+<node name="reichsexekution">
+    <p>
+        To restore order, an Imperial Execution (Reichsexekution) was decreed. The Burgundian Circle played the decisive role. The Westphalian Circle was also called upon, but its mobilisation was delayed, so its impact was limited.
+    </p>
+    <replies>
+        <reply node="start">
+            Thank you. And after that?
+        </reply>
+    </replies>
+</node>
+
+<node name="france">
+    <p>
+        By 1791 the revolt had been suppressed, but in 1794 the French Republic occupied the territory after the Battle of Fleurus. In 1801 my principality was formally ceded to France and ceased to exist as an Imperial Estate.
+    </p>
+    <replies>
+        <reply node="start">
+            Understood.
+        </reply>
+    </replies>
+</node>
+
+</conversation>

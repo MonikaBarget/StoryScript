@@ -1,0 +1,13 @@
+{
+    "name": "Collaboration and Conflict: Exploring the Imperial Circles through Conversations",
+    "description": "This demo shows how the conversation feature in StoryScript can be used to reflect the perspectives of historical figures. By using several conversations per place, you can also present conflicting viewpoints and give a voice to people that are understudied in historiography or marginalised in the original sources.",
+    "picture": "",
+    "sourcesIncluded": true,
+    "authors": [{
+        "name": "Monika Barget",
+        "role": "Early Modern Historian"
+    },{
+        "name": "Rutger Schurgers",
+        "role": "Developer"
+    }]
+}
