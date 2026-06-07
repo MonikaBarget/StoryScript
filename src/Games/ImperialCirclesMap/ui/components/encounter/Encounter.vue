@@ -16,6 +16,10 @@
                   @click="store.showDescription('person', person, person.name)">
             {{ texts.format(texts.examine, [person.name]) }}
           </button>
+          <button v-if="hasSource(person)" class="btn btn-info source" type="button"
+                  @click="store.showSource('person', person, person.name)">
+            {{ texts.format(texts.source, [person.name]) }}
+          </button>
           <button v-if="person.canAttack === undefined || person.canAttack === true" class="btn btn-danger"
                   type="button" @click="store.startCombat(game.currentLocation, person)">{{ texts.format(texts.attack, [person.name]) }}
           </button>
