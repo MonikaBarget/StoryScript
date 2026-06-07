@@ -1,5 +1,5 @@
 import { describe, test, expect } from 'vitest';
-import {Character, IGame, IItem, Rules} from '../../../../Games/MyRolePlayingGame/types';
+import {Character, IGame, IItem, Rules} from '../../../../Games/_GameTemplate/types';
 import { ICharacter, IEnemy, ICompiledLocation, IHelpers, ICreateCharacter, ICombatSetup, ICombatTurn } from 'storyScript/Interfaces/storyScript';
 
 describe("Rules", function() {
@@ -29,9 +29,10 @@ describe("Rules", function() {
             currentHitpoints: 10
         };
         
-        const sword = <IItem>{
+        const sword = {
+            name: 'Sword',
             attack: 'id6'
-        }
+        } as unknown as IItem;
 
         const setup = <ICombatSetup<ICombatTurn>>[{ character: character, target: enemy, item: sword }];
         setup.characters = [character];
