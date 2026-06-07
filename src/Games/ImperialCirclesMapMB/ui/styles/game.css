@@ -200,3 +200,12 @@ img.avatar-image {
   height: auto;
   object-fit: contain;
 }
+
+#modal-content {
+    border: 2px solid #8B4513; /* Chocolate brown border */
+    background: #8B4513;       /* Chocolate brown background */
+    max-width: 600px;
+    max-height: 500px;
+    width: auto;
+    height: auto;
+}
