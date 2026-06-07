@@ -179,26 +179,58 @@ img.person-picture {
 }
 
 #conversation {
-  display: flex;
-  flex-wrap: wrap;
+  /* Grid-based layout:
+     - Left column: portrait
+     - Right column: description area
+     - Options are placed under the portrait and span full width
+     - History spans full width under both columns
+  */
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: auto auto auto;
+  grid-template-areas:
+    "image description"
+    "options description"
+    "history history";
   gap: 16px;
-  align-items: flex-start;
+  align-items: start;
+  position: relative;
 }
 
-#conversation img {
+#conversation > img {
+  grid-area: image;
+  width: 220px;
   max-width: 220px;
-  max-height: 220px;
+  height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
 }
 
-#conversation-options {
-  flex: 1 1 0;
-  min-width: 0;
+#conversation > #conversation-options {
+  display: contents;
 }
 
-#conversation-history {
-  flex: 0 0 100%;
+/* place the description (first child inside #conversation-options) */
+#conversation > #conversation-options > div:first-child {
+  grid-area: description;
+}
+
+/* place the interactive options under the portrait */
+#conversation > #conversation-options > ul {
+  grid-area: options;
+}
+
+#conversation > #conversation-history {
+  grid-area: history;
+}
+
+/* Colouring: character lines vs user replies */
+#conversation .conversation-lines {
+  color: #3a2c1a; /* character voice: dark brown */
+}
+
+#conversation .conversation-option {
+  color: #184cb4; /* user voice: night blue */
 }
 
 /* Display rules for movable avatar */
