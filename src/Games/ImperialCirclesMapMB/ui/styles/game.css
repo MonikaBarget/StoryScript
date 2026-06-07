@@ -179,49 +179,38 @@ img.person-picture {
 }
 
 #conversation {
-  /* Grid-based layout:
-     - Left column: portrait
-     - Right column: description area
-     - Options are placed under the portrait and span full width
-     - History spans full width under both columns
-  */
-  display: grid;
-  grid-template-columns: 220px 1fr;
-  grid-template-rows: auto auto auto;
-  grid-template-areas:
-    "image description"
-    "options description"
-    "history history";
-  gap: 16px;
-  align-items: start;
+  display: block;
   position: relative;
 }
 
 #conversation > img {
-  grid-area: image;
+  float: left;
   width: 220px;
   max-width: 220px;
   height: auto;
   aspect-ratio: 1 / 1;
   object-fit: contain;
+  margin-right: 16px;
+  margin-bottom: 16px;
 }
 
+/* Description and options flow around the image, then wrap below as content grows */
 #conversation > #conversation-options {
-  display: contents;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-/* place the description (first child inside #conversation-options) */
-#conversation > #conversation-options > div:first-child {
-  grid-area: description;
-}
-
-/* place the interactive options under the portrait */
+/* Options span available width (adapts as content wraps around image) */
 #conversation > #conversation-options > ul {
-  grid-area: options;
+  margin: 0;
+  flex-basis: 100%;
 }
 
+/* History clears float and spans full width below */
 #conversation > #conversation-history {
-  grid-area: history;
+  clear: both;
+  margin-top: 16px;
 }
 
 /* Colouring: character lines vs user replies */
