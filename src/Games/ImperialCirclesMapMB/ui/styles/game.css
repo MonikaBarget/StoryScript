@@ -200,3 +200,14 @@ img.person-picture {
 #conversation-history {
   flex: 0 0 100%;
 }
+
+/* Display rules for movable avatar */
+
+img.avatar-image {
+  background: none;
+  max-width: 70px;
+  max-height: 70px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+}

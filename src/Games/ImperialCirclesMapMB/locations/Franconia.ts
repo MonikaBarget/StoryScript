@@ -1,4 +1,5 @@
 import { Location } from '../types';
+import { triggerSecondaryLocation } from './secondaryLocationTrigger';
 import description from './Franconia.html?raw';
 import { Swabia } from "./Swabia";
 import { Westphalia } from "./Westphalia";
@@ -24,6 +25,12 @@ export function Franconia() {
                 target: Westphalia
             }
         ],
+        triggeredActions: [[
+            'secondary-location-trigger',
+            (game, activate, data) => {
+                triggerSecondaryLocation(game, data, activate ? 'visible' : 'hidden');
+            }
+        ]],
         persons: [
             JohannPhilipp(),
             JewishRepresentative()
