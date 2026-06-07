@@ -178,11 +178,10 @@ img.person-picture {
 }
 
 #conversation img {
-  flex: 0 0 220px;
   width: 220px;
-  max-width: 220px;
-  max-height: 200px;
-  height: auto;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: contain;
 }
 
 #conversation-options {
