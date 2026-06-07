@@ -1,7 +1,8 @@
 import {useStateStore} from "ui/StateStore.ts";
 import {storeToRefs} from "pinia";
-import {computed, Ref, ref, watch} from "vue";
+import {computed, onMounted, onUpdated, Ref, ref, watch} from "vue";
 import {IMap} from "storyScript/Interfaces/maps/map.ts";
+import {isTouchDevice} from "../../../constants.ts";
 
 export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef: Ref<HTMLDialogElement>) {
     const visible: string = 'visible';
@@ -20,6 +21,7 @@ export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef:
 
     const fullScreen = ref(false);
     const firstShowFullScreen = ref(true);
+    const touchMarkersVisible = ref(false);
     const mapDialog = mapDialogRef;
     const currentMap = mapImageRef;
     const currentFullScreenMap = ref<HTMLImageElement>(null);
@@ -32,11 +34,28 @@ export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef:
         }
     });
 
-    watch(() => map.value, (newMap, oldMap) => {
-        if ((<any>newMap).id !== (<any>oldMap).id) {
-            prepareMap(map.value, true);
-        }
+    onMounted(() => {
+        prepareMap(map.value, false);
     });
+
+    onUpdated(() => {
+        prepareMap(map.value, true);
+    });
+
+    const toggleTouchMarkersVisible = () => {
+        if (!isTouchDevice) {
+            return;
+        }
+        
+        touchMarkersVisible.value = !touchMarkersVisible.value;
+
+        if (map.value.showMarkersOnKeyPress) {
+            const mapContainer = (fullScreen.value ? currentFullScreenMap.value : currentMap.value).parentElement;
+            const labelElements = mapContainer.getElementsByClassName(labelClass);
+            const markerElements = mapContainer.getElementsByClassName(imageClass);
+            setMarkerVisibility(labelElements, markerElements, touchMarkersVisible.value ? visible : hidden);
+        }
+    }
 
     function toggleFullScreen() {
         fullScreen.value = !fullScreen.value;
@@ -84,6 +103,9 @@ export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef:
                 const closeToggle = mapDialog.value.getElementsByClassName('map-full-screen-toggle')[0] as HTMLSpanElement;
                 closeToggle.innerText = texts.closeFullScreenMap;
                 closeToggle.onclick = () => toggleFullScreen();
+                
+                const showMarkersToggle = (mapDialog.value.querySelector('.show-marker-instructions') as HTMLElement);
+                showMarkersToggle.onclick = () => toggleTouchMarkersVisible();
             }
 
             currentFullScreenMap.value = getMapElement(mapDialog.value);
@@ -126,6 +148,7 @@ export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef:
                     setMarkerVisibility(labelElements, markerElements, visible);
                 }
             };
+
             mapContainer.onkeyup = e => {
                 if (e.key === map.value.showMarkersOnKeyPress) {
                     setMarkerVisibility(labelElements, markerElements, hidden);
@@ -133,9 +156,9 @@ export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef:
             }
         }
     }
-    
-    function showMap(newMap: IMap) {
-        navigateMap(newMap, currentMap.value, true);
+
+    function showMap() {
+        navigateMap(map.value, currentMap.value, true);
     }
 
     function navigateMap(map: IMap, mapElement: HTMLElement, show: boolean) {
@@ -286,6 +309,7 @@ export function useLocationMap(mapImageRef: Ref<HTMLImageElement>, mapDialogRef:
         map,
         prepareMap,
         showMap,
-        toggleFullScreen
+        toggleFullScreen,
+        toggleTouchMarkersVisible
     }
 }

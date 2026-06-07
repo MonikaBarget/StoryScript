@@ -3,18 +3,19 @@
     <div class="box-title" v-html="texts.format(texts.youAreHere, [location.name])"></div>
     <div id="visual-features" ref="location-features">
       <img :alt="location.name" :src="`resources/${location.features.collectionPicture}`" :usemap="'#' + location.id"
-           @load="prepareFeatures(true)">
+           @load="initFeatures()">
       <map :name="location.id">
         <area v-for="feature of location.features" :id="`feature-area-${feature.id}`" :alt="feature.name"
               :coords="feature.coords" :shape="feature.shape"
-              href="#" @click="game.combinations.tryCombine(feature)" @mouseout="e => setCursor(e, true)"
-              @mouseover="e => setCursor(e, false)"/>
+              class="feature-cursor" href="#" @click="game.combinations.tryCombine(feature)"/>
       </map>
       <div v-for="feature of location.features">
         <img v-if="feature.picture" :id="`feature-${feature.id}`" :alt="feature.name"
-             :src="`resources/${feature.picture}`" :style="getFeatureCoordinates(feature)"
-             class="feature-picture" @click="game.combinations.tryCombine(feature)"
-             @mouseout="e => setCursor(e, true)" @mouseover="e => setCursor(e, false)"/>
+             :src="`resources/${feature.picture}`" class="feature-picture feature-cursor"
+             @click="game.combinations.tryCombine(feature)"/>
+        <sprite v-if="feature.animation" :id="`feature-${feature.id}`" :alt="feature.name"
+                :spriteSettings="feature.animation" :factor="factor" class="feature-picture feature-cursor"
+                @click="game.combinations.tryCombine(feature)"></sprite>
       </div>
     </div>
   </div>
@@ -30,6 +31,6 @@ const {game} = storeToRefs(store);
 const {texts} = store.services;
 const location = computed(() => game.value.currentLocation);
 
-const {prepareFeatures, getFeatureCoordinates, setCursor} = useVisualFeatures(useTemplateRef('location-features'));
+const {initFeatures, factor} = useVisualFeatures(useTemplateRef('location-features'));
 
 </script>

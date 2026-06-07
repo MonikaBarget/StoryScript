@@ -1,5 +1,5 @@
 ﻿import {ICombinable} from './combinations/combinable';
-import {IGame} from "testGame/interfaces/game.ts";
+import {Sprite} from "./sprite.ts";
 
 /**
  * A feature of a location, which can be anything the player can interact with using combinations.
@@ -10,13 +10,6 @@ export interface IFeature extends ICombinable {
      * at run-time.
      */
     description?: string;
-
-    /**
-     * A source or external reference for the feature.
-     *
-     * This may contain HTML markup such as hyperlinks or embedded media.
-     */
-    source?: string;
 
     /**
      * The coordinates of this feature when using image maps for visual features.
@@ -31,6 +24,13 @@ export interface IFeature extends ICombinable {
     /**
      * The file path for the picture to show. When using image maps for visual features, the picture will
      * be shown on top of the image map for this feature. The path should be relative to the resources folder.
+     * Use either a picture OR an animation.
      */
     picture?: string;
+
+    /**
+     * The animation settings for this feature. When using image maps for visual features, the animation will
+     * be shown on top of the image map for this feature. Use either a picture OR an animation.
+     */
+    animation?: Sprite;
 }

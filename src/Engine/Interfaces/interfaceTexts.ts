@@ -66,8 +66,6 @@ export interface IInterfaceTexts {
     trade?: string;
     talk?: string;
     examine?: string;
-    source?: string;
-    description?: string;
     encounters?: string;
     closeModal?: string;
     combatTitle?: string;
@@ -121,6 +119,7 @@ export interface IInterfaceTexts {
     openFullScreenMap?: string;
     closeFullScreenMap?: string;
     pressToShowMarkers?: string;
+    touchToShowMarkers?: string;
     startGame?: string;
     continueGame?: string;
     autoplayText?: string;

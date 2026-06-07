@@ -26,10 +26,6 @@ export function hasDescription(entity: { id?: string, description?: string }): b
     return parsedDescriptions.get(entity.id);
 }
 
-export function hasSource(entity: { source?: string }): boolean {
-    return !!entity.source && entity.source.trim().length > 0;
-}
-
 export function random<T>(type: string, definitions: IDefinitions, selector?: (item: T) => boolean): T {
     const collection = definitions[type];
 

@@ -14,10 +14,16 @@ import {IActiveCombination} from '../Interfaces/combinations/activeCombination';
 import {compareString, getId} from 'storyScript/utilityFunctions';
 
 export class CombinationService implements ICombinationService {
+
+    private readonly _combinationActions: ICombinationAction[] = [];
+
     constructor(private readonly _game: IGame, private readonly _rules: IRules, private readonly _texts: IInterfaceTexts) {
+        this._combinationActions = this._rules.combinations?.combinationActions ?? [];
     }
 
-    getCombinationActions = (): ICombinationAction[] => this._rules.setup.getCombinationActions ? this._rules.setup.getCombinationActions() : [];
+    get combinationActions(): ICombinationAction[] {
+        return this._combinationActions;
+    }
 
     getCombineClass = (tool: ICombinable): string => {
         let className: string;
@@ -68,7 +74,7 @@ export class CombinationService implements ICombinationService {
         }
 
         if (!combo) {
-            const defaultAction = this.getCombinationActions().filter(c => c.isDefault)[0];
+            const defaultAction = this.combinationActions.filter(c => c.isDefault)[0];
 
             if (defaultAction) {
                 combo = {
@@ -93,7 +99,7 @@ export class CombinationService implements ICombinationService {
         result = this.performCombination(target, combo);
 
         if (result.success) {
-            this._rules.combinations?.success?.(this._game, combo);
+            this._rules.combinations?.success?.(this._game, combo, target);
             
             if (result.removeTarget) {
                 this.removeFeature(target);

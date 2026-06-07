@@ -6,8 +6,7 @@
 
         "paths": {
             "storyScript/*": ["./src/Engine/*"],
-            "ui/*": ["./src/UI/*"],
-            "testGame/*": ["./src/Games/ImperialCirclesMap/*"]
+            "ui/*": ["./src/UI/*"]
         },
         "typeRoots": ["./node_modules/@types"],
         "types": ["node", "vite/client"],
@@ -31,9 +30,5 @@
         "noEmit": true,
         "allowImportingTsExtensions": true,
         "allowJs": true
-    },
-    "exclude": [
-        "src/Games/_GameTemplate_old/**/*",
-        "src/Tests/**/*"
-    ]
+    }
 }
