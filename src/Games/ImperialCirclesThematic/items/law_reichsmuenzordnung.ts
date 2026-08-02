@@ -1,7 +1,7 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './law_reichsmuenzordnung.html';
+import description from './law_reichsmuenzordnung.html?raw';
  
 export function Richsmuenzordnung() {
     const item = Item({
