@@ -5,32 +5,33 @@ import {Combinations} from './combinations';
 export function Rules(): IRules {
     return {
         setup: {
-			initGame(game: IGame) {
-            game.worldProperties.type = 'Text'; // Set to 'Text' or 'Visual' to switch between modes.
-             },
+            initGame(game: IGame) {
+                game.worldProperties.type = 'Text'; // Set to 'Text' or 'Visual' to switch between modes.
+            },
             playList: {
                 'Contemplate_the_stars.mp3': [GameState.Play]
-            },
-            getCombinationActions: (): ICombinationAction[] => {
-	return [
-		{
-			text: Combinations.USE,
-			preposition: '',
-			requiresTool: false,
-			failText: (game: IGame, target: ICombinable, tool: ICombinable): string => { 
-			    return 'Sorry, but you cannot read ' + target.name + '. Look for a book instead!';
             }
-		},
-		{
-			text: Combinations.LOOKAT,
-			preposition: '',
-			requiresTool: false,
-			failText: (game: IGame, target: ICombinable, tool: ICombinable): string => { 
-			    return 'Sorry, but you cannot meet ' + target.name + '. It is not a person!';
-			}
-		}
-	];
-}
+        },
+
+        combinations: {
+            combinationActions: [
+                {
+                    text: Combinations.USE,
+                    preposition: '',
+                    requiresTool: false,
+                    failText: (game: IGame, target: ICombinable, tool: ICombinable): string => {
+                        return 'Sorry, but you cannot read ' + target.name + '. Look for a book instead!';
+                    }
+                },
+                {
+                    text: Combinations.LOOKAT,
+                    preposition: '',
+                    requiresTool: false,
+                    failText: (game: IGame, target: ICombinable, tool: ICombinable): string => {
+                        return 'Sorry, but you cannot meet ' + target.name + '. It is not a person!';
+                    }
+                }
+            ]
         },
 
         general: {  

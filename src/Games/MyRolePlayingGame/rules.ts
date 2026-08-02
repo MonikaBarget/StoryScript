@@ -1,7 +1,6 @@
-﻿import { IRules, ICreateCharacter, ICharacter, GameState } from 'storyScript/Interfaces/storyScript';
-import {IGame, Character, ICombatSetup, IEnemy, IParty} from './types';
-import {getDemoMode} from "testGame/demoMode.ts";
-import {ServiceFactory} from "storyScript/ServiceFactory.ts";
+﻿import {ICharacter, ICreateCharacter, IRules} from 'storyScript/Interfaces/storyScript';
+import {Character, ICombatSetup, IEnemy, IGame} from './types';
+import {getDemoMode} from "./demoMode.ts";
 
 export function Rules(): IRules {
     return {
@@ -10,11 +9,11 @@ export function Rules(): IRules {
                 // 'createCharacter.mp3': [GameState.CreateCharacter],
                 // 'play.mp3': [GameState.Play]
             },
-            titleScreen: {
-                showTitleScreen: true,
-                transitionDelay: '2',
-                getDemoMode: getDemoMode
-            },
+            // titleScreen: {
+            //     showTitleScreen: true,
+            //     transitionDelay: '2',
+            //     getDemoMode: getDemoMode
+            // },
             intro: false,
 
             gameStart(game) {
@@ -30,7 +29,7 @@ export function Rules(): IRules {
         },
 
         character: {
-            getSheetAttributes: (): string[] =>  {
+            getSheetAttributes: (): string[] => {
                 return [
                     'strength',
                     'agility',
@@ -123,7 +122,9 @@ export function Rules(): IRules {
                     game.logToCombatLog('You defeat the ' + enemy.name + '!');
                 }
 
-                combatRound.enemies.filter(enemy => { return enemy.currentHitpoints > 0; }).forEach((enemy: IEnemy) => {
+                combatRound.enemies.filter(enemy => {
+                    return enemy.currentHitpoints > 0;
+                }).forEach((enemy: IEnemy) => {
                     const damage = game.helpers.rollDice(enemy.attack) + game.helpers.calculateBonus(enemy, 'damage');
                     game.logToCombatLog('The ' + enemy.name + ' does ' + damage + ' damage!');
                     character.currentHitpoints -= damage;

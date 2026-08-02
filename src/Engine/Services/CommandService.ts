@@ -27,13 +27,15 @@ export class CommandService implements ICommandService {
         private _combinationService: ICombinationService,
         private _dataService: IDataService,
         private _game: IGame) {
-        this._combinationActions = this._combinationService.getCombinationActions();
+        this._combinationActions = this._combinationService.combinationActions;
     }
 
     go = (location: (() => ILocation) | string, saveProgress?: boolean): void => {
-        this._locationService.changeLocation(location, saveProgress, this._game);
+        const travel = saveProgress !== false;
+        
+        this._locationService.changeLocation(location, travel, this._game);
 
-        if (saveProgress !== false) {
+        if (travel) {
             this._dataService.saveGame(this._game);
         }
     }

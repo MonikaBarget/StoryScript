@@ -121,7 +121,6 @@ export function buildEntities(definitions: IDefinitions): Record<string, Record<
         definitions[p]?.forEach((f: Function) => {
             const compiledEntity = f();
             const entityKey = getEntityKey(compiledEntity);
-            
             const actualId = getId(f);
             
             if (compiledEntity.id && compiledEntity.id !== actualId) {
@@ -172,8 +171,8 @@ export function InitEntityCollection(entity: any, property: string) {
                 removeEntity(originalScope, originalFunction, entity, property, deletedEntity))
         });
 
-        gameEvents.register(`add-${entity.type}-${property}`, false);
-        gameEvents.register(`delete-${entity.type}-${property}`, false);
+        gameEvents.register(`add-${entity.type}-${property}`);
+        gameEvents.register(`delete-${entity.type}-${property}`);
     }
 }
 
@@ -200,7 +199,7 @@ export function setDestination(destination: IDestination) {
 }
 
 export function getBasicFeatureData(location: ICompiledLocation, node: HTMLElement): IFeature {
-    const nameAttribute = node.attributes['name']?.nodeValue;
+    const nameAttribute = node.attributes['name']?.nodeValue?.toLowerCase();
 
     if (!nameAttribute) {
         throw new Error('There is no name attribute for a feature node for location ' + location.id + '.');

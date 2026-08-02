@@ -1,7 +1,3 @@
-# Imperial Circles: Thematic Exploration
-
-This interactive narratives explores the functionalities of the imperial circles of the Holy Roman Empire through several key themes and integrates original early modern sources.
-
 # StoryScript
 StoryScript is a TypeScript engine to build web-based (text) adventures. You can use it to create amongst others
 - interactive stories
