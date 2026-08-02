@@ -1,7 +1,7 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './institution_muenzprobationstag.html';
+import description from './institution_muenzprobationstag.html?raw';
  
 export function Muenzprobationstag() {
     const item = Item({
