@@ -3,8 +3,8 @@ import description from './CurLoc_0.html?raw';
 import { CurLoc_1 } from './CurLoc_1';
 import { CurLoc_2 } from './CurLoc_2';
 import { CurLoc_3 } from './CurLoc_3';
-import { CurLoc_4 } from './CurLoc_3';
-import { CurLoc_5 } from './CurLoc_4';
+import { CurLoc_4 } from './CurLoc_4';
+import { CurLoc_5 } from './CurLoc_5';
 
 export function CurLoc_0() {
     return Location({
