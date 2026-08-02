@@ -12,25 +12,25 @@ export function EcoLoc_0() {
         description: description,
         destinations: [
             {
-                name: 'Economies and everyday life',
+                name: 'Market Organisation',
                 target: EcoLoc_1,
             },
             {
-                name: 'Regulating labour mobility',
+                name: 'Regulating Labour Mobility',
                 target: EcoLoc_2,
             },
             {
-                name: 'Economic regulation and trade',
+                name: 'Transcontinental Trade',
                 target: EcoLoc_3,
             },
             {
-                name: 'Land and taxation',
+                name: 'Importing Luxury Goods',
                 target: EcoLoc_4,
             },
             {
-                name: 'Markets and credit',
+                name: 'Waste Removal',
                 target: EcoLoc_5,
             },
-        ],
+        ]
     });
 }
