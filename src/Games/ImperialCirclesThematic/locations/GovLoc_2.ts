@@ -1,18 +1,18 @@
 import { Location } from '../types';
-import description from './GovLoc_1.html?raw';
-import { GovLoc_2 } from './GovLoc_2';
+import description from './GovLoc_2.html?raw';
+import { GovLoc_1 } from './GovLoc_1';
 import { GovLoc_3 } from './GovLoc_3';
 import { GovLoc_4 } from './GovLoc_4';
 import { GovLoc_5 } from './GovLoc_5';
 
-export function GovLoc_1() {
+export function GovLoc_2() {
     return Location({
-        name: 'Imperial Laws and Taxes',
+        name: 'National Celebrations',
         description: description,
         destinations: [
             {
-                name: 'National Celebrations',
-                target: GovLoc_2,
+                name: 'Imperial Laws and Taxes',
+                target: GovLoc_1,
             },
             {
                 name: 'Receptions of Foreign Leaders & Diplomats',
