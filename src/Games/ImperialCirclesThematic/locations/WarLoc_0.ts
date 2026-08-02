@@ -1,16 +1,21 @@
 import { Location } from '../types';
-import description from './WarLoc_1.html?raw';
+import description from './WarLoc_0.html?raw';
+import { WarLoc_1 } from './WarLoc_1';
 import { WarLoc_2 } from './WarLoc_2';
 import { WarLoc_3 } from './WarLoc_3';
 import { WarLoc_4 } from './WarLoc_4';
 import { WarLoc_5 } from './WarLoc_5';
 import { WarLoc_6 } from './WarLoc_6';
 
-export function WarLoc_1() {
+export function WarLoc_0() {
     return Location({
-        name: 'War & Defence overview',
+        name: 'War & Defence',
         description: description,
         destinations: [
+            {
+                name: 'War & Defence overview',
+                target: WarLoc_1,
+            },
             {
                 name: 'Wars against the Ottoman Empire',
                 target: WarLoc_2,
