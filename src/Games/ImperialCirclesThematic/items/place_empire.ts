@@ -1,5 +1,5 @@
 import { Item } from '../types';
-import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
+import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
 import description from './place_empire.html?raw';
 
@@ -13,7 +13,7 @@ export function PlaceEmpire() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add(PlaceEmpire);
+                        game.activeCharacter.items.add(target as IItem);
 
                         return {
                             text: 'You have added the Holy Roman Empire to your notebook!',

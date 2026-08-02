@@ -1,5 +1,5 @@
 import { Item } from '../types';
-import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
+import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
 import description from './person_mariatheresia.html?raw';
 
@@ -13,7 +13,7 @@ export function PersonMariaTheresia() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        game.activeCharacter.items.add(PersonMariaTheresia);
+                        game.activeCharacter.items.add(target as IItem);
 
                         return {
                             text: 'You have added Maria Theresia to your notebook!',
@@ -24,7 +24,7 @@ export function PersonMariaTheresia() {
                 {
                     combinationType: Combinations.USE,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        const exists = game.activeCharacter.items.get(PersonMariaTheresia);
+                        const exists = game.activeCharacter.items.get(target as IItem);
 
                         if (!exists) {
                             return {

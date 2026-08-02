@@ -1,5 +1,5 @@
 import { Item } from '../types';
-import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
+import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
 import description from './person_louisxiv.html?raw'
  
@@ -13,14 +13,14 @@ export function PersonLouisXIV() {
                 {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): string | ICombinationMatchResult => {
-                        if (game.activeCharacter.items.get(PersonLouisXIV)) {
+                        if (game.activeCharacter.items.get(target as IItem)) {
                             return { 
                             text: 'Good choice!', 
                             removeTarget: false
                         };
                         }
                         
-                        game.activeCharacter.items.add(PersonLouisXIV);
+                        game.activeCharacter.items.add(target as IItem);
                         return { 
                             text: 'Louis XIV of France has been added to your notebook!', 
                             removeTarget: false

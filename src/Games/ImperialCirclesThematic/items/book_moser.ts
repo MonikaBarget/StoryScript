@@ -1,5 +1,5 @@
 import { Item } from '../types';
-import { EquipmentType, ICombinationMatchResult } from 'storyScript/Interfaces/storyScript';
+import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import description from './book_moser.html?raw';
 import { Combinations } from '../combinations';
 
@@ -26,7 +26,7 @@ export function BookMoser() {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): ICombinationMatchResult => {
                         // Add the book to the notebook
-                        game.activeCharacter.items.add(BookMoser);
+                        game.activeCharacter.items.add(target as IItem);
                     
                         return {
                             text: `${BookMoser.name} has been added to your notebook!`,
