@@ -1,9 +1,9 @@
 import { Location } from '../types';
-import description from './PovLocOne.html?raw';
+import description from './MigLoc_1.html?raw';
 
-export function PovLocOne() {
+export function MigLoc_1() {
     return Location({
-        name: 'Poverty & Social Order',
+        name: 'Migration & Economies',
         description: description,
         destinations: [
         ]

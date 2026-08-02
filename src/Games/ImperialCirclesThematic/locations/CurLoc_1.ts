@@ -1,9 +1,9 @@
 import { Location } from '../types';
-import description from './MigLocOne.html?raw';
+import description from './CurLoc_1.html?raw';
 
-export function MigLocOne() {
+export function CurLoc_1() {
     return Location({
-        name: 'Migration & Economies',
+        name: 'Currencies & Fraud',
         description: description,
         destinations: [
         ]

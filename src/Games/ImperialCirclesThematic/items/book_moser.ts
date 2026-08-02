@@ -26,7 +26,7 @@ export function BookMoser() {
                     combinationType: Combinations.LOOKAT,
                     match: (game, target, tool): ICombinationMatchResult => {
                         // Add the book to the notebook
-                        game.activeCharacter.items.add(target as IItem);
+                        game.activeCharacter.items.add(BookMoser);
                     
                         return {
                             text: `${BookMoser.name} has been added to your notebook!`,

@@ -1,10 +1,10 @@
 ﻿import { Location } from '../types';
 import description from './Start.html?raw';
-import { WarLocOne } from './WarLocOne';
-import { CurLocOne } from './CurLocOne';
-import { PovLocOne } from './PovLocOne';
-import { GovLocOne } from './GovLocOne';
-import { MigLocOne } from './MigLocOne';
+import { WarLoc_1 } from './WarLoc_1';
+import { CurLoc_1 } from './CurLoc_1';
+import { PovLoc_1 } from './PovLoc_1';
+import { GovLoc_1 } from './GovLoc_1';
+import { MigLoc_1 } from './MigLoc_1';
 import { BookMoser } from '../items/book_moser';
 import { PersonNegker } from '../items/person_negker';
 import { PlaceEmpire } from '../items/place_empire';
@@ -23,23 +23,23 @@ export function Start() {
         destinations: [
             {
                 name: 'War & Defence',
-                target: WarLocOne,
+                target: WarLoc_1,
             },
             {
                 name: 'Currencies & Fraud',
-                target: CurLocOne,
+                target: CurLoc_1,
             },
             {
                 name: 'Poverty & Social Order',
-                target: PovLocOne,
+                target: PovLoc_1,
             },
             {
                 name: 'Governance & Law',
-                target: GovLocOne,
+                target: GovLoc_1,
             },
             {
                 name: 'Migration & Economies',
-                target: MigLocOne,
+                target: MigLoc_1,
             },
         ],
     });
