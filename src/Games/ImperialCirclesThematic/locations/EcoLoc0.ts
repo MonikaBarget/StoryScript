@@ -8,7 +8,7 @@ import { EcoLoc5 } from './EcoLoc5';
 
 export function EcoLoc0() {
     return Location({
-        name: 'Economies & Mobility',
+        name: 'Economies',
         description: description,
         destinations: [
             {

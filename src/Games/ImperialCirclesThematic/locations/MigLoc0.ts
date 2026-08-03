@@ -9,7 +9,7 @@ import { MigLoc6 } from './MigLoc6';
 
 export function MigLoc0() {
     return Location({
-        name: 'Migration & Economies',
+        name: 'Mobility',
         description: description,
         destinations: [
             {
