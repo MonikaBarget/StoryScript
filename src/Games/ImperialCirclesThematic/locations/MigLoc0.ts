@@ -13,27 +13,27 @@ export function MigLoc0() {
         description: description,
         destinations: [
             {
-                name: 'Migration & Economies overview',
+                name: 'Travelling crafts- and tradespeople',
                 target: MigLoc1,
             },
             {
-                name: 'MigLoc 2',
+                name: 'Travelling soldiers',
                 target: MigLoc2,
             },
             {
-                name: 'MigLoc 3',
+                name: 'Travelling beggars',
                 target: MigLoc3,
             },
             {
-                name: 'MigLoc 4',
+                name: 'Travelling Jews',
                 target: MigLoc4,
             },
             {
-                name: 'MigLoc 5',
+                name: 'Emigration',
                 target: MigLoc5,
             },
             {
-                name: 'MigLoc 6',
+                name: 'Immigration',
                 target: MigLoc6,
             },
         ],

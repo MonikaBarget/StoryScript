@@ -3,7 +3,7 @@ import description from './MigLoc4.html?raw';
 
 export function MigLoc4() {
     return Location({
-        name: 'MigLoc 4',
+        name: 'Travelling Jews',
         description: description,
     });
 }
