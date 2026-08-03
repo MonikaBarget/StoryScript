@@ -1,9 +1,36 @@
 import { Location } from '../types';
 import description from './MigLoc2.html?raw';
+import { MigLoc1 } from './MigLoc1';
+import { MigLoc3 } from './MigLoc3';
+import { MigLoc4 } from './MigLoc4';
+import { MigLoc5 } from './MigLoc5';
+import { MigLoc6 } from './MigLoc6';
 
 export function MigLoc2() {
     return Location({
         name: 'Travelling soldiers',
         description: description,
+        destinations: [
+            {
+                name: 'Travelling crafts- and tradespeople',
+                target: MigLoc1,
+            },
+            {
+                name: 'Travelling beggars',
+                target: MigLoc3,
+            },
+            {
+                name: 'Travelling Jews',
+                target: MigLoc4,
+            },
+            {
+                name: 'Emigration',
+                target: MigLoc5,
+            },
+            {
+                name: 'Immigration',
+                target: MigLoc6,
+            },
+        ],
     });
 }
