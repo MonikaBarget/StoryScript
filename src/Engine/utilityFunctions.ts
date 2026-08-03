@@ -20,7 +20,7 @@ export function getId(id: Function | string) {
         // This is a workaround with function names changing when building for production.
         // E.g. Start becomes Start_Start. Since Vite 7, we also get Start becoming Start$2.
         /* v8 ignore next 3 */
-        actualId = id.name;//.replace(functionRenameRegex, '');
+        actualId = id.name.replace(functionRenameRegex, '');
     } else {
         actualId = id;
     }
