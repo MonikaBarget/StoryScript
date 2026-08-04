@@ -1,7 +1,7 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './law_law9.html?raw';
+import description from './law_dietreforms.html?raw';
 
 export function Law9() {
     const item = Item({

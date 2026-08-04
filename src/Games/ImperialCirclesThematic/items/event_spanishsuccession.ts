@@ -1,7 +1,7 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './event_spanishsucession.html?raw';
+import description from './event_spanishsuccession.html?raw';
 
 export function Event6() {
     const item = Item({
