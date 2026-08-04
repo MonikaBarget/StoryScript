@@ -29,7 +29,7 @@ export function BookMoser() {
                         game.activeCharacter.items.add(target as IItem);
                     
                         return {
-                            text: `${BookMoser.name} is now an item in your notebook!`,
+                            text: `You can now open ${Item.name} from your notebook and read a scan of the original!`,
                             removeTarget: false,
                         };
                     }
