@@ -9,7 +9,7 @@ export function Rules(): IRules {
                 game.worldProperties.type = 'Text'; // Set to 'Text' or 'Visual' to switch between modes.
             },
             playList: {
-                'Contemplate_the_stars.mp3': [GameState.Play]
+                'violintune_piano_v1.mp3': [GameState.Play]
             }
         },
 
