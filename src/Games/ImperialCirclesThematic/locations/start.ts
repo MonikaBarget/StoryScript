@@ -7,10 +7,10 @@ import { GovLoc0 } from './GovLoc0';
 import { MigLoc0 } from './MigLoc0';
 import { EcoLoc0 } from './EcoLoc0';
 import { SocLoc0 } from './SocLoc0';
-import { BookMoser } from '../items/book_moser';
-import { PersonNegker } from '../items/person_negker';
-import { PlaceEmpire } from '../items/place_empire';
-import { PersonEmperor } from '../items/person_emperor';
+import { BookMoser } from '../items/bookmoser';
+import { JostdeNegker } from '../items/jostdenegker';
+import { HolyRomanEmpire } from '../items/holyromanempire';
+import { HolyRomanEmperor } from '../items/holyromanemperor';
 
 export function Start() {
     return Location({
@@ -18,9 +18,9 @@ export function Start() {
         description: description,
         features: [
             BookMoser(),
-            PersonNegker(),
-            PlaceEmpire(),
-            PersonEmperor()
+            JostdeNegker(),
+            HolyRomanEmpire(),
+            HolyRomanEmperor()
         ],
         destinations: [
             {

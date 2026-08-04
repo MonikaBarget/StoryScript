@@ -1,6 +1,6 @@
 import { describe, test, expect, beforeAll } from 'vitest';
-import { BookMoser } from '../../../../Games/ImperialCirclesThematic/items/book_moser';
-import { PersonEmperor } from '../../../../Games/ImperialCirclesThematic/items/person_emperor';
+import { BookMoser } from '../../../../Games/ImperialCirclesThematic/items/bookmoser';
+import { HolyRomanEmperor } from '../../../../Games/ImperialCirclesThematic/items/holyromanemperor';
 import { addArrayExtensions } from 'storyScript/arrayAndFunctionExtensions.ts';
 
 describe("ImperialCirclesThematic rules", function() {
@@ -24,7 +24,7 @@ describe("ImperialCirclesThematic rules", function() {
     });
 
     test("should add an instantiated person item to the active character's backpack when the look action is used", function() {
-        const item = PersonEmperor();
+        const item = HolyRomanEmperor();
         const game = {
             activeCharacter: {
                 items: []

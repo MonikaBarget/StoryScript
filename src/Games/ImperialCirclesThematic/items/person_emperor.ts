@@ -1,9 +1,9 @@
 import { Item } from '../types';
 import { EquipmentType, ICombinationMatchResult, IItem } from 'storyScript/Interfaces/storyScript';
 import { Combinations } from '../combinations';
-import description from './person_emperor.html?raw';
+import description from './emperor.html?raw';
  
-export function PersonEmperor() {
+export function HolyRomanEmperor() {
     const item = Item({
         name: 'Holy Roman Emperor',
         description: description,
@@ -22,7 +22,7 @@ export function PersonEmperor() {
                         
                         game.activeCharacter.items.add(target as IItem);
                         return { 
-                            text: 'The Holy Roman Emperor has been added to your notebook!', 
+                            text: 'Consult your notebook to learn more!', 
                             removeTarget: false
                         };
                     }

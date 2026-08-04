@@ -5,5 +5,7 @@ export function SciLoc3() {
     return Location({
         name: 'SciLoc 3',
         description: description,
+        destinations: [
+        ]
     });
 }
