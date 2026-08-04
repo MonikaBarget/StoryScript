@@ -8,27 +8,27 @@ import { CurLoc5 } from './CurLoc5';
 
 export function CurLoc0() {
     return Location({
-        name: 'Currencies & Fraud',
+        name: 'Currencies',
         description: description,
         destinations: [
             {
-                name: 'Currency regulation',
+                name: 'Currency Regulation',
                 target: CurLoc1,
             },
             {
-                name: 'Harmful currency practices',
+                name: 'Harmful Currency Practices',
                 target: CurLoc2,
             },
             {
-                name: 'Counterfeit currency',
+                name: 'Counterfeit Currency',
                 target: CurLoc3,
             },
             {
-                name: 'Foreign currency',
+                name: 'Foreign Currency',
                 target: CurLoc4,
             },
             {
-                name: 'Unifying the German currency system',
+                name: 'Unifying the German Currency System',
                 target: CurLoc5,
             },
         ]

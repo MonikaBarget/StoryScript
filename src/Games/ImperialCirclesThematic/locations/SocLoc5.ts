@@ -3,7 +3,7 @@ import description from './SocLoc5.html?raw';
 
 export function SocLoc5() {
     return Location({
-        name: 'Religious refugees',
+        name: 'Regulating religious practice',
         description: description,
         destinations: []
     });
