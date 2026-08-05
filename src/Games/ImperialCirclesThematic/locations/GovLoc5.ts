@@ -7,11 +7,11 @@ import { GovLoc4 } from './GovLoc4';
 
 export function GovLoc5() {
     return Location({
-        name: 'Conflict Mediation & Collective Diplomacy',
+        name: 'Conflict Mediation',
         description: description,
         destinations: [
             {
-                name: 'Imperial Laws and Taxes',
+                name: 'Imperial Laws & Taxes',
                 target: GovLoc1,
             },
             {
@@ -19,11 +19,11 @@ export function GovLoc5() {
                 target: GovLoc2,
             },
             {
-                name: 'Receptions of Foreign Leaders & Diplomats',
+                name: 'Diplomatic Relations',
                 target: GovLoc3,
             },
             {
-                name: 'Punishment (Reichsexekution and Reichsacht)',
+                name: 'Punishment (Reichsexekution & Reichsacht)',
                 target: GovLoc4,
             },
         ]

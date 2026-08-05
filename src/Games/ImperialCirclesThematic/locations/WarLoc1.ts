@@ -8,7 +8,7 @@ import { WarLoc6 } from './WarLoc6';
 
 export function WarLoc1() {
     return Location({
-        name: 'War & Defence overview',
+        name: 'European Expansion',
         description: description,
         destinations: [
             {
@@ -20,7 +20,7 @@ export function WarLoc1() {
                 target: WarLoc3,
             },
             {
-                name: 'War of the Polish Succession',
+                name: 'Succession Conflicts',
                 target: WarLoc4,
             },
             {

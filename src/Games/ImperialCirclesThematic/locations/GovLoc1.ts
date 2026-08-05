@@ -7,7 +7,7 @@ import { GovLoc5 } from './GovLoc5';
 
 export function GovLoc1() {
     return Location({
-        name: 'Imperial Laws and Taxes',
+        name: 'Imperial Laws & Taxes',
         description: description,
         destinations: [
             {
@@ -15,15 +15,15 @@ export function GovLoc1() {
                 target: GovLoc2,
             },
             {
-                name: 'Receptions of Foreign Leaders & Diplomats',
+                name: 'Diplomatic Relations',
                 target: GovLoc3,
             },
             {
-                name: 'Punishment (Reichsexekution and Reichsacht)',
+                name: 'Punishment (Reichsexekution & Reichsacht)',
                 target: GovLoc4,
             },
             {
-                name: 'Conflict Mediation & Collective Diplomacy',
+                name: 'Conflict Mediation',
                 target: GovLoc5,
             },
         ]

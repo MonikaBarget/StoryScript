@@ -15,11 +15,11 @@ export function EcoLoc5() {
                 target: EcoLoc1,
             },
             {
-                name: 'Regulating Labour Mobility',
+                name: 'Regulating Labour',
                 target: EcoLoc2,
             },
             {
-                name: 'Transcontinental Trade',
+                name: 'Transregional Trade',
                 target: EcoLoc3,
             },
             {

@@ -69,7 +69,7 @@ p {
     margin-right: 10px;
     color: white; /* Ensure text is readable */
     border: 1px solid #5D2906; /* Darker brown border */
-    background-color: #8B4513A6; /* Default color for child theme buttons */
+    background-color: #8B4513A6; /* Default color for buttons */
     padding: 5px 10px;
     border-radius: 3px;
 }

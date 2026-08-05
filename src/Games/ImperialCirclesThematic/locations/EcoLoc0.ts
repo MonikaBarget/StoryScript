@@ -8,7 +8,7 @@ import { EcoLoc5 } from './EcoLoc5';
 
 export function EcoLoc0() {
     return Location({
-        name: 'Economies',
+        name: 'Economy',
         description: description,
         destinations: [
             {
@@ -16,11 +16,11 @@ export function EcoLoc0() {
                 target: EcoLoc1,
             },
             {
-                name: 'Regulating Labour Mobility',
+                name: 'Regulating Labour',
                 target: EcoLoc2,
             },
             {
-                name: 'Transcontinental Trade',
+                name: 'Transregional Trade',
                 target: EcoLoc3,
             },
             {

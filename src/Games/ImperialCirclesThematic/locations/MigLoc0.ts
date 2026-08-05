@@ -13,15 +13,15 @@ export function MigLoc0() {
         description: description,
         destinations: [
             {
-                name: 'Travelling crafts- and tradespeople',
+                name: 'Travelling Crafts- and Tradespeople',
                 target: MigLoc1,
             },
             {
-                name: 'Travelling soldiers',
+                name: 'Travelling Soldiers',
                 target: MigLoc2,
             },
             {
-                name: 'Travelling beggars',
+                name: 'Travelling Beggars',
                 target: MigLoc3,
             },
             {

@@ -7,7 +7,7 @@ import { WarLoc6 } from './WarLoc6';
 
 export function WarLoc4() {
     return Location({
-        name: 'War of the Polish Succession',
+        name: 'Succession Conflicts',
         description: description,
         destinations: [
             {

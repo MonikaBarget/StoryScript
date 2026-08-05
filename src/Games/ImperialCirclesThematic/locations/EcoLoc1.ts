@@ -11,11 +11,11 @@ export function EcoLoc1() {
         description: description,
         destinations: [
             {
-                name: 'Regulating Labour Mobility',
+                name: 'Regulating Labour',
                 target: EcoLoc2,
             },
             {
-                name: 'Transcontinental Trade',
+                name: 'Transregional Trade',
                 target: EcoLoc3,
             },
             {

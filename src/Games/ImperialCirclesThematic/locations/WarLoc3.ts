@@ -15,7 +15,7 @@ export function WarLoc3() {
                 target: WarLoc2,
             },
             {
-                name: 'War of the Polish Succession',
+                name: 'Succession Conflicts',
                 target: WarLoc4,
             },
             {

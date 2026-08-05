@@ -8,15 +8,15 @@ import { MigLoc6 } from './MigLoc6';
 
 export function MigLoc3() {
     return Location({
-        name: 'Travelling beggars',
+        name: 'Travelling Beggars',
         description: description,
         destinations: [
             {
-                name: 'Travelling crafts- and tradespeople',
+                name: 'Travelling Crafts- and Tradespeople',
                 target: MigLoc1,
             },
             {
-                name: 'Travelling soldiers',
+                name: 'Travelling Soldiers',
                 target: MigLoc2,
             },
             {

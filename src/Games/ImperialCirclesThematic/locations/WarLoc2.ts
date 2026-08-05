@@ -12,7 +12,7 @@ export function WarLoc2() {
         description: description,
         destinations: [
             {
-                name: 'War & Defence overview',
+                name: 'European Expansion',
                 target: WarLoc1,
             },
             {
@@ -20,7 +20,7 @@ export function WarLoc2() {
                 target: WarLoc3,
             },
             {
-                name: 'War of the Polish Succession',
+                name: 'Succession Conflicts',
                 target: WarLoc4,
             },
             {

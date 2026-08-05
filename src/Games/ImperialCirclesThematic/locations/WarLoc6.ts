@@ -19,7 +19,7 @@ export function WarLoc6() {
                 target: WarLoc3,
             },
             {
-                name: 'War of the Polish Succession',
+                name: 'Succession Conflicts',
                 target: WarLoc4,
             },
             {

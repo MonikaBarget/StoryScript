@@ -8,27 +8,27 @@ import { SocLoc5 } from './SocLoc5';
 
 export function SocLoc0() {
     return Location({
-        name: 'Social Structures',
+        name: 'Social Order',
         description: description,
         destinations: [
             {
-                name: 'Social Structures overview',
+                name: 'Widows & Orphans',
                 target: SocLoc1,
             },
             {
-                name: 'SocLoc 2',
+                name: 'Religious Practice',
                 target: SocLoc2,
             },
             {
-                name: 'SocLoc 3',
+                name: 'Welfare',
                 target: SocLoc3,
             },
             {
-                name: 'SocLoc 4',
+                name: 'Public Health',
                 target: SocLoc4,
             },
             {
-                name: 'SocLoc 5',
+                name: 'Cultural Diversity',
                 target: SocLoc5,
             },
         ],
