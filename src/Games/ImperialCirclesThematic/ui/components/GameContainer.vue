@@ -26,7 +26,7 @@
                  ref="music-player"
                  :src="`resources/${getCurrentMusic()}`"
                  autostart="false" 
-                 preload ="none"
+                 preload ="auto"
                  class="storyscript-player"
                  loop
                  controls>
