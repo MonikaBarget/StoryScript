@@ -67,9 +67,9 @@ p {
 
 #exploration button {
     margin-right: 10px;
-    background-color: #8b4513a6; /* Cappucino brown */
     color: white; /* Ensure text is readable */
     border: 1px solid #5D2906; /* Darker brown border */
+    background-color: #8B4513A6; /* Default color for child theme buttons */
     padding: 5px 10px;
     border-radius: 3px;
 }
@@ -138,41 +138,5 @@ div.character-backpack.box-container {
     color: #333333;
 }
 
-/* Base style for all exploration buttons */
-button.btn.btn-info {
-    margin-right: 10px;
-    color: white;
-    border: 1px solid #5D2906;
-    padding: 5px 10px;
-    border-radius: 3px;
-    font-family: Georgia, "Times New Roman", serif;
-}
 
-/* Assign unique brown shades to each button */
-button.btn.btn-info:nth-of-type(1) {
-    background-color: #0d8de858; /* SaddleBrown */
-}
 
-button.btn.btn-info:nth-of-type(2) {
-    background-color: #2da07d9a; /* Sienna */
-}
-
-button.btn.btn-info:nth-of-type(3) {
-    background-color: #d033106f; /* Maroon (dark red-brown) */
-}
-
-button.btn.btn-info:nth-of-type(4) {
-    background-color: #eec60f52; /* Dark Brown */
-}
-
-button.btn.btn-info:nth-of-type(5) {
-    background-color: #bc93ee71; /* Medium Brown */
-}
-
-button.btn.btn-info:nth-of-type(6) {
-    background-color: #df257650; /* Darker Brown */
-}
-
-button.btn.btn-info:nth-of-type(7) {
-    background-color: #9bacee; /* Almost Black Brown */
-}

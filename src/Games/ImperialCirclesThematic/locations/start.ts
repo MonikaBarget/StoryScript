@@ -28,11 +28,11 @@ export function Start() {
                 target: WarLoc0,
             },
             {
-                name: 'Currencies & Fraud',
+                name: 'Currencies',
                 target: CurLoc0,
             },
             {
-                name: 'Poverty & Social Order',
+                name: 'Knowledge',
                 target: SciLoc0,
             },
             {
@@ -40,15 +40,15 @@ export function Start() {
                 target: GovLoc0,
             },
             {
-                name: 'Migration & Economies',
+                name: 'Mobility',
                 target: MigLoc0,
             },
             {
-                name: 'Economies & Mobility',
+                name: 'Economy',
                 target: EcoLoc0,
             },
             {
-                name: 'Social Structures',
+                name: 'Social Order',
                 target: SocLoc0,
             },
         ],
