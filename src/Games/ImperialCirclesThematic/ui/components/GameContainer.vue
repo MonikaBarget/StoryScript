@@ -22,21 +22,16 @@
 
         <!-- Audio Player Box -->
         <div class="audio-player-box mt-3">
-          <h5>Sound Controls</h5>
           <audio v-if="getCurrentMusic()"
                  ref="music-player"
                  :src="`resources/${getCurrentMusic()}`"
-                 autoplay
+                 autostart="false" 
+                 preload ="none"
                  class="storyscript-player"
                  loop
                  controls>
           </audio>
-          <audio v-for="sound in getSoundQueue()" :key="sound[0]" v-if="canPlay"
-                 :src="`resources/${sound[1]}`"
-                 autoplay
-                 class="storyscript-player"
-                 @ended="soundCompleted(sound[0])">
-          </audio>
+          <p>Now playing <em>Three Voices</em>, recorded & mixed with <a href="https://ntrack.com">N-Track Studio</a> for Linux.</p>
         </div>
       </div>
     </div>
